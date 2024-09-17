@@ -1,6 +1,9 @@
 ---
+
 import Header from '../components/Header.astro';
+
 import '@fontsource/roboto';
+
 interface Props {
 	title: string;
 	description: string;
@@ -32,6 +35,7 @@ const { description, title } = Astro.props;
 	}
 	html {
 		font-family: 'Roboto', system-ui, sans-serif;
+		scroll-behavior: smooth;
 	}
 
 	body{
@@ -41,4 +45,10 @@ const { description, title } = Astro.props;
 		min-height: 100vh;
 	}
 	
+	@media (prefers-reduced-motion: reduce){
+		html{
+			scroll-behavior: auto;
+		}
+	}
+
 </style>

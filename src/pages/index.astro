@@ -3,18 +3,23 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Header from '../components/Header.astro';
 import Badge from '../components/Badge.astro';
+import SectionContainer from '../components/SectionContainer.astro';
 import SocialPill from '../components/SocialPill.astro';
 import GithubIcon from '../components/icons/GithubIcon.astro';
 import LinkedinIcon from '../components/icons/LinkedinIcon.astro';
 import BehanceIcon from '../components/icons/BehanceIcon.astro';
 import YoutubeIcon from '../components/icons/YoutubeIcon.astro';
 import GmailIcon from '../components/icons/GmailIcon.astro';
+import Experience from '../components/Experience.astro';
+import TitleSection from "../components/TitleSection.astro"
+import MaletaIcon from '../components/icons/MaletaIcon.astro';
 ---
 
 <Layout 
 	title="Portfolio Shinigamy19 - Diseñador Multimedia y Creador de contenido."
 	description="Soy Eros, Diseñador Multimedia, Creador de contenido, Desarrollador y programador de Argentina."	
 >
+<<<<<<< Updated upstream
 	<main>
 		<section class="w-full mx-auto lg:w-[740px] py-44">
 			<img 
@@ -22,6 +27,10 @@ import GmailIcon from '../components/icons/GmailIcon.astro';
 				src="Logo.png" 
 				alt="Logo Shinigamy19"
 			/>
+=======
+	<main class="px-4">
+		<SectionContainer class="py-16 md:py-36">
+>>>>>>> Stashed changes
 			<h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-4">Hola, soy Shinigamy19 <a href="https://linkedin.com/in/eros-benitez" target="_blank" rel="noopener" class="flex justify-center items-center"><Badge>Disponible para trabajar</Badge></div></h1>
 			<h2 class="texr-2xl text-wrap">
 				<span class="text-blue-500">+6 años de experiencia.</span> Diseñador Multimedia y Creador de contenido. Mi nombre es Eros, soy de Buenos Aires, Argentina.
@@ -44,13 +53,21 @@ import GmailIcon from '../components/icons/GmailIcon.astro';
 					<YoutubeIcon class="size-6"/>
 					Youtube
 				</SocialPill>
-				<SocialPill href="https://www.youtube.com/c/shinigamy19">
+				<SocialPill href="mailto:erosbenitezd@gmail.com">
 					<GmailIcon class="size-6"/>
 					Gmail
 				</SocialPill>
 			</nav>
-
-		</section>
+		</SectionContainer>
+	<div class="space-y-24">
+		<SectionContainer id="experiencia">
+			<TitleSection>
+				<MaletaIcon class="size 8" />
+				Experiencia Laboral
+			</TitleSection>
+			<Experience />
+		</SectionContainer>
+	</div>
 	</main>
 </Layout>
 

@@ -1,0 +1,36 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+
+const EXPERIENCIE =[
+    {
+        date: 'Mayo a Julio de 2024',
+        title: 'Curso de Processing',
+        description: 'Curso sobre framework de java que busca acercar a cualquier persona a la programación.',
+        link: 'https://www.youtube.com/playlist?list=PLALOGywm7ZvKogWQI3DMRurd-eRrUEfHb'
+    },
+    {
+        date: 'Diciembre de 2023',
+        title: 'La cueva de las manos - Arqueologos Argentinos.',
+        description: 'Edicion y planificacion de imagenes compuestas para trabajo arqueologico sobre la cueva de las manos.',
+        link: 'https://boletinmuseoprecolombino.cl/nuevo/wp-content/uploads/2023/12/05_Aschero.pdf'
+    },
+    {
+        date: '2022-2023',
+        title: 'Imagenes para empresas.',
+        description: 'Logos realizados para empresas y distintos trabajos textiles.',
+        link: 'https://www.behance.net/gallery/180431813/Logos'
+    },
+] 
+---
+
+
+<ol class="relative nt-16">            
+    {
+        EXPERIENCIE.map(experience => (
+        <li class="">
+            <ExperienceItem {...experience} />
+        </li>
+        ))
+    }      
+</ol>
+
