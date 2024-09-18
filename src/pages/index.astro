@@ -1,23 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import Header from '../components/Header.astro';
-import Badge from '../components/Badge.astro';
+
 import SectionContainer from '../components/SectionContainer.astro';
 import TitleSection from "../components/TitleSection.astro"
-import SocialPill from '../components/SocialPill.astro';
+import Presentacion from '../components/Presentacion.astro';
 import Experiencia from '../components/Experiencia.astro';
 import Proyectos from '../components/Proyectos.astro';
 import SobreMi from '../components/SobreMi.astro';
 
-import GithubIcon from '../components/icons/GithubIcon.astro';
-import LinkedinIcon from '../components/icons/LinkedinIcon.astro';
-import BehanceIcon from '../components/icons/BehanceIcon.astro';
-import YoutubeIcon from '../components/icons/YoutubeIcon.astro';
-import GmailIcon from '../components/icons/GmailIcon.astro';
+
 import CodeIcon from '../components/icons/CodeIcon.astro';
 import MaletaIcon from '../components/icons/MaletaIcon.astro';
 import ProfileIcon from '../components/icons/ProfileIcon.astro';
+
 ---
 
 <Layout 
@@ -25,40 +20,12 @@ import ProfileIcon from '../components/icons/ProfileIcon.astro';
 	description="Soy Eros, Diseñador Multimedia, Creador de contenido, Desarrollador y programador de Argentina."	
 >
 
-	<main class="px-4">
-		<SectionContainer class="py-16 md:py-36">
-			<img 
-			class="rouded-full w-22 h-20" 
-			src="Logo.png" 
-			alt="Logo Shinigamy19"/>
-			<h1 class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10 ">Hola, soy Shinigamy19 <a href="https://linkedin.com/in/eros-benitez" target="_blank" rel="noopener" class="flex justify-center items-center"><Badge>Disponible para trabajar</Badge></h1>
-			<h2 class="text-xl lg:text-2xl text-wrap max-w-[700px]">
-				<span class="text-blue-500">+6 años de experiencia.</span> Diseñador Multimedia y Creador de contenido. Mi nombre es Eros, soy de Buenos Aires, Argentina.
-			</h2>
-
-			<nav class="flex gap-4 mt-8 flex-wrap">
-				<SocialPill href="https://linkedin.com/in/eros-benitez">
-					<LinkedinIcon class="size-6"/>
-					LinkedIn
-				</SocialPill>
-				<SocialPill href="https://github.com/shinigamy19">
-					<GithubIcon class="size-6"/>
-					GitHub
-				</SocialPill>
-				<SocialPill href="https://www.behance.net/shinigamy19">
-					<BehanceIcon class="size-6"/>
-					Behance
-				</SocialPill>
-				<SocialPill href="https://www.youtube.com/c/shinigamy19">
-					<YoutubeIcon class="size-6"/>
-					Youtube
-				</SocialPill>
-				<SocialPill href="mailto:erosbenitezd@gmail.com">
-					<GmailIcon class="size-6"/>
-					Gmail
-				</SocialPill>
-			</nav>
-		</SectionContainer>
+<main class="px-4">
+    <SectionContainer class="py-16 md:py-36">
+    	<Presentacion>
+    		</slot>
+    	</Presentacion>
+    </SectionContainer>
 		
 	<div class="space-y-24">
 
@@ -85,7 +52,7 @@ import ProfileIcon from '../components/icons/ProfileIcon.astro';
 			</TitleSection>
 			<SobreMi />
 		</SectionContainer>
-		
+
 	</div>
 	</main>
 </Layout>

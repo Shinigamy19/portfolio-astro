@@ -1,0 +1,58 @@
+---
+const personalImageAlt = "Logo de Shinigamy19"
+import Badge from '../components/Badge.astro';
+import GithubIcon from '../components/icons/GithubIcon.astro';
+import LinkedinIcon from '../components/icons/LinkedinIcon.astro';
+import BehanceIcon from '../components/icons/BehanceIcon.astro';
+import YoutubeIcon from '../components/icons/YoutubeIcon.astro';
+import GmailIcon from '../components/icons/GmailIcon.astro';
+import SocialPill from '../components/SocialPill.astro';
+---
+
+<div class="max-w-xl">
+  <div class="flex gap-4 mb-4">
+    
+    <img 
+		class="rouded-full shadow-lg w-22 h-20" 
+		src="Logo.webp" 
+        alt={personalImageAlt}
+    />
+    <a href="https://linkedin.com/in/eros-benitez" target="_blank" rel="noopener" class="flex justify-center items-center">
+      <Badge>Disponible para trabajar</Badge>
+    </a>
+  </div>
+  <h1
+    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
+  >
+    Hola, soy Shinigamy19
+  </h1>
+  <p
+    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-400 [&>strong]:text-sky-600 [&>strong]:font-semibold dark:text-gray-300"
+  >
+  +6 años de experiencia. <strong
+      >Diseñador Multimedia y creador de contenido.</strong
+    > Mi nombre es Eros y soy de Buenos Aires, Argentina.
+  </p>
+  <nav class="flex flex-wrap gap-4 mt-8">
+    <SocialPill href="https://linkedin.com/in/eros-benitez">
+        <LinkedinIcon class="size-6"/>
+        LinkedIn
+    </SocialPill>
+    <SocialPill href="https://github.com/shinigamy19">
+        <GithubIcon class="size-6"/>
+        GitHub
+    </SocialPill>
+    <SocialPill href="https://www.behance.net/shinigamy19">
+        <BehanceIcon class="size-6"/>
+        Behance
+    </SocialPill>
+    <SocialPill href="https://www.youtube.com/c/shinigamy19">
+        <YoutubeIcon class="size-6"/>
+        Youtube
+    </SocialPill>
+    <SocialPill href="mailto:erosbenitezd@gmail.com">
+        <GmailIcon class="size-6"/>
+        Gmail
+    </SocialPill>
+  </nav>
+</div>
