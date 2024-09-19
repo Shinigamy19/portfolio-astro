@@ -1,0 +1,66 @@
+---
+import GithubIcon from '../components/icons/GithubIcon.astro';
+import LinkedinIcon from '../components/icons/LinkedinIcon.astro';
+import BehanceIcon from '../components/icons/BehanceIcon.astro';
+import YoutubeIcon from '../components/icons/YoutubeIcon.astro';
+import GmailIcon from '../components/icons/GmailIcon.astro';
+import SocialPill from '../components/SocialPill.astro';
+import TwitchIcon from './icons/TwitchIcon.astro';
+import KickIcon from './icons/KickIcon.astro';
+import DiscordIcon from './icons/DiscordIcon.astro';
+import InstagramIcon from './icons/InstagramIcon.astro';
+---
+
+<div class="max-w-xl">
+    <p
+    class="mt-6 text-xl text-gray-800  [&>strong]:font-semibold dark:text-gray-300"
+    >
+    La manera mas facil de contactarme es mandar un mail a <a href="mailto:erosbenitezd@gmail.com"><strong>erosbenitezd@gmail.com</strong></a> o pasando por
+    </p>
+    <article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
+        
+        <p class="order-1 text-3xl font-bold tracking-tight text-gray-800 sm:text-xl dark:text-white">Mis redes sociales:</p>
+        <nav class="flex flex-wrap gap-4 mt-8 order-2">
+            <SocialPill href="https://linkedin.com/in/eros-benitez">
+                <LinkedinIcon class="size-6"/>
+                LinkedIn
+            </SocialPill>
+            <SocialPill href="https://github.com/shinigamy19">
+                <GithubIcon class="size-6"/>
+                GitHub
+            </SocialPill>
+            <SocialPill href="https://www.behance.net/shinigamy19">
+                <BehanceIcon class="size-6"/>
+                Behance
+            </SocialPill>
+            <SocialPill href="mailto:erosbenitezd@gmail.com">
+                <GmailIcon class="size-6"/>
+                Gmail
+            </SocialPill>
+            <SocialPill href="https://www.youtube.com/c/shinigamy19">
+                <YoutubeIcon class="size-6"/>
+                Youtube
+            </SocialPill>
+            <SocialPill href="https://twitch.tv/shinigamy_19">
+                <TwitchIcon class="size-6"/>
+                Twitch
+            </SocialPill>
+            <SocialPill href="https://kick.com/shinigamy19">
+                <KickIcon class="size-6"/>
+                Kick
+            </SocialPill>
+            <SocialPill href="https://discord.gg/px9fcpbp3T">
+                <DiscordIcon class="size-6"/>
+                Discord
+            </SocialPill>
+            <SocialPill href="https://www.instagram.com/shinigamy19_art">
+                <InstagramIcon class="size-6"/>
+                Instagram
+            </SocialPill>
+            <SocialPill href="https://www.instagram.com/shinigamy19">
+                <InstagramIcon class="size-6"/>
+                Instagram Personal
+            </SocialPill>
+        </nav>
+    </article>
+</div>

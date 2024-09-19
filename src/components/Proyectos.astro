@@ -1,50 +1,66 @@
 ---
-import GitHub from "./icons/GithubIcon.astro"
-import NextJS from "./icons/NextJSIcon.astro"
-import Tailwind from "./icons/TailwindIcon.astro"
-import Link from "./icons/LinkIcon.astro"
-import LinkButton from "./LinkButton.astro"
+import GitHubIcon from "./icons/GithubIcon.astro"
+import NextJSIcon from "./icons/NextJSIcon.astro"
+import TailwindIcon from "./icons/TailwindIcon.astro"
+import LinkButtonIcon from "./LinkButton.astro"
+import ProcessingIcon from "./icons/ProcessingIcon.astro"
+import PuredataIcon from "./icons/PuredataIcon.astro"
+import JavaIcon from "./icons/JavaIcon.astro"
 
 const TAGS = {
   NEXT: {
     name: "Next.js",
-    class: "bg-black text-white",
-    icon: NextJS,
+    class: "bg-stone-800 dark:bg-black text-white",
+    icon: NextJSIcon,
   },
   TAILWIND: {
     name: "Tailwind CSS",
+    class: "bg-sky-500 dark:bg-[#003159] text-white",
+    icon: TailwindIcon,
+  },
+  JAVA: {
+    name: "Java",
+    class: "bg-orange-600 dark:bg-orange-900 text-white",
+    icon: JavaIcon,
+  },
+  PROCESSING: {
+    name: "Processing",
     class: "bg-[#003159] text-white",
-    icon: Tailwind,
+    icon: ProcessingIcon,
+  },
+  PUREDATA: {
+    name: "Pure Data",
+    class: "bg-gray-400 text-white dark:bg-gay-100",
+    icon: PuredataIcon,
   },
 }
 const PROJECTS = [
   {
-    title: "SVGL - A beautiful library with SVG logos",
+    title: "Una conversacion con El Roles",
     description:
-      "Biblioteca de logos SVG de las marcas más populares. +10k visitas al mes. +2K svgs descargados. Creado desde cero con Next.js, React y Tailwind CSS.",
-    link: "https://svgl.vercel.app/",
-    github: "https://github.com/pheralb/svgl",
-    image: "/projects/svgl.webp",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+      "Novela visual y Aventura conversacional realizada en processing.",
+    github: "https://github.com/Shinigamy19/Una-Conversacion-Con-El-Roles",
+    image: "Uccer.webp",
+    tags: [TAGS.JAVA, TAGS.PROCESSING],
   },
   {
-    title: "AdventJS - Retos de programación con JavaScript y TypeScript",
+    title: "Centro de procesamiento de audio",
     description:
-      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
-    link: "https://adventjs.dev",
-    image: "/projects/adventjs.webp",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+      "Programa para procesar audio, con vsts, efectos, filtros y pedales.",
+    github: "https://github.com/Shinigamy19/Una-Conversacion-Con-El-Roles",
+    image: "Pedales.webp",
+    tags: [TAGS.PUREDATA],
   },
 ]
 ---
 
 <div class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+    PROJECTS.map(({ image, title, description, tags, github }) => (
     <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
   <div class="w-full md:w-1/2">
     <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+      <img alt={title} class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
     </div>
   </div>
 
@@ -57,9 +73,9 @@ const PROJECTS = [
           {tags.map((tag) => (
             <li>
               <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                class={`flex gap-x-2 rounded-full text-s ${tag.class} py-1 px-2 `}
               >
-                <tag.icon class="size-4" />
+                <tag.icon class="size-5" />
                 {tag.name}
               </span>
             </li>
@@ -69,17 +85,11 @@ const PROJECTS = [
       <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
       <footer class="flex items-end justify-start mt-4 gap-x-4">
           {github && (
-            <LinkButton href={github}>
-              <GitHub class="size-6" />
-              Code
+            <LinkButtonIcon href={github}>
+              <GitHubIcon class="size-6" />
+              Codigo
               
-            </LinkButton>
-          )}
-          {link && (
-            <LinkButton href={link}>
-              <Link class="size-4" />
-              Preview
-            </LinkButton>
+            </LinkButtonIcon>
           )}
         </footer>
     </div>
