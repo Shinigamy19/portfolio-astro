@@ -2,7 +2,9 @@
 
 Proyecto realizado siguiendo el tutorial de <a href="https://github.com/midudev">Midudev</a>
 
-![just-the-basics](https://github.com/Shinigamy19/portfolio-astro/blob/master/Preview.webp)
+<a href="https://portfolioshinigamy19.netlify.app">
+    <img src="https://github.com/Shinigamy19/portfolio-astro/blob/master/Preview.webp" />
+</a>
 
 ## 👀 Mira tambien:
 
