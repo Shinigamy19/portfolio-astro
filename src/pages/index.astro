@@ -1,53 +1,52 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-import SectionContainer from '../components/SectionContainer.astro';
-import TitleSection from "../components/TitleSection.astro"
-import Presentacion from '../components/Presentacion.astro';
-import Experiencia from '../components/Experiencia.astro';
-import Proyectos from '../components/Proyectos.astro';
-import SobreMi from '../components/SobreMi.astro';
+import SectionContainer from "../components/SectionContainer.astro";
+import TitleSection from "../components/TitleSection.astro";
+import Presentacion from "../components/Presentacion.astro";
+import Experiencia from "../components/Experiencia.astro";
+import Proyectos from "../components/Proyectos.astro";
+import SobreMi from "../components/SobreMi.astro";
 
-
-import CodeIcon from '../components/icons/CodeIcon.astro';
-import MaletaIcon from '../components/icons/MaletaIcon.astro';
-import ProfileIcon from '../components/icons/ProfileIcon.astro';
-import ContactoIcon from '../components/icons/ContactoIcon.astro';
-import Contacto from '../components/Contacto.astro';
-
+import CodeIcon from "../components/icons/CodeIcon.astro";
+import MaletaIcon from "../components/icons/MaletaIcon.astro";
+import ProfileIcon from "../components/icons/ProfileIcon.astro";
+import ContactoIcon from "../components/icons/ContactoIcon.astro";
+import Contacto from "../components/Contacto.astro";
+import Habilidades from "../components/Habilidades.astro";
+import SkillsIcon from "../components/icons/SkillsIcon.astro";
+import Educacion from "../components/Educacion.astro";
+import EducacionIcon from "../components/icons/EducacionIcon.astro";
 ---
 
-<Layout 
+<Layout
 	title="Portfolio Shinigamy19 - Diseñador Multimedia y Creador de contenido."
-	description="Soy Eros, Diseñador Multimedia, Creador de contenido, Desarrollador y programador de Argentina."	
+	description="Soy Eros, Diseñador Multimedia, Creador de contenido, Desarrollador y programador de Argentina."
 >
+	<main class="px-4">
+		<SectionContainer class="py-16 md:py-36">
+			<Presentacion />
+		</SectionContainer>
+	</main>
 
-<main class="px-4">
-    <SectionContainer class="py-16 md:py-36">
-    	<Presentacion>
-    		</slot>
-    	</Presentacion>
-    </SectionContainer>
-		
 	<div class="space-y-24">
-
-		<SectionContainer id="experiencia">
+		<SectionContainer id="experiencia" maxWidth="lg:max-w-6xl md:max-w-4xl">
 			<TitleSection>
 				<MaletaIcon class="size 8" />
 				Experiencia Laboral
 			</TitleSection>
 			<Experiencia />
 		</SectionContainer>
-		
-		<SectionContainer id="proyectos">
+
+		<SectionContainer id="proyectos" maxWidth="lg:max-w-6xl md:max-w-4xl">
 			<TitleSection>
 				<CodeIcon class="size-7" />
 				Proyectos
 			</TitleSection>
 			<Proyectos />
 		</SectionContainer>
-		
-		<SectionContainer id="sobre-mi">
+
+		<SectionContainer id="sobre-mi" maxWidth="lg:max-w-6xl md:max-w-4xl">
 			<TitleSection>
 				<ProfileIcon class="size-8" />
 				Sobre mí
@@ -55,14 +54,28 @@ import Contacto from '../components/Contacto.astro';
 			<SobreMi />
 		</SectionContainer>
 
-		<SectionContainer id="contacto">
+		<SectionContainer id="habilidades" maxWidth="lg:max-w-6xl md:max-w-4xl">
+			<TitleSection>
+				<SkillsIcon class="size-8" />
+				Habilidades
+			</TitleSection>
+			<Habilidades />
+		</SectionContainer>
+
+		<SectionContainer id="educacion" maxWidth="lg:max-w-6xl md:max-w-4xl">
+			<TitleSection>
+				<EducacionIcon class="size-8" />
+				Educación
+			</TitleSection>
+			<Educacion />
+		</SectionContainer>
+
+		<SectionContainer id="contacto" maxWidth="lg:max-w-6xl md:max-w-4xl">
 			<TitleSection>
 				<ContactoIcon class="size-8" />
 				Contacto
 			</TitleSection>
 			<Contacto />
 		</SectionContainer>
-
 	</div>
-	</main>
 </Layout>

@@ -1,5 +1,5 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro"
+import ThemeToggle from "./ThemeToggle.astro";
 
 const navItems = [
   {
@@ -18,23 +18,34 @@ const navItems = [
     url: "/#sobre-mi",
   },
   {
+    title: "Habilidades",
+    label: "habilidades",
+    url: "/#habilidades",
+  },
+  {
+    title: "Educación",
+    label: "educacion",
+    url: "/#educacion",
+  },
+  {
     title: "Contacto",
     label: "contacto",
     url: "/#contacto",
   },
-]
+];
 ---
 
 <header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+  class="fixed top-0 z-50 flex items-center justify-center w-full mx-auto mt-2 md:mt-4 px-4"
 >
+  <!-- Desktop Navigation -->
   <nav
-    class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center"
+    class="hidden md:flex px-4 py-2 text-sm font-medium rounded-full text-gray-700 dark:text-gray-200 justify-center items-center bg-white/70 dark:bg-gray-900/60 shadow-lg ring-1 ring-white/10 backdrop-blur-md transition-all duration-300"
   >
     {
       navItems.map((link) => (
         <a
-          class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
+          class="relative block px-3 py-2 transition-all duration-300 hover:text-blue-500 hover:scale-105 whitespace-nowrap"
           aria-label={link.label}
           href={link.url}
         >
@@ -42,64 +53,172 @@ const navItems = [
         </a>
       ))
     }
-    <ThemeToggle />
+    <div class="ml-2 pl-2 border-l border-gray-300 dark:border-gray-700">
+      <ThemeToggle />
+    </div>
   </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="md:hidden w-full flex items-center justify-between relative z-50">
+    <div class="flex items-center gap-3">
+      <button
+        id="menu-toggle"
+        class="p-2 rounded-lg bg-white/70 dark:bg-gray-900/60 shadow-lg ring-1 ring-white/10 backdrop-blur-md transition-all duration-300 hover:scale-105 relative z-50"
+        aria-label="Toggle menu"
+      >
+        <svg
+          id="menu-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-6 text-gray-700 dark:text-gray-200"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M4 6l16 0"></path>
+          <path d="M4 12l16 0"></path>
+          <path d="M4 18l16 0"></path>
+        </svg>
+        <svg
+          id="close-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-6 text-gray-700 dark:text-gray-200 hidden"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M18 6l-12 12"></path>
+          <path d="M6 6l12 12"></path>
+        </svg>
+      </button>
+      <span class="text-sm font-semibold text-gray-700 dark:text-gray-200"
+        >Menú</span
+      >
+    </div>
+    <ThemeToggle />
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-40"
+  >
+    <nav
+      class="fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl transform -translate-x-full transition-transform duration-300 pt-20 px-6"
+    >
+      {
+        navItems.map((link) => (
+          <a
+            class="mobile-menu-link block py-3 px-4 mb-2 text-gray-700 dark:text-gray-200 hover:bg-blue-500/10 hover:text-blue-500 rounded-lg transition-all duration-300 font-medium"
+            aria-label={link.label}
+            href={link.url}
+          >
+            {link.title}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
 </header>
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section")
-    const navItems = document.querySelectorAll("header nav a")
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+    const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
+    const menuNav = mobileMenu?.querySelector("nav");
+
+    function toggleMenu() {
+      const isOpen = !mobileMenu?.classList.contains("pointer-events-none");
+
+      if (isOpen) {
+        // Close menu
+        mobileMenu?.classList.add("opacity-0", "pointer-events-none");
+        menuNav?.classList.add("-translate-x-full");
+        menuIcon?.classList.remove("hidden");
+        closeIcon?.classList.add("hidden");
+      } else {
+        // Open menu
+        mobileMenu?.classList.remove("opacity-0", "pointer-events-none");
+        menuNav?.classList.remove("-translate-x-full");
+        menuIcon?.classList.add("hidden");
+        closeIcon?.classList.remove("hidden");
+      }
+    }
+
+    menuToggle?.addEventListener("click", toggleMenu);
+
+    // Close menu when clicking overlay
+    mobileMenu?.addEventListener("click", (e) => {
+      if (e.target === mobileMenu) {
+        toggleMenu();
+      }
+    });
+
+    // Close menu when clicking a link
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        toggleMenu();
+      });
+    });
+
+    // Section highlighting
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll("header nav a");
 
     const callback = (entries: any[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-blue-500")
+              item.classList.add("text-blue-500", "font-bold");
             } else {
-              item.classList.remove("text-blue-500")
+              item.classList.remove("text-blue-500", "font-bold");
             }
-          })
+          });
         }
-      })
-    }
+      });
+    };
 
     const observer = new IntersectionObserver(callback, {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
-    })
+    });
 
     sections.forEach((section) => {
-      observer.observe(section)
-    })
+      observer.observe(section);
+    });
 
-    // Cleanup function
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
-        observer.disconnect()
+        observer.disconnect();
       } else {
         sections.forEach((section) => {
-          observer.observe(section)
-        })
+          observer.observe(section);
+        });
       }
-    }
-  })
+    };
+  });
 </script>
 
 <style>
   nav {
-    animation: nav-shadown 1s linear both;
+    animation: nav-shadow 1s linear both;
     animation-timeline: scroll();
     animation-range: 0 100px;
   }
 
-  nav {
-    @apply dark:bg-gray-800/90 bg-white/50;
-  }
-
-  @keyframes nav-shadown {
+  @keyframes nav-shadow {
     0% {
       @apply dark:bg-gray-800/0 bg-white/0;
     }

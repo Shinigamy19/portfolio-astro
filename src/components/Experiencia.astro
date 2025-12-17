@@ -1,39 +1,163 @@
 ---
-import ExperienciaItem from "./ExperienciaItem.astro"
+import ExperienciaItem from "./ExperienciaItem.astro";
 
-const EXPERIENCE =[
+const EXPERIENCE = [
     {
-        date: 'Mayo a Julio de 2024',
-        title: 'Curso de Processing',
-        description: 'Curso sobre framework de java que busca acercar a cualquier persona a la programación.',
-        company: "",
-        link: 'https://www.youtube.com/playlist?list=PLALOGywm7ZvKogWQI3DMRurd-eRrUEfHb',
+        date: "2022 - Actualidad",
+        title: "Community Manager & Diseñador Multimedia",
+        company: "TEAMTUBE",
+        description:
+            "Edición de video y audio, generación de imágenes con IA, creación de thumbnails y contenido optimizado para redes sociales.",
+        tags: ["Premiere Pro", "After Effects", "IA", "Social Media"],
     },
     {
-        date: 'Diciembre de 2023',
-        title: 'La cueva de las manos - Arqueologos Argentinos.',
-        description: 'Edicion y planificacion de imagenes compuestas para trabajo arqueologico sobre la cueva de las manos.',
-        company: "",
-        link: 'https://www.behance.net/gallery/208206721/Trabajo-Cueva-de-las-Manos',
+        date: "2018 - 2022",
+        title: "Diseñador Multimedia",
+        company: "COMPUSERVICE",
+        description:
+            "Diseño y desarrollo web, producción audiovisual, edición gráfica y gestión de marca para clientes diversos.",
+        tags: ["Photoshop", "Illustrator", "WordPress", "Video"],
     },
     {
-        date: '2022-2023',
-        title: 'Imagenes para empresas.',
-        description: 'Logos realizados para empresas y distintos trabajos textiles.',
-        company: "",
-        link: 'https://www.behance.net/gallery/180431813/Logos',
+        date: "2022 - 2023",
+        title: "Imagenes para empresas",
+        company: "Freelance",
+        description:
+            "Logos realizados para empresas y distintos trabajos textiles. Creación de identidad visual y branding.",
+        tags: ["Illustrator", "Photoshop", "Branding"],
     },
-] 
+    {
+        date: "2021 - 2022",
+        title: "Editor de Video Junior",
+        company: "Agencia Creativa",
+        description:
+            "Asistencia en edición de comerciales y contenido para redes. Manejo de material de archivo y post-producción básica.",
+        tags: ["Premiere Pro", "DaVinci Resolve"],
+    },
+    {
+        date: "2020 - 2021",
+        title: "Diseñador Gráfico",
+        company: "Estudio Local",
+        description:
+            "Diseño de piezas gráficas para redes sociales, papelería institucional y cartelería.",
+        tags: ["Photoshop", "Illustrator", "InDesign"],
+    },
+    {
+        date: "2019 - 2020",
+        title: "Asistente de Producción",
+        company: "Productora Independiente",
+        description:
+            "Soporte en rodajes, gestión de equipos y asistencia en tareas de pre-producción.",
+        tags: ["Producción", "Logística"],
+    },
+];
 ---
 
+<div class="">
+    <div class="relative">
+        <div
+            class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-sky-400 dark:bg-sky-500 hidden md:block"
+        >
+        </div>
 
-<ol class="relative nt-16">            
-    {
-        EXPERIENCE.map(experience => (
-        <li class="">
-            <ExperienciaItem {...experience} />
-        </li>
-        ))
-    }      
-</ol>
+        <ol class="relative mt-8 flex flex-col gap-12" id="experience-list">
+            {
+                EXPERIENCE.map((experience, index) => (
+                    <li
+                        class={`experience-item relative ${index >= 3 ? "hidden" : ""}`}
+                    >
+                        <ExperienciaItem
+                            {...experience}
+                            isLeft={index % 2 === 0}
+                        />
+                    </li>
+                ))
+            }
+        </ol>
+    </div>
 
+    <div class="mt-8 flex justify-center gap-4">
+        <button
+            id="load-more-btn"
+            class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300"
+        >
+            Ver más
+        </button>
+        <button
+            id="show-less-btn"
+            class="hidden bg-gray-500 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300"
+        >
+            Ver menos
+        </button>
+    </div>
+</div>
+
+<script>
+    const list = document.getElementById("experience-list");
+    const loadMoreBtn = document.getElementById("load-more-btn");
+    const showLessBtn = document.getElementById("show-less-btn");
+    const items = list?.querySelectorAll(".experience-item");
+    const INITIAL_ITEMS = 3;
+    let currentItems = INITIAL_ITEMS;
+
+    if (loadMoreBtn && showLessBtn && items) {
+        // Hide load more button if no more items initially
+        if (items.length <= INITIAL_ITEMS) {
+            loadMoreBtn.style.display = "none";
+        }
+
+        loadMoreBtn.addEventListener("click", () => {
+            let nextItems = 0;
+            items.forEach((item, index) => {
+                if (index >= currentItems && nextItems < 3) {
+                    item.classList.remove("hidden");
+                    item.classList.add("fade-in");
+                    nextItems++;
+                }
+            });
+            currentItems += 3;
+
+            // Show 'Show Less' button if we showing more than initial items
+            if (currentItems > INITIAL_ITEMS) {
+                showLessBtn.classList.remove("hidden");
+            }
+
+            // Hide 'Load More' button if all items are visible
+            if (currentItems >= items.length) {
+                loadMoreBtn.style.display = "none";
+            }
+        });
+
+        showLessBtn.addEventListener("click", () => {
+            items.forEach((item, index) => {
+                if (index >= INITIAL_ITEMS) {
+                    item.classList.add("hidden");
+                    item.classList.remove("fade-in");
+                }
+            });
+            currentItems = INITIAL_ITEMS;
+
+            // Scroll back to the top of the list or container
+            // list?.scrollIntoView({ behavior: 'smooth' });
+
+            loadMoreBtn.style.display = "block"; // Show 'Load More' again
+            showLessBtn.classList.add("hidden"); // Hide 'Show Less'
+        });
+    }
+</script>
+
+<style>
+    .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

@@ -1,56 +1,112 @@
 ---
-import LinkInline from "../components/LinkInline.astro"
+import LinkInline from "../components/LinkInline.astro";
 
 interface Props {
-  title: string
-  company: string
-  description: string
-  link?: string
-  date: string
+  title: string;
+  company: string;
+  description: string;
+  link?: string;
+  date: string;
+  tags?: string[];
+  isLeft?: boolean;
 }
 
-const { title, company, description, link, date } = Astro.props
+const { title, company, description, link, date, tags, isLeft } = Astro.props;
 ---
 
 <div
-  class="relative mx-12 pb-12 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-black/20 dark:before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4]"
+  class={`flex md:justify-between items-start w-full ${isLeft ? "md:flex-row-reverse" : ""}`}
 >
-  <div class="relative pb-12 md:col-span-2">
-    <div class="sticky top-0">
-      <span class="text-sky-600 dark:text-yellow-400 -left-[42px] absolute rounded-full text-5xl"
-        >&bull;</span
-      >
+  <div class="hidden md:block md:w-[45%]"></div>
 
-      <h3 class="text-xl font-bold text-sky-600 dark:text-yellow-400">{title}</h3>
-      <h4 class="font-semibold text-xl text-gray-600 dark:text-white">{company}</h4>
-      <time class="p-0 m-0 text-sm text-gray-600/80 dark:text-white/80">{date}</time>
+  <div class="absolute left-1/2 -translate-x-1/2 mt-1 hidden md:block">
+    <div
+      class="w-4 h-4 bg-sky-500/80 dark:bg-sky-500/80 rounded-full border-4 border-white dark:border-slate-900 shadow-[0_0_10px_rgba(14,165,233,0.5)]"
+    >
     </div>
   </div>
-  <div class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3">
-    {description}
-    {
-      link && (
-        <LinkInline href={link}>
-          Ver más{" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 icon icon-tabler icon-tabler-chevron-right"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <>
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M9 6l6 6l-6 6" />
-            </>
-          </svg>
-        </LinkInline>
-      )
-    }
+
+  <div class="w-full md:w-[45%] group">
+    <div
+      class="relative p-6 bg-white/80 dark:bg-[#1e293b] border border-gray-200 dark:border-slate-600/40 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-500/50"
+    >
+      <div class="flex items-center gap-3 mb-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-calendar-event text-sky-500 dark:text-sky-400"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
+          ></path>
+          <path d="M16 3v4"></path>
+          <path d="M8 3v4"></path>
+          <path d="M4 11h16"></path>
+          <path d="M8 15h2"></path>
+        </svg>
+        <span class="text-sky-600 dark:text-sky-400 font-bold text-sm"
+          >{date}</span
+        >
+      </div>
+
+      <h3
+        class="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight"
+      >
+        {title}
+      </h3>
+
+      <div
+        class="flex items-center gap-2 mb-4 text-gray-600 dark:text-slate-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-building-skyscraper text-gray-500 dark:text-slate-400"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M3 21l18 0"></path>
+          <path d="M5 21v-14l8 -4v18"></path>
+          <path d="M19 21v-10l-6 -4"></path>
+          <path d="M9 9l0 .01"></path>
+          <path d="M9 12l0 .01"></path>
+          <path d="M9 15l0 .01"></path>
+          <path d="M9 18l0 .01"></path>
+        </svg>
+        <h4 class="font-medium text-sm">
+          {company}
+        </h4>
+      </div>
+
+      <p class="text-gray-700 dark:text-slate-300 mb-6 text-sm leading-relaxed">
+        {description}
+      </p>
+
+      {
+        tags && (
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="bg-purple-100 dark:bg-purple-600/30 text-purple-700 dark:text-purple-200 text-xs font-semibold px-3 py-1.5 rounded-full border border-purple-300 dark:border-purple-500/30">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </div>
   </div>
 </div>

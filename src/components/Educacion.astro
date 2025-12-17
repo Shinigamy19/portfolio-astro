@@ -1,0 +1,75 @@
+---
+import EducacionItem from "./EducacionItem.astro";
+
+const EDUCATION = [
+    {
+        date: "2020 - 2023",
+        title: "Tecnicatura Superior en Diseño Multimedial",
+        institution: "ISPC - Instituto Superior Politécnico Córdoba",
+        description:
+            "Formación integral en diseño gráfico, desarrollo web, producción audiovisual y gestión de proyectos multimedia.",
+        type: "Terciario",
+        gradient: "from-purple-600 via-pink-600 to-rose-600",
+        icon: "graduation",
+        skills: ["Diseño Gráfico", "Desarrollo Web", "Audiovisual", "UX/UI"],
+    },
+    {
+        date: "2014 - 2019",
+        title: "Bachiller en Ciencias Sociales y Humanidades",
+        institution: "Colegio Secundario",
+        description:
+            "Educación secundaria completa con orientación en ciencias sociales y humanidades.",
+        type: "Secundario",
+        gradient: "from-cyan-500 via-blue-600 to-indigo-700",
+        icon: "book",
+        skills: ["Ciencias Sociales", "Humanidades", "Investigación"],
+    },
+];
+---
+
+<div class="relative">
+    <!-- Elementos decorativos de fondo -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+            class="absolute top-0 right-0 w-72 h-72 bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+        >
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"
+            style="animation-delay: 1s;"
+        >
+        </div>
+    </div>
+
+    <!-- Grid de tarjetas -->
+    <div class="relative mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        {
+            EDUCATION.map((education, index) => (
+                <div
+                    class="education-card"
+                    style={`animation-delay: ${index * 0.2}s;`}
+                >
+                    <EducacionItem {...education} index={index} />
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    .education-card {
+        animation: fadeInUp 0.6s ease-out forwards;
+        opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

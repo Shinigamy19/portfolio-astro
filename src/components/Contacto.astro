@@ -1,66 +1,275 @@
 ---
-import GithubIcon from '../components/icons/GithubIcon.astro';
-import LinkedinIcon from '../components/icons/LinkedinIcon.astro';
-import BehanceIcon from '../components/icons/BehanceIcon.astro';
-import YoutubeIcon from '../components/icons/YoutubeIcon.astro';
-import GmailIcon from '../components/icons/GmailIcon.astro';
-import SocialPill from '../components/SocialPill.astro';
-import TwitchIcon from './icons/TwitchIcon.astro';
-import KickIcon from './icons/KickIcon.astro';
-import DiscordIcon from './icons/DiscordIcon.astro';
-import InstagramIcon from './icons/InstagramIcon.astro';
+import GithubIcon from "../components/icons/GithubIcon.astro";
+import LinkedinIcon from "../components/icons/LinkedinIcon.astro";
+import BehanceIcon from "../components/icons/BehanceIcon.astro";
+import YoutubeIcon from "../components/icons/YoutubeIcon.astro";
+import TwitchIcon from "../components/icons/TwitchIcon.astro";
+import KickIcon from "../components/icons/KickIcon.astro";
+import DiscordIcon from "../components/icons/DiscordIcon.astro";
+import InstagramIcon from "../components/icons/InstagramIcon.astro";
 ---
 
-<div class="max-w-xl">
-    <p
-    class="mt-6 text-xl text-gray-800  [&>strong]:font-semibold dark:text-gray-300"
-    >
-    La manera mas facil de contactarme es mandar un mail a <a href="mailto:erosbenitezd@gmail.com"><strong>erosbenitezd@gmail.com</strong></a> o pasando por
-    </p>
-    <article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
-        
-        <p class="order-1 text-3xl font-bold tracking-tight text-gray-800 sm:text-xl dark:text-white">Mis redes sociales:</p>
-        <nav class="flex flex-wrap gap-4 mt-8 order-2">
-            <SocialPill href="https://linkedin.com/in/eros-benitez">
-                <LinkedinIcon class="size-6"/>
-                LinkedIn
-            </SocialPill>
-            <SocialPill href="https://github.com/shinigamy19">
-                <GithubIcon class="size-6"/>
-                GitHub
-            </SocialPill>
-            <SocialPill href="https://www.behance.net/shinigamy19">
-                <BehanceIcon class="size-6"/>
-                Behance
-            </SocialPill>
-            <SocialPill href="mailto:erosbenitezd@gmail.com">
-                <GmailIcon class="size-6"/>
-                Gmail
-            </SocialPill>
-            <SocialPill href="https://www.youtube.com/c/shinigamy19">
-                <YoutubeIcon class="size-6"/>
-                Youtube
-            </SocialPill>
-            <SocialPill href="https://twitch.tv/shinigamy_19">
-                <TwitchIcon class="size-6"/>
-                Twitch
-            </SocialPill>
-            <SocialPill href="https://kick.com/shinigamy19">
-                <KickIcon class="size-6"/>
-                Kick
-            </SocialPill>
-            <SocialPill href="https://discord.gg/px9fcpbp3T">
-                <DiscordIcon class="size-6"/>
-                Discord
-            </SocialPill>
-            <SocialPill href="https://www.instagram.com/shinigamy19_art">
-                <InstagramIcon class="size-6"/>
-                Instagram
-            </SocialPill>
-            <SocialPill href="https://www.instagram.com/shinigamy19">
-                <InstagramIcon class="size-6"/>
-                Instagram Personal
-            </SocialPill>
-        </nav>
-    </article>
+<div class="flex flex-col gap-12 w-full max-w-5xl mx-auto">
+    <div class="text-center">
+        <p class="text-gray-600 dark:text-gray-400 text-lg">
+            ¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Contact Methods Column -->
+        <div class="flex flex-col gap-6">
+            <!-- Email -->
+            <div
+                class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-6 rounded-2xl flex items-center gap-6 hover:border-blue-400 dark:hover:border-gray-700 transition-colors"
+            >
+                <div
+                    class="bg-blue-100 dark:bg-blue-900/20 p-4 rounded-xl text-blue-600 dark:text-blue-500"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-mail"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"
+                        ></path>
+                        <path
+                            d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
+                        ></path>
+                        <path d="M3 7l9 6l9 -6"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p
+                        class="text-gray-500 dark:text-gray-400 font-medium mb-1"
+                    >
+                        Email
+                    </p>
+                    <a
+                        href="mailto:erosbenitezd@gmail.com"
+                        class="text-gray-900 dark:text-white text-lg font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        >erosbenitezd@gmail.com</a
+                    >
+                </div>
+            </div>
+
+            <!-- Phone -->
+            <div
+                class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-6 rounded-2xl flex items-center gap-6 hover:border-blue-400 dark:hover:border-gray-700 transition-colors"
+            >
+                <div
+                    class="bg-blue-100 dark:bg-blue-900/20 p-4 rounded-xl text-blue-600 dark:text-blue-500"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-phone"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"
+                        ></path>
+                        <path
+                            d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"
+                        ></path>
+                    </svg>
+                </div>
+                <div>
+                    <p
+                        class="text-gray-500 dark:text-gray-400 font-medium mb-1"
+                    >
+                        Teléfono
+                    </p>
+                    <p
+                        class="text-gray-900 dark:text-white text-lg font-semibold"
+                    >
+                        (+54) 11 2397-7610
+                    </p>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div
+                class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-6 rounded-2xl flex items-center gap-6 hover:border-blue-400 dark:hover:border-gray-700 transition-colors"
+            >
+                <div
+                    class="bg-blue-100 dark:bg-blue-900/20 p-4 rounded-xl text-blue-600 dark:text-blue-500"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-map-pin"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"
+                        ></path>
+                        <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                        <path
+                            d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
+                        ></path>
+                    </svg>
+                </div>
+                <div>
+                    <p
+                        class="text-gray-500 dark:text-gray-400 font-medium mb-1"
+                    >
+                        Ubicación
+                    </p>
+                    <p
+                        class="text-gray-900 dark:text-white text-lg font-semibold"
+                    >
+                        Buenos Aires, Argentina
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action Column -->
+        <div class="flex flex-col gap-6">
+            <div
+                class="bg-gradient-to-br from-blue-50 to-purple-50 dark:bg-none dark:bg-[#0f172a] border border-blue-200 dark:border-blue-900/30 p-8 rounded-3xl flex-1 flex flex-col justify-center"
+            >
+                <h3
+                    class="text-2xl font-bold text-gray-900 dark:text-white mb-4"
+                >
+                    ¿Listo para trabajar juntos?
+                </h3>
+                <p
+                    class="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed"
+                >
+                    Estoy disponible para proyectos freelance, colaboraciones y
+                    oportunidades laborales. No dudes en contactarme para
+                    discutir tu próximo proyecto.
+                </p>
+                <a
+                    href="mailto:erosbenitezd@gmail.com"
+                    class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl text-center w-full flex items-center justify-center gap-2 transition-colors"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-mail"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"
+                        ></path>
+                        <path
+                            d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
+                        ></path>
+                        <path d="M3 7l9 6l9 -6"></path>
+                    </svg>
+                    Enviar Email
+                </a>
+            </div>
+
+            <!-- Social Media Buttons -->
+            <div class="flex flex-wrap justify-center gap-4">
+                <a
+                    href="https://linkedin.com/in/eros-benitez"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+                    aria-label="LinkedIn"
+                >
+                    <LinkedinIcon class="size-6" />
+                </a>
+                <a
+                    href="https://github.com/shinigamy19"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+                    aria-label="GitHub"
+                >
+                    <GithubIcon class="size-6" />
+                </a>
+                <a
+                    href="https://www.behance.net/shinigamy19"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+                    aria-label="Behance"
+                >
+                    <BehanceIcon class="size-6" />
+                </a>
+                <a
+                    href="https://www.youtube.com/c/shinigamy19"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+                    aria-label="Youtube"
+                >
+                    <YoutubeIcon class="size-6" />
+                </a>
+                <a
+                    href="https://twitch.tv/shinigamy_19"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+                    aria-label="Twitch"
+                >
+                    <TwitchIcon class="size-6" />
+                </a>
+                <a
+                    href="https://kick.com/shinigamy19"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+                    aria-label="Kick"
+                >
+                    <KickIcon class="size-6" />
+                </a>
+                <a
+                    href="https://discord.gg/px9fcpbp3T"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+                    aria-label="Discord"
+                >
+                    <DiscordIcon class="size-6" />
+                </a>
+                <a
+                    href="https://www.instagram.com/shinigamy19_art"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+                    aria-label="Instagram Art"
+                >
+                    <InstagramIcon class="size-6" />
+                </a>
+                <a
+                    href="https://www.instagram.com/shinigamy19"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+                    aria-label="Instagram Personal"
+                >
+                    <InstagramIcon class="size-6" />
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
