@@ -64,8 +64,10 @@ const COURSES = coursesData;
         >
             {
                 COURSES.map((course, idx) => (
-                    <div
-                        class={`course-card group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-purple-500/50 dark:hover:border-purple-500/50 transition-all hover:-translate-y-1 hover:shadow-lg ${idx >= 6 ? "hidden" : ""}`}
+                    <a
+                        href={course.certificateUrl}
+                        target="_blank"
+                        class={`course-card group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-purple-500/50 dark:hover:border-purple-500/50 transition-all hover:-translate-y-1 hover:shadow-lg block cursor-pointer ${idx >= 6 ? "hidden" : ""}`}
                         style={`animation-delay: ${0.5 + idx * 0.1}s`}
                     >
                         <div class="flex justify-between items-start mb-3">
@@ -100,7 +102,7 @@ const COURSES = coursesData;
                         <p class="text-sm text-gray-500 dark:text-gray-400">
                             {course.platform}
                         </p>
-                    </div>
+                    </a>
                 ))
             }
         </div>

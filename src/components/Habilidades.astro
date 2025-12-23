@@ -2,6 +2,63 @@
 import { skillsData } from "../data/skills";
 import { achievementsData } from "../data/achievements";
 
+// Icons
+import FigmaIcon from "./icons/Figma.astro";
+import HtmlIcon from "./icons/Html.astro";
+import CssIcon from "./icons/Css.astro";
+import JsIcon from "./icons/Js.astro";
+import JsonIcon from "./icons/Json.astro";
+import GmlIcon from "./icons/Gml.astro";
+import ObsstudioIcon from "./icons/Obsstudio.astro";
+import CanvaIcon from "./icons/Canva.astro";
+import CoreldrawIcon from "./icons/Coreldraw.astro";
+import KritaIcon from "./icons/Krita.astro";
+import GimpIcon from "./icons/Gimp.astro";
+import InkscapeIcon from "./icons/Inkscape.astro";
+import UnrealEngineIcon from "./icons/Unrealengine.astro";
+import GameMakerIcon from "./icons/Gamemaker.astro";
+import VisualStudioIcon from "./icons/VisualStudio.astro";
+import AndroidstudioIcon from "./icons/Androidstudio.astro";
+import MongodbIcon from "./icons/Mongodb.astro";
+import DiscordjsIcon from "./icons/Discordjs.astro";
+import NodejsIcon from "./icons/Nodejs.astro";
+import LaravelIcon from "./icons/Laravel.astro";
+import PrismaIcon from "./icons/Prisma.astro";
+import P5jsIcon from "./icons/P5js.astro";
+import AstroIcon from "./icons/Astro.astro";
+import ArduinoIcon from "./icons/Arduino.astro";
+import AutocadIcon from "./icons/Autocad.astro";
+import WordIcon from "./icons/Word.astro";
+import ExcelIcon from "./icons/Excel.astro";
+import PowerpointIcon from "./icons/Powerpoint.astro";
+import NextJSIcon from "./icons/NextJSIcon.astro";
+import TailwindIcon from "./icons/TailwindIcon.astro";
+import JavaIcon from "./icons/JavaIcon.astro";
+import ProcessingIcon from "./icons/ProcessingIcon.astro";
+import PuredataIcon from "./icons/PuredataIcon.astro";
+import UnityIcon from "./icons/Unity.astro";
+import PhotoshopIcon from "./icons/Photoshop.astro";
+import CSharpIcon from "./icons/Csharp.astro";
+import PhpIcon from "./icons/Php.astro";
+import AfterEffectsIcon from "./icons/Aftereffects.astro";
+import AsepriteIcon from "./icons/Asesprite.astro";
+import GodotIcon from "./icons/Godot.astro";
+import IllustratorIcon from "./icons/Illustrator.astro";
+import InDesignIcon from "./icons/Indiseing.astro";
+import PremiereIcon from "./icons/Premiere.astro";
+import PythonIcon from "./icons/Python.astro";
+import WordpressIcon from "./icons/Wordpress.astro";
+import MysqlIcon from "./icons/Mysql.astro";
+import AuditionIcon from "./icons/Audition.astro";
+import BlenderIcon from "./icons/Blender.astro";
+import ReaperIcon from "./icons/Reaper.astro";
+import CIcon from "./icons/C.astro";
+import CPlusPlusIcon from "./icons/Cplusplus.astro";
+import FlutterIcon from "./icons/Flutter.astro";
+import DockerIcon from "./icons/Docker.astro";
+import KotlinIcon from "./icons/Kotlin.astro";
+import ExpressIcon from "./icons/Express.astro";
+
 const SKILLS = skillsData;
 const ACHIEVEMENTS = achievementsData;
 ---
@@ -16,7 +73,154 @@ const ACHIEVEMENTS = achievementsData;
                     </h3>
                     <div class="flex flex-wrap gap-3">
                         {skillGroup.items.map((item) => (
-                            <span class="bg-[#582f82] dark:bg-[#582f82] text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-sm hover:scale-105 transition-transform cursor-default">
+                            <span class="bg-[#582f82] dark:bg-[#582f82] text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:scale-105 transition-transform cursor-default flex items-center gap-2">
+                                {item === "Next.js" && (
+                                    <NextJSIcon class="size-4" />
+                                )}
+                                {item === "Tailwind CSS" && (
+                                    <TailwindIcon class="size-4" />
+                                )}
+                                {item === "Java" && <JavaIcon class="size-4" />}
+                                {item === "Processing" && (
+                                    <ProcessingIcon class="size-4" />
+                                )}
+                                {item === "Pure Data" && (
+                                    <PuredataIcon class="size-4" />
+                                )}
+                                {item === "Unity" && (
+                                    <UnityIcon class="size-4" />
+                                )}
+                                {item === "Photoshop" && (
+                                    <PhotoshopIcon class="size-4" />
+                                )}
+                                {item === "C#" && <CSharpIcon class="size-4" />}
+                                {item === "PHP" && <PhpIcon class="size-4" />}
+                                {item === "After Effects" && (
+                                    <AfterEffectsIcon class="size-4" />
+                                )}
+                                {item === "Aseprite" && (
+                                    <AsepriteIcon class="size-4" />
+                                )}
+                                {item === "Godot" && (
+                                    <GodotIcon class="size-4" />
+                                )}
+                                {item === "Illustrator" && (
+                                    <IllustratorIcon class="size-4" />
+                                )}
+                                {item === "InDesign" && (
+                                    <InDesignIcon class="size-4" />
+                                )}
+                                {item === "Premiere Pro" && (
+                                    <PremiereIcon class="size-4" />
+                                )}
+                                {item === "Python" && (
+                                    <PythonIcon class="size-4" />
+                                )}
+                                {item === "WordPress" && (
+                                    <WordpressIcon class="size-4" />
+                                )}
+                                {item === "MySQL" && (
+                                    <MysqlIcon class="size-4" />
+                                )}
+                                {item === "HTML5" && (
+                                    <HtmlIcon class="size-4" />
+                                )}
+                                {item === "CSS3" && <CssIcon class="size-4" />}
+                                {item === "JavaScript" && (
+                                    <JsIcon class="size-4" />
+                                )}
+                                {item === "JSON" && <JsonIcon class="size-4" />}
+                                {item === "GML" && <GmlIcon class="size-4" />}
+                                {item === "Audition" && (
+                                    <AuditionIcon class="size-4" />
+                                )}
+                                {item === "Blender" && (
+                                    <BlenderIcon class="size-4" />
+                                )}
+                                {item === "Reaper" && (
+                                    <ReaperIcon class="size-4" />
+                                )}
+                                {item === "OBS Studio" && (
+                                    <ObsstudioIcon class="size-4" />
+                                )}
+                                {item === "Canva" && (
+                                    <CanvaIcon class="size-4" />
+                                )}
+                                {item === "Corel Draw" && (
+                                    <CoreldrawIcon class="size-4" />
+                                )}
+                                {item === "Krita" && (
+                                    <KritaIcon class="size-4" />
+                                )}
+                                {item === "GIMP" && <GimpIcon class="size-4" />}
+                                {item === "Inkscape" && (
+                                    <InkscapeIcon class="size-4" />
+                                )}
+                                {item === "Unreal Engine" && (
+                                    <UnrealEngineIcon class="size-4" />
+                                )}
+                                {item === "Gamemaker" && (
+                                    <GameMakerIcon class="size-4" />
+                                )}
+                                {item === "Visual Studio" && (
+                                    <VisualStudioIcon class="size-4" />
+                                )}
+                                {item === "Android Studio" && (
+                                    <AndroidstudioIcon class="size-4" />
+                                )}
+                                {item === "MongoDB" && (
+                                    <MongodbIcon class="size-4" />
+                                )}
+                                {item === "Discord.js" && (
+                                    <DiscordjsIcon class="size-4" />
+                                )}
+                                {item === "Node.js" && (
+                                    <NodejsIcon class="size-4" />
+                                )}
+                                {item === "Laravel" && (
+                                    <LaravelIcon class="size-4" />
+                                )}
+                                {item === "Prisma" && (
+                                    <PrismaIcon class="size-4" />
+                                )}
+                                {item === "p5.js" && (
+                                    <P5jsIcon class="size-4" />
+                                )}
+                                {item === "Express.js" && (
+                                    <ExpressIcon class="size-4" />
+                                )}
+                                {item === "Astro" && (
+                                    <AstroIcon class="size-4" />
+                                )}
+                                {item === "Docker" && (
+                                    <DockerIcon class="size-4" />
+                                )}
+                                {item === "Arduino" && (
+                                    <ArduinoIcon class="size-4" />
+                                )}
+                                {item === "AutoCAD" && (
+                                    <AutocadIcon class="size-4" />
+                                )}
+                                {item === "Word" && <WordIcon class="size-4" />}
+                                {item === "Excel" && (
+                                    <ExcelIcon class="size-4" />
+                                )}
+                                {item === "PowerPoint" && (
+                                    <PowerpointIcon class="size-4" />
+                                )}
+                                {item === "C" && <CIcon class="size-4" />}
+                                {item === "C++" && (
+                                    <CPlusPlusIcon class="size-4" />
+                                )}
+                                {item === "Flutter" && (
+                                    <FlutterIcon class="size-4" />
+                                )}
+                                {item === "Kotlin" && (
+                                    <KotlinIcon class="size-4" />
+                                )}
+                                {item === "Figma" && (
+                                    <FigmaIcon class="size-4" />
+                                )}
                                 {item}
                             </span>
                         ))}

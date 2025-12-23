@@ -3,4 +3,5 @@ export interface Course {
     platform: string;
     year: string;
     icon: string;
+    certificateUrl?: string;
 }

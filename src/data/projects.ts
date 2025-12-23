@@ -3,6 +3,16 @@ import { projectTags } from "./projectTags";
 
 export const projectsData: Project[] = [
     {
+        title: "El Amanecer de la tormenta - Novela",
+        description:
+            "Edición y diseño editorial. Maquetación, ilustraciones y diseño de portadas.",
+        image:
+            "https://mir-s3-cdn-cf.behance.net/project_modules/1400/220268106950343.5f9bc1d528994.jpg",
+        tags: [projectTags.INDESIGN, projectTags.PHOTOSHOP],
+        category: "Editorial",
+        link: "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
+    },
+    {
         title: "Una conversacion con El Roles",
         description:
             "Novela visual y Aventura conversacional realizada en processing.",
@@ -11,7 +21,6 @@ export const projectsData: Project[] = [
         category: "Videojuegos",
         github: "https://github.com/Shinigamy19",
         link: "https://shinigamy19.itch.io/",
-        link2: "https://shinigamy19.itch.io/",
     },
     {
         title: "Centro de procesamiento de audio",
