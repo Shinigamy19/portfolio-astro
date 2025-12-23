@@ -1,42 +1,47 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
+import LanguageSelector from "./LanguageSelector.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const navItems = [
   {
-    title: "Experiencia",
+    title: t("nav.experience"),
     label: "experiencia",
-    url: "/#experiencia",
+    url: `/${lang}/#experiencia`,
   },
   {
-    title: "Proyectos",
+    title: t("nav.projects"),
     label: "proyectos",
-    url: "/#proyectos",
+    url: `/${lang}/#proyectos`,
   },
   {
-    title: "Sobre mí",
+    title: t("nav.about"),
     label: "sobre-mi",
-    url: "/#sobre-mi",
+    url: `/${lang}/#sobre-mi`,
   },
   {
-    title: "Habilidades",
+    title: t("nav.skills"),
     label: "habilidades",
-    url: "/#habilidades",
+    url: `/${lang}/#habilidades`,
   },
   {
-    title: "Educación",
+    title: t("nav.education"),
     label: "educacion",
-    url: "/#educacion",
+    url: `/${lang}/#educacion`,
   },
   {
-    title: "Contacto",
+    title: t("nav.contact"),
     label: "contacto",
-    url: "/#contacto",
+    url: `/${lang}/#contacto`,
   },
 ];
 ---
 
 <header
-  class="fixed top-0 z-50 flex items-center justify-center w-full mx-auto mt-2 md:mt-4 px-4"
+  class="fixed top-0 z-50 flex items-center justify-center w-full mx-auto mt-0 md:mt-4 px-4"
 >
   <!-- Desktop Navigation -->
   <nav
@@ -45,7 +50,7 @@ const navItems = [
     {
       navItems.map((link) => (
         <a
-          class="relative block px-3 py-2 transition-all duration-300 hover:text-blue-500 hover:scale-105 whitespace-nowrap"
+          class="relative block px-3 py-2 transition-all duration-300 text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 whitespace-nowrap"
           aria-label={link.label}
           href={link.url}
         >
@@ -53,23 +58,28 @@ const navItems = [
         </a>
       ))
     }
-    <div class="ml-2 pl-2 border-l border-gray-300 dark:border-gray-700">
+    <div
+      class="flex items-center gap-2 ml-2 pl-2 border-l border-gray-300 dark:border-gray-700"
+    >
       <ThemeToggle />
+      <LanguageSelector />
     </div>
   </nav>
 
   <!-- Mobile Navigation -->
-  <div class="md:hidden w-full flex items-center justify-between relative z-50">
+  <nav
+    class="md:hidden flex items-center justify-between w-full max-w-[350px] px-4 py-2 mt-4 bg-white/70 dark:bg-gray-900/60 backdrop-blur-md rounded-full border border-gray-200 dark:border-white/10 shadow-lg mx-auto relative z-50"
+  >
     <div class="flex items-center gap-3">
       <button
         id="menu-toggle"
-        class="p-2 rounded-lg bg-white/70 dark:bg-gray-900/60 shadow-lg ring-1 ring-white/10 backdrop-blur-md transition-all duration-300 hover:scale-105 relative z-50"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
         aria-label="Toggle menu"
       >
         <svg
           id="menu-icon"
           xmlns="http://www.w3.org/2000/svg"
-          class="size-6 text-gray-700 dark:text-gray-200"
+          class="size-5 text-gray-700 dark:text-gray-200"
           viewBox="0 0 24 24"
           stroke-width="2"
           stroke="currentColor"
@@ -85,7 +95,7 @@ const navItems = [
         <svg
           id="close-icon"
           xmlns="http://www.w3.org/2000/svg"
-          class="size-6 text-gray-700 dark:text-gray-200 hidden"
+          class="size-5 text-gray-700 dark:text-gray-200 hidden"
           viewBox="0 0 24 24"
           stroke-width="2"
           stroke="currentColor"
@@ -97,13 +107,18 @@ const navItems = [
           <path d="M18 6l-12 12"></path>
           <path d="M6 6l12 12"></path>
         </svg>
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-200"
+          >Menú</span
+        >
       </button>
-      <span class="text-sm font-semibold text-gray-700 dark:text-gray-200"
-        >Menú</span
-      >
     </div>
-    <ThemeToggle />
-  </div>
+    <div
+      class="flex items-center gap-2 border-l border-gray-300 dark:border-gray-700 pl-3 ml-1"
+    >
+      <ThemeToggle />
+      <LanguageSelector />
+    </div>
+  </nav>
 
   <!-- Mobile Menu Overlay -->
   <div
@@ -212,10 +227,19 @@ const navItems = [
 </script>
 
 <style>
-  nav {
+  header > nav:first-of-type {
     animation: nav-shadow 1s linear both;
     animation-timeline: scroll();
     animation-range: 0 100px;
+  }
+
+  /* Ensure mobile menu always has solid background */
+  #mobile-menu nav {
+    background-color: white !important;
+  }
+
+  :global(.dark) #mobile-menu nav {
+    background-color: rgb(17, 24, 39) !important;
   }
 
   @keyframes nav-shadow {

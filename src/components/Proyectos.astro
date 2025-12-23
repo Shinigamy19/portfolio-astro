@@ -1,158 +1,22 @@
 ---
 import GitHubIcon from "./icons/GithubIcon.astro";
+import LinkButtonIcon from "./LinkButton.astro";
 import NextJSIcon from "./icons/NextJSIcon.astro";
 import TailwindIcon from "./icons/TailwindIcon.astro";
-import LinkButtonIcon from "./LinkButton.astro";
+import JavaIcon from "./icons/JavaIcon.astro";
 import ProcessingIcon from "./icons/ProcessingIcon.astro";
 import PuredataIcon from "./icons/PuredataIcon.astro";
-import JavaIcon from "./icons/JavaIcon.astro";
+import UnityIcon from "./icons/Unity.astro";
+import { projectTags } from "../data/projectTags";
+import { projectsData } from "../data/projects";
+import { projectCategories } from "../data/projectCategories";
 
-const TAGS = {
-  NEXT: {
-    name: "Next.js",
-    class: "bg-black text-white",
-    icon: NextJSIcon,
-  },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-[#003159] text-white",
-    icon: TailwindIcon,
-  },
-  JAVA: {
-    name: "Java",
-    class: "bg-orange-900 text-white",
-    icon: JavaIcon,
-  },
-  PROCESSING: {
-    name: "Processing",
-    class: "bg-[#003159] text-white",
-    icon: ProcessingIcon,
-  },
-  PUREDATA: {
-    name: "Pure Data",
-    class: "bg-gray-100 text-black",
-    icon: PuredataIcon,
-  },
-  PHOTOSHOP: {
-    name: "Photoshop",
-    class: "bg-[#31A8FF] text-white",
-    // icon: PhotoshopIcon, // Add icon if available, otherwise just text
-  },
-  ILLUSTRATOR: {
-    name: "Illustrator",
-    class: "bg-[#FF9A00] text-black",
-  },
-  INDESIGN: {
-    name: "InDesign",
-    class: "bg-[#FF3366] text-white",
-  },
-  PREMIERE: {
-    name: "Premiere Pro",
-    class: "bg-[#9999FF] text-white",
-  },
-  AFTER: {
-    name: "After Effects",
-    class: "bg-[#9999FF] text-white",
-  },
-  UNITY: {
-    name: "Unity",
-    class: "bg-black text-white",
-  },
-  CSHARP: {
-    name: "C#",
-    class: "bg-green-600 text-white",
-  },
-  WORDPRESS: {
-    name: "WordPress",
-    class: "bg-[#21759b] text-white",
-  },
-};
-
-const PROJECTS = [
-  {
-    title: "Una conversacion con El Roles",
-    description:
-      "Novela visual y Aventura conversacional realizada en processing.",
-    image: "Uccer.webp",
-    tags: [TAGS.JAVA, TAGS.PROCESSING],
-    category: "Videojuegos",
-  },
-  {
-    title: "Centro de procesamiento de audio",
-    description:
-      "Programa para procesar audio, con vsts, efectos, filtros y pedales.",
-    image: "Pedales.webp",
-    tags: [TAGS.PUREDATA],
-    category: "Audiovisual",
-  },
-  {
-    title: "Inmortal - Libro de Poemas",
-    description:
-      "Edición y diseño editorial completo de libro de poemas. Maquetación, ilustraciones y diseño de portada.",
-    image:
-      "https://mir-s3-cdn-cf.behance.net/project_modules/1400/220268106950343.5f9bc1d528994.jpg", // Placeholder or upload
-    tags: [TAGS.INDESIGN, TAGS.PHOTOSHOP],
-    category: "Editorial",
-  },
-  {
-    title: "Break Friends - Juego de Mesa",
-    description:
-      "Creación integral de juego de mesa: diseño de cartas, tablero, manual de reglas y empaquetado.",
-    image:
-      "https://mir-s3-cdn-cf.behance.net/project_modules/1400/f35602106950343.5f9bc1d529241.jpg", // Placeholder
-    tags: [TAGS.ILLUSTRATOR, TAGS.PHOTOSHOP],
-    category: "Producto",
-  },
-  {
-    title: "End Of Bioworld - Juego 2D",
-    description:
-      "Desarrollo completo de videojuego de plataformas 2D. Diseño de personajes, niveles y mecánicas de juego.",
-    image:
-      "https://mir-s3-cdn-cf.behance.net/project_modules/fs/8c7295106950343.5f9bc1d5299da.png", // Placeholder
-    tags: [TAGS.UNITY, TAGS.CSHARP],
-    category: "Videojuegos",
-  },
-  {
-    title: "Content Creation - TeamTube",
-    description:
-      "Edición de video y audio profesional, generación de thumbnails y contenido optimizado para redes sociales.",
-    image:
-      "https://mir-s3-cdn-cf.behance.net/project_modules/disp/313333106950343.5f9bc1d52a23e.png", // Placeholder
-    tags: [TAGS.PREMIERE, TAGS.AFTER],
-    category: "Audiovisual",
-  },
-  {
-    title: "Desarrollo Web - Compuservice",
-    description:
-      "Diseño y desarrollo de sitios web responsivos para clientes, optimización SEO y mantenimiento.",
-    image:
-      "https://mir-s3-cdn-cf.behance.net/project_modules/disp/d4d0ec106950343.5f9bc1d52a818.png", // Placeholder
-    tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.WORDPRESS],
-    category: "Web",
-  },
-  {
-    title: "Remediación Nativa",
-    description:
-      "Proyecto ganador del premio innovación en OlimpiADA del Agua. Diseño de campaña y materiales comunicacionales.",
-    image:
-      "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png", // Placeholder
-    tags: [TAGS.PHOTOSHOP, TAGS.ILLUSTRATOR],
-    category: "Gráfico",
-  },
-];
-
-const CATEGORIES = [
-  "Todos",
-  "Editorial",
-  "Producto",
-  "Videojuegos",
-  "Audiovisual",
-  "Web",
-  "Gráfico",
-];
+const TAGS = projectTags;
+const PROJECTS = projectsData;
+const CATEGORIES = projectCategories;
 ---
 
-<div class="flex flex-col items-center gap-y-8 w-full">
+<div class="flex flex-col items-center gap-y-8 w-full" id="proyectos-section">
   <!-- Category Tabs -->
   <div class="flex flex-wrap justify-center gap-4 mb-8">
     {
@@ -174,43 +38,84 @@ const CATEGORIES = [
     id="projects-grid"
   >
     {
-      PROJECTS.map(({ image, title, description, tags, category }) => (
-        <article
-          class="project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-          data-category={category}
-        >
-          <div class="relative h-48 overflow-hidden">
-            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300 z-10" />
-            <img
-              alt={title}
-              class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
-              src={image || "/placeholder-project.jpg"}
-              loading="lazy"
-            />
-          </div>
-
-          <div class="flex flex-col flex-1 p-6">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
-              {title}
-            </h3>
-
-            <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3 flex-1">
-              {description}
-            </p>
-
-            <div class="flex flex-wrap gap-2 mt-auto">
-              {tags.map((tag) => (
-                <span
-                  class={`flex items-center gap-x-1.5 rounded-full text-xs font-medium px-2.5 py-1 ${tag.class}`}
-                >
-                  {tag.icon && <tag.icon class="size-3.5" />}
-                  {tag.name}
-                </span>
-              ))}
+      PROJECTS.map(
+        ({ image, title, description, tags, category, github, link }) => (
+          <article
+            class="project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+            data-category={category}
+          >
+            <div class="relative h-48 overflow-hidden">
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300 z-10" />
+              <img
+                alt={title}
+                class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
+                src={image || "/placeholder-project.jpg"}
+                loading="lazy"
+              />
             </div>
-          </div>
-        </article>
-      ))
+
+            <div class="flex flex-col flex-1 p-6">
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
+                {title}
+              </h3>
+
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3 flex-1">
+                {description}
+              </p>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                {tags.map((tag) => (
+                  <span
+                    class={`flex items-center gap-x-1.5 rounded-full text-xs font-medium px-2.5 py-1 ${tag.class}`}
+                  >
+                    {tag.name === "Next.js" && <NextJSIcon class="size-3.5" />}
+                    {tag.name === "Tailwind CSS" && (
+                      <TailwindIcon class="size-3.5" />
+                    )}
+                    {tag.name === "Java" && <JavaIcon class="size-3.5" />}
+                    {tag.name === "Processing" && (
+                      <ProcessingIcon class="size-3.5" />
+                    )}
+                    {tag.name === "Pure Data" && (
+                      <PuredataIcon class="size-3.5" />
+                    )}
+                    {tag.name}
+                  </span>
+                ))}
+              </div>
+
+              <footer class="flex items-center gap-x-2 mt-auto">
+                {github && (
+                  <LinkButtonIcon href={github}>
+                    <GitHubIcon class="size-4" />
+                    Código
+                  </LinkButtonIcon>
+                )}
+                {link && (
+                  <LinkButtonIcon href={link}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-link size-4"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M9 15l6 -6" />
+                      <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+                      <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+                    </svg>
+                    Preview
+                  </LinkButtonIcon>
+                )}
+              </footer>
+            </div>
+          </article>
+        ),
+      )
     }
   </div>
 
@@ -310,8 +215,16 @@ const CATEGORIES = [
       visibleCount = INITIAL_SHOW;
       updateVisibility();
 
-      // Optional: Scroll back to top of grid
-      // document.getElementById("projects-grid")?.scrollIntoView({ behavior: 'smooth' });
+      // Scroll back to projects section smoothly
+      const proyectosSection = document.getElementById("proyectos-section");
+      if (proyectosSection) {
+        const yOffset = -100;
+        const y =
+          proyectosSection.getBoundingClientRect().top +
+          window.pageYOffset +
+          yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
     });
   }
 </script>

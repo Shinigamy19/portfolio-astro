@@ -1,47 +1,28 @@
 ---
 import EducacionItem from "./EducacionItem.astro";
+import { educationData } from "../data/education";
+import { coursesData } from "../data/courses";
 
-const EDUCATION = [
-    {
-        date: "2020 - 2023",
-        title: "Tecnicatura Superior en Diseño Multimedial",
-        institution: "ISPC - Instituto Superior Politécnico Córdoba",
-        description:
-            "Formación integral en diseño gráfico, desarrollo web, producción audiovisual y gestión de proyectos multimedia.",
-        type: "Terciario",
-        gradient: "from-purple-600 via-pink-600 to-rose-600",
-        icon: "graduation",
-        skills: ["Diseño Gráfico", "Desarrollo Web", "Audiovisual", "UX/UI"],
-    },
-    {
-        date: "2014 - 2019",
-        title: "Bachiller en Ciencias Sociales y Humanidades",
-        institution: "Colegio Secundario",
-        description:
-            "Educación secundaria completa con orientación en ciencias sociales y humanidades.",
-        type: "Secundario",
-        gradient: "from-cyan-500 via-blue-600 to-indigo-700",
-        icon: "book",
-        skills: ["Ciencias Sociales", "Humanidades", "Investigación"],
-    },
-];
+const EDUCATION = educationData;
+const COURSES = coursesData;
 ---
 
 <div class="relative">
     <!-- Elementos decorativos de fondo -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div
+        class="absolute inset-0 overflow-hidden pointer-events-none flex justify-center items-center"
+    >
         <div
-            class="absolute top-0 right-0 w-72 h-72 bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+            class="absolute w-[500px] h-[500px] bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse"
         >
         </div>
         <div
-            class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"
+            class="absolute w-[600px] h-[600px] bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"
             style="animation-delay: 1s;"
         >
         </div>
     </div>
 
-    <!-- Grid de tarjetas -->
     <div class="relative mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
         {
             EDUCATION.map((education, index) => (
@@ -54,7 +35,185 @@ const EDUCATION = [
             ))
         }
     </div>
+
+    <!-- Sección de Cursos -->
+    <div class="mt-20" id="cursos-section">
+        <h3
+            class="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-6 text-purple-500"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                    d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z"
+                ></path><path d="M19 16h-12a2 2 0 0 0 -2 2"></path><path
+                    d="M9 8h6"></path></svg
+            >
+            Cursos y Certificaciones
+        </h3>
+
+        <div
+            id="courses-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+            {
+                COURSES.map((course, idx) => (
+                    <div
+                        class={`course-card group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-purple-500/50 dark:hover:border-purple-500/50 transition-all hover:-translate-y-1 hover:shadow-lg ${idx >= 6 ? "hidden" : ""}`}
+                        style={`animation-delay: ${0.5 + idx * 0.1}s`}
+                    >
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-purple-200 dark:border-purple-800">
+                                {course.year}
+                            </span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="size-5 text-gray-400 group-hover:text-purple-500 transition-colors"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <>
+                                    <path
+                                        stroke="none"
+                                        d="M0 0h24v24H0z"
+                                        fill="none"
+                                    />
+                                    <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+                                    <path d="M11 13l9 -9" />
+                                    <path d="M15 4h5v5" />
+                                </>
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 dark:text-white text-lg mb-1 leading-tight group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                            {course.title}
+                        </h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                            {course.platform}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+
+        {
+            COURSES.length > 6 && (
+                <div class="mt-8 flex justify-center">
+                    <button
+                        id="load-more-courses"
+                        class="px-6 py-2.5 rounded-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:border-purple-500 hover:text-purple-500 dark:hover:border-purple-400 dark:hover:text-purple-400 transition-all shadow-sm hover:shadow-md active:scale-95 flex items-center gap-2"
+                    >
+                        <span>Ver más cursos</span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="size-4"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <>
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                />
+                                <path d="M6 9l6 6l6 -6" />
+                            </>
+                        </svg>
+                    </button>
+                </div>
+            )
+        }
+    </div>
 </div>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const loadMoreBtn = document.getElementById("load-more-courses");
+        const loadMoreText = loadMoreBtn?.querySelector("span");
+        const loadMoreIcon = loadMoreBtn?.querySelector("svg");
+        let isExpanded = false;
+
+        if (loadMoreBtn && loadMoreText && loadMoreIcon) {
+            loadMoreBtn.addEventListener("click", () => {
+                const allCourses = document.querySelectorAll(".course-card");
+
+                if (!isExpanded) {
+                    // Show all
+                    allCourses.forEach((course) => {
+                        course.classList.remove("hidden");
+                        course.classList.add("animate-fade-in");
+                    });
+                    loadMoreText.innerText = "Ver menos";
+                    loadMoreIcon.style.transform = "rotate(180deg)";
+                    isExpanded = true;
+                } else {
+                    // Hide extra courses (keep first 6)
+                    allCourses.forEach((course, index) => {
+                        if (index >= 6) {
+                            course.classList.add("hidden");
+                            course.classList.remove("animate-fade-in");
+                        }
+                    });
+                    // Scroll back to courses section with delicate custom easing
+                    const coursesSection =
+                        document.getElementById("cursos-section");
+                    if (coursesSection) {
+                        const yOffset = -100;
+                        const targetY =
+                            coursesSection.getBoundingClientRect().top +
+                            window.pageYOffset +
+                            yOffset;
+                        const startY = window.pageYOffset;
+                        const distance = targetY - startY;
+                        const duration = 1200; // Duración más larga para transición más delicada
+                        let start: number | null = null;
+
+                        function easeInOutCubic(t: number): number {
+                            return t < 0.5
+                                ? 4 * t * t * t
+                                : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                        }
+
+                        function step(timestamp: number) {
+                            if (!start) start = timestamp;
+                            const progress = Math.min(
+                                (timestamp - start) / duration,
+                                1,
+                            );
+                            const easeProgress = easeInOutCubic(progress);
+                            window.scrollTo(
+                                0,
+                                startY + distance * easeProgress,
+                            );
+                            if (progress < 1) {
+                                window.requestAnimationFrame(step);
+                            }
+                        }
+
+                        window.requestAnimationFrame(step);
+                    }
+
+                    loadMoreText.innerText = "Ver más cursos";
+                    loadMoreIcon.style.transform = "rotate(0deg)";
+                    isExpanded = false;
+                }
+            });
+        }
+    });
+</script>
 
 <style>
     .education-card {

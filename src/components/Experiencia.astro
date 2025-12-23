@@ -1,59 +1,11 @@
 ---
 import ExperienciaItem from "./ExperienciaItem.astro";
+import { experienceData } from "../data/experience";
 
-const EXPERIENCE = [
-    {
-        date: "2022 - Actualidad",
-        title: "Community Manager & Diseñador Multimedia",
-        company: "TEAMTUBE",
-        description:
-            "Edición de video y audio, generación de imágenes con IA, creación de thumbnails y contenido optimizado para redes sociales.",
-        tags: ["Premiere Pro", "After Effects", "IA", "Social Media"],
-    },
-    {
-        date: "2018 - 2022",
-        title: "Diseñador Multimedia",
-        company: "COMPUSERVICE",
-        description:
-            "Diseño y desarrollo web, producción audiovisual, edición gráfica y gestión de marca para clientes diversos.",
-        tags: ["Photoshop", "Illustrator", "WordPress", "Video"],
-    },
-    {
-        date: "2022 - 2023",
-        title: "Imagenes para empresas",
-        company: "Freelance",
-        description:
-            "Logos realizados para empresas y distintos trabajos textiles. Creación de identidad visual y branding.",
-        tags: ["Illustrator", "Photoshop", "Branding"],
-    },
-    {
-        date: "2021 - 2022",
-        title: "Editor de Video Junior",
-        company: "Agencia Creativa",
-        description:
-            "Asistencia en edición de comerciales y contenido para redes. Manejo de material de archivo y post-producción básica.",
-        tags: ["Premiere Pro", "DaVinci Resolve"],
-    },
-    {
-        date: "2020 - 2021",
-        title: "Diseñador Gráfico",
-        company: "Estudio Local",
-        description:
-            "Diseño de piezas gráficas para redes sociales, papelería institucional y cartelería.",
-        tags: ["Photoshop", "Illustrator", "InDesign"],
-    },
-    {
-        date: "2019 - 2020",
-        title: "Asistente de Producción",
-        company: "Productora Independiente",
-        description:
-            "Soporte en rodajes, gestión de equipos y asistencia en tareas de pre-producción.",
-        tags: ["Producción", "Logística"],
-    },
-];
+const EXPERIENCE = experienceData;
 ---
 
-<div class="">
+<div class="" id="experiencia-section">
     <div class="relative">
         <div
             class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-sky-400 dark:bg-sky-500 hidden md:block"
@@ -137,8 +89,42 @@ const EXPERIENCE = [
             });
             currentItems = INITIAL_ITEMS;
 
-            // Scroll back to the top of the list or container
-            // list?.scrollIntoView({ behavior: 'smooth' });
+            // Scroll back to experience section smoothly
+            const experienciaSection = document.getElementById(
+                "experiencia-section",
+            );
+            if (experienciaSection) {
+                const yOffset = -100;
+                const targetY =
+                    experienciaSection.getBoundingClientRect().top +
+                    window.pageYOffset +
+                    yOffset;
+                const startY = window.pageYOffset;
+                const distance = targetY - startY;
+                const duration = 1200;
+                let start: number | null = null;
+
+                function easeInOutCubic(t: number): number {
+                    return t < 0.5
+                        ? 4 * t * t * t
+                        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+
+                function step(timestamp: number) {
+                    if (!start) start = timestamp;
+                    const progress = Math.min(
+                        (timestamp - start) / duration,
+                        1,
+                    );
+                    const easeProgress = easeInOutCubic(progress);
+                    window.scrollTo(0, startY + distance * easeProgress);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                }
+
+                window.requestAnimationFrame(step);
+            }
 
             loadMoreBtn.style.display = "block"; // Show 'Load More' again
             showLessBtn.classList.add("hidden"); // Hide 'Show Less'
