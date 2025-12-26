@@ -3,6 +3,7 @@ import type { SkillGroup } from "../types/Skill";
 export const skillsData: SkillGroup[] = [
     {
         category: "Lenguajes de Programación",
+        category_en: "Programming Languages",
         items: [
             "HTML5",
             "CSS3",
@@ -21,6 +22,7 @@ export const skillsData: SkillGroup[] = [
     },
     {
         category: "Frameworks & Librerías",
+        category_en: "Frameworks & Libraries",
         items: [
             "Next.js",
             "Astro",
@@ -28,6 +30,8 @@ export const skillsData: SkillGroup[] = [
             "Express.js",
             "Flutter",
             "Tailwind CSS",
+            "Bootstrap",
+            "JQuery",
             "Prisma",
             "Discord.js",
             "p5.js",
@@ -35,6 +39,7 @@ export const skillsData: SkillGroup[] = [
     },
     {
         category: "Diseño & Edición",
+        category_en: "Design & Editing",
         items: [
             "Photoshop",
             "Illustrator",
@@ -56,6 +61,7 @@ export const skillsData: SkillGroup[] = [
     },
     {
         category: "Desarrollo & Herramientas",
+        category_en: "Development & Tools",
         items: [
             "Godot",
             "Unreal Engine",
@@ -74,10 +80,12 @@ export const skillsData: SkillGroup[] = [
             "WordPress",
             "Processing",
             "Pure Data",
+            "Bash",
         ],
     },
     {
         category: "Idiomas",
+        category_en: "Languages",
         items: [
             "Español (Nativo)",
             "Portugués (Nativo)",

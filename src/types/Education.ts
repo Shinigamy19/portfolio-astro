@@ -7,4 +7,7 @@ export interface EducationItem {
     gradient: string;
     icon: string;
     skills: string[];
+    title_en?: string;
+    description_en?: string;
+    type_en?: string;
 }

@@ -2,6 +2,10 @@
 import EducacionItem from "./EducacionItem.astro";
 import { educationData } from "../data/education";
 import { coursesData } from "../data/courses";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const EDUCATION = educationData;
 const COURSES = coursesData;
@@ -55,7 +59,7 @@ const COURSES = coursesData;
                 ></path><path d="M19 16h-12a2 2 0 0 0 -2 2"></path><path
                     d="M9 8h6"></path></svg
             >
-            Cursos y Certificaciones
+            {t("education.courses")}
         </h3>
 
         <div
@@ -100,7 +104,11 @@ const COURSES = coursesData;
                             {course.title}
                         </h4>
                         <p class="text-sm text-gray-500 dark:text-gray-400">
-                            {course.platform}
+                            {course.platform === "Certificado"
+                                ? lang === "es"
+                                    ? "Certificado"
+                                    : "Certificate"
+                                : course.platform}
                         </p>
                     </a>
                 ))
@@ -114,7 +122,7 @@ const COURSES = coursesData;
                         id="load-more-courses"
                         class="px-6 py-2.5 rounded-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:border-purple-500 hover:text-purple-500 dark:hover:border-purple-400 dark:hover:text-purple-400 transition-all shadow-sm hover:shadow-md active:scale-95 flex items-center gap-2"
                     >
-                        <span>Ver más cursos</span>
+                        <span>{t("education.showMore")}</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="size-4"
@@ -141,7 +149,7 @@ const COURSES = coursesData;
     </div>
 </div>
 
-<script>
+<script define:vars={{ lang }}>
     document.addEventListener("astro:page-load", () => {
         const loadMoreBtn = document.getElementById("load-more-courses");
         const loadMoreText = loadMoreBtn?.querySelector("span");
@@ -158,7 +166,8 @@ const COURSES = coursesData;
                         course.classList.remove("hidden");
                         course.classList.add("animate-fade-in");
                     });
-                    loadMoreText.innerText = "Ver menos";
+                    loadMoreText.innerText =
+                        lang === "es" ? "Ver menos" : "Show less";
                     loadMoreIcon.style.transform = "rotate(180deg)";
                     isExpanded = true;
                 } else {
@@ -181,15 +190,15 @@ const COURSES = coursesData;
                         const startY = window.pageYOffset;
                         const distance = targetY - startY;
                         const duration = 1200; // Duración más larga para transición más delicada
-                        let start: number | null = null;
+                        let start = null;
 
-                        function easeInOutCubic(t: number): number {
+                        function easeInOutCubic(t) {
                             return t < 0.5
                                 ? 4 * t * t * t
                                 : 1 - Math.pow(-2 * t + 2, 3) / 2;
                         }
 
-                        function step(timestamp: number) {
+                        function step(timestamp) {
                             if (!start) start = timestamp;
                             const progress = Math.min(
                                 (timestamp - start) / duration,
@@ -208,7 +217,8 @@ const COURSES = coursesData;
                         window.requestAnimationFrame(step);
                     }
 
-                    loadMoreText.innerText = "Ver más cursos";
+                    loadMoreText.innerText =
+                        lang === "es" ? "Ver más cursos" : "Show more courses";
                     loadMoreIcon.style.transform = "rotate(0deg)";
                     isExpanded = false;
                 }

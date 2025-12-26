@@ -17,6 +17,9 @@ export const educationData: EducationItem[] = [
             "UX/UI",
             "Editorial",
         ],
+        title_en: "Multimedia Design Technician",
+        description_en: "Comprehensive training in graphic design, editorial editing, web development, audiovisual production, and multimedia project management.",
+        type_en: "Associate's Degree",
     },
     {
         date: "2023",
@@ -34,6 +37,9 @@ export const educationData: EducationItem[] = [
             "Investigación",
             "Habilidades socioemocionales",
         ],
+        title_en: "Diploma in Education",
+        description_en: 'Titles: "Diploma in Popular Education", "Diploma in Strategies, Resources, and Tools for Trainers".',
+        type_en: "Postgraduate Diploma",
     },
     {
         date: "2014 - 2019",
@@ -51,5 +57,8 @@ export const educationData: EducationItem[] = [
             "Finanzas",
             "Auditoría",
         ],
+        title_en: "Business Expert with Accounting and Tax Specialization",
+        description_en: "Complete secondary education with a focus on economic sciences and mathematics.",
+        type_en: "High School",
     },
 ];

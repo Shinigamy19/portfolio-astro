@@ -13,6 +13,9 @@ export const experienceData: ExperienceItem[] = [
             "Presupuestos",
             "Servicios al cliente",
         ],
+        date_en: "Mar 2025 - Present",
+        title_en: "Cell Phone Repair Teacher",
+        description_en: "Labor training course, analysis and diagnosis of mobile devices, soldering, budgeting, and social media management.",
     },
     {
         date: "Nov 2024 - Actualidad",
@@ -21,6 +24,9 @@ export const experienceData: ExperienceItem[] = [
         description:
             "Desarrollador de Software, Analista de redes,  Servicios al cliente, Armado de PC, Diseñador Multimedia y Community Manager.",
         tags: ["Premiere", "After Effects", "Photoshop", "Illustrator", "C#"],
+        date_en: "Nov 2024 - Present",
+        title_en: "Software Developer, Network Analyst, Multimedia Designer, and Community Manager",
+        description_en: "Software Developer, Network Analyst, Customer Service, PC Assembly, Multimedia Designer, and Community Manager.",
     },
     {
         date: "Mar 2018 - Actualidad",
@@ -40,6 +46,9 @@ export const experienceData: ExperienceItem[] = [
             "Diseño Web",
             "OBS Studio",
         ],
+        date_en: "Mar 2018 - Present",
+        title_en: "Freelance",
+        description_en: "Web design and development, audiovisual production, graphic editing, and brand management for various clients, Event Photography, textile work, 3D printing, Streaming, and Community Manager.",
     },
     {
         date: "Feb 2022 - Nov 2024",
@@ -48,6 +57,9 @@ export const experienceData: ExperienceItem[] = [
         description:
             "Tratamiento de imágenes, analisis con DStretch , mediciones, armado de imágenes para publicación en revistas y periódicos sobre la cueva de las manos.",
         tags: ["DStretch", "Photoshop", "Lightroom", "Illustrator", "InDesign"],
+        date_en: "Feb 2022 - Nov 2024",
+        title_en: "Photo Editor and Measurements, prepared for editorial article",
+        description_en: "Image processing, analysis with DStretch, measurements, preparing images for publication in magazines and newspapers about Cueva de las Manos.",
     },
     {
         date: "Nov 2023 - Oct 2024",
@@ -66,6 +78,9 @@ export const experienceData: ExperienceItem[] = [
             "Midjourney",
             "Fliki",
         ],
+        date_en: "Nov 2023 - Oct 2024",
+        title_en: "Audio Editor and Prompt Engineering",
+        description_en: "Video editing, Audio editing, Image editing, and AI content generation.",
     },
     {
         date: "Abr 2023 - Oct 2023",
@@ -74,6 +89,9 @@ export const experienceData: ExperienceItem[] = [
         description:
             "Backoffice, gestión de Saleforces, seguimiento de repuestos, seguimiento de bolsa de clientes, gestiones internas, seguimiento de Autopartes y asistencia telefónica, tención al cliente y llamadas salientes",
         tags: ["Salesforce", "ICR", "GAP"],
+        date_en: "Apr 2023 - Oct 2023",
+        title_en: "Backoffice SRC Analyst",
+        description_en: "Backoffice, Salesforce management, spare parts tracking, customer portfolio tracking, internal management, automotive parts tracking and telephone assistance, customer service, and outbound calls.",
     },
     {
         date: "Sep 2022 - Abr 2023",
@@ -93,6 +111,9 @@ export const experienceData: ExperienceItem[] = [
             "Sistema de envio",
             "Avaya",
         ],
+        date_en: "Sep 2022 - Apr 2023",
+        title_en: "Multiskill Technical Support",
+        description_en: "Help desk, technical support, CRM management, network management in I3, service sales, and customer service under TMO modality.",
     },
     {
         date: "Mar 2018 - Ene 2020",
@@ -100,6 +121,9 @@ export const experienceData: ExperienceItem[] = [
         company: "Momusi",
         description: "Clases de guitarra y ensamble para niños y adultos.",
         tags: ["Musica", "Guitarra", "Ensamble", "Composicion", "Produccion"],
+        date_en: "Mar 2018 - Jan 2020",
+        title_en: "Music Teacher",
+        description_en: "Guitar and ensemble classes for children and adults.",
     },
     {
         date: "Mar 2018 - Ene 2020",
@@ -107,6 +131,9 @@ export const experienceData: ExperienceItem[] = [
         company: "Arte en Barrios",
         description: "Clases de arte reciclado para niños y adultos.",
         tags: ["Arte", "Reciclado", "Manualidades", "Taller", "Educacion"],
+        date_en: "Mar 2018 - Jan 2020",
+        title_en: "Recycled Art Teacher",
+        description_en: "Recycled art classes for children and adults.",
     },
     {
         date: "Mar 2018 - Ene 2020",
@@ -114,6 +141,9 @@ export const experienceData: ExperienceItem[] = [
         company: "Fitter - Megatlon",
         description: "Atencion al publico, Gestion de planes y Ventas.",
         tags: ["Atencion al cliente", "Gestion", "Venta"],
+        date_en: "Mar 2018 - Jan 2020",
+        title_en: "Customer Service",
+        description_en: "Public relations, plan management, and sales.",
     },
     {
         date: "Jun 2018 - Dic 2020",
@@ -122,6 +152,9 @@ export const experienceData: ExperienceItem[] = [
         description:
             'Preceptor de 2° 6° y 5° 2° de la Escuela de Comercio Nº 12 D.E. 21 "Juan XXIII".',
         tags: ["Preceptor", "Educacion"],
+        date_en: "Jun 2018 - Dec 2020",
+        title_en: "School Proctor",
+        description_en: 'School proctor for 2nd 6th and 5th 2nd classes at Commercial School No. 12 D.E. 21 "Juan XXIII".',
     },
     {
         date: "Feb 2016 - Sep 2017",
@@ -140,5 +173,8 @@ export const experienceData: ExperienceItem[] = [
             "Packaging",
             "Textil",
         ],
+        date_en: "Feb 2016 - Sep 2017",
+        title_en: "Graphic Designer",
+        description_en: "Sale of school supplies and photocopies; design of business cards, flyers, brochures, pet items, packaging, and caps.",
     },
 ];

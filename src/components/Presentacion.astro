@@ -1,5 +1,10 @@
 ---
-const personalImageAlt = "Logo de Shinigamy19";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const personalImageAlt = "Shinigamy19 Logo";
 import Badge from "../components/Badge.astro";
 import GithubIcon from "../components/icons/GithubIcon.astro";
 import LinkedinIcon from "../components/icons/LinkedinIcon.astro";
@@ -21,7 +26,7 @@ import SocialPill from "../components/SocialPill.astro";
     <h1
       class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
     >
-      Hola, soy Eros Benitez
+      {lang === "es" ? "Hola, soy Eros Benitez" : "Hi, I'm Eros Benitez"}
     </h1>
     <a
       href="https://linkedin.com/in/eros-benitez"
@@ -29,17 +34,41 @@ import SocialPill from "../components/SocialPill.astro";
       rel="noopener"
       class="flex items-center"
     >
-      <Badge>Disponible para trabajar</Badge>
+      <Badge
+        >{
+          lang === "es" ? "Disponible para trabajar" : "Available to work"
+        }</Badge
+      >
     </a>
     <p
       class="text-xl text-gray-800 dark:[&>strong]:text-yellow-400 [&>strong]:text-sky-600 [&>strong]:font-semibold dark:text-gray-300"
     >
-      <strong
-        >Diseñador Multimedia, Fullstack Developer y Creador de Contenido.</strong
-      ><br />
-      Mi nombre es Eros Douglas Benitez Dos Santos.<br />
-      Pero todos me conocen como <strong>Shinigamy19</strong>.<br />
-      Y cuento con <strong>+7 años de experiencia.</strong>
+      {
+        lang === "es" ? (
+          <>
+            <strong>
+              Diseñador Multimedia, Fullstack Developer y Creador de Contenido.
+            </strong>
+            <br />
+            Mi nombre es Eros Douglas Benitez Dos Santos.
+            <br />
+            Pero todos me conocen como <strong>Shinigamy19</strong>.
+            <br />Y cuento con <strong>+7 años de experiencia.</strong>
+          </>
+        ) : (
+          <>
+            <strong>
+              Multimedia Designer, Fullstack Developer, and Content Creator.
+            </strong>
+            <br />
+            My name is Eros Douglas Benitez Dos Santos.
+            <br />
+            But everyone knows me as <strong>Shinigamy19</strong>.
+            <br />
+            And I have <strong>+7 years of experience.</strong>
+          </>
+        )
+      }
     </p>
     <nav class="flex flex-wrap gap-4 mt-2">
       <SocialPill href="https://linkedin.com/in/eros-benitez">

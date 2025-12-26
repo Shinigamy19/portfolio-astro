@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
 import GithubIcon from "../components/icons/GithubIcon.astro";
 import LinkedinIcon from "../components/icons/LinkedinIcon.astro";
 import BehanceIcon from "../components/icons/BehanceIcon.astro";
@@ -12,7 +16,11 @@ import InstagramIcon from "../components/icons/InstagramIcon.astro";
 <div class="flex flex-col gap-12 w-full max-w-5xl mx-auto">
     <div class="text-center">
         <p class="text-gray-600 dark:text-gray-400 text-lg">
-            ¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte
+            {
+                lang === "es"
+                    ? "¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte"
+                    : "Have a project in mind? Let's talk about how I can help you"
+            }
         </p>
     </div>
 
@@ -90,7 +98,7 @@ import InstagramIcon from "../components/icons/InstagramIcon.astro";
                     <p
                         class="text-gray-500 dark:text-gray-400 font-medium mb-1"
                     >
-                        Teléfono
+                        {lang === "es" ? "Teléfono" : "Phone"}
                     </p>
                     <p
                         class="text-gray-900 dark:text-white text-lg font-semibold"
@@ -131,7 +139,7 @@ import InstagramIcon from "../components/icons/InstagramIcon.astro";
                     <p
                         class="text-gray-500 dark:text-gray-400 font-medium mb-1"
                     >
-                        Ubicación
+                        {lang === "es" ? "Ubicación" : "Location"}
                     </p>
                     <p
                         class="text-gray-900 dark:text-white text-lg font-semibold"
@@ -150,14 +158,20 @@ import InstagramIcon from "../components/icons/InstagramIcon.astro";
                 <h3
                     class="text-2xl font-bold text-gray-900 dark:text-white mb-4"
                 >
-                    ¿Listo para trabajar juntos?
+                    {
+                        lang === "es"
+                            ? "¿Listo para trabajar juntos?"
+                            : "Ready to work together?"
+                    }
                 </h3>
                 <p
                     class="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed"
                 >
-                    Estoy disponible para proyectos freelance, colaboraciones y
-                    oportunidades laborales. No dudes en contactarme para
-                    discutir tu próximo proyecto.
+                    {
+                        lang === "es"
+                            ? "Estoy disponible para proyectos freelance, colaboraciones y oportunidades laborales. No dudes en contactarme para discutir tu próximo proyecto."
+                            : "I am available for freelance projects, collaborations, and job opportunities. Don't hesitate to contact me to discuss your next project."
+                    }
                 </p>
                 <a
                     href="mailto:erosbenitezd@gmail.com"
@@ -182,7 +196,7 @@ import InstagramIcon from "../components/icons/InstagramIcon.astro";
                         ></path>
                         <path d="M3 7l9 6l9 -6"></path>
                     </svg>
-                    Enviar Email
+                    {lang === "es" ? "Enviar Email" : "Send Email"}
                 </a>
             </div>
 

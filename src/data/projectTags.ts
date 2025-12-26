@@ -123,7 +123,7 @@ export const projectTags: Record<string, ProjectTag> = {
     },
     JAVASCRIPT: {
         name: "JavaScript",
-        class: "bg-[#F7DF1E] text-black",
+        class: "bg-[#c8bd60] text-black",
     },
     JSON: {
         name: "JSON",
@@ -199,7 +199,7 @@ export const projectTags: Record<string, ProjectTag> = {
     },
     AUTOCAD: {
         name: "AutoCAD",
-        class: "bg-[#E85984] text-white",
+        class: "bg-[#004d50] text-white",
     },
     WORD: {
         name: "Word",
@@ -220,5 +220,25 @@ export const projectTags: Record<string, ProjectTag> = {
     EXPRESS: {
         name: "Express.js",
         class: "bg-[#000000] text-white",
+    },
+    BOOTSTRAP: {
+        name: "Bootstrap",
+        class: "bg-[#a586d4] text-white",
+    },
+    HTML: {
+        name: "HTML5",
+        class: "bg-[#e37252] text-white",
+    },
+    CSS: {
+        name: "CSS3",
+        class: "bg-[#406987] text-white",
+    },
+    JQUERY: {
+        name: "JQuery",
+        class: "bg-[#5487aa] text-white",
+    },
+    BASH: {
+        name: "Bash",
+        class: "bg-[#1e430e] text-white",
     },
 };

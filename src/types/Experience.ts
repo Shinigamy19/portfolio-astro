@@ -4,4 +4,7 @@ export interface ExperienceItem {
     company: string;
     description: string;
     tags: string[];
+    date_en?: string;
+    title_en?: string;
+    description_en?: string;
 }

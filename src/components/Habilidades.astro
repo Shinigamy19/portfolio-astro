@@ -1,6 +1,10 @@
 ---
 import { skillsData } from "../data/skills";
 import { achievementsData } from "../data/achievements";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 // Icons
 import FigmaIcon from "./icons/FigmaIcon.astro";
@@ -58,6 +62,9 @@ import FlutterIcon from "./icons/Flutter.astro";
 import DockerIcon from "./icons/Docker.astro";
 import KotlinIcon from "./icons/Kotlin.astro";
 import ExpressIcon from "./icons/Express.astro";
+import BootstrapIcon from "./icons/Bootstrap.astro";
+import JQueryIcon from "./icons/Jquery.astro";
+import BashIcon from "./icons/Bash.astro";
 
 const SKILLS = skillsData;
 const ACHIEVEMENTS = achievementsData;
@@ -69,7 +76,9 @@ const ACHIEVEMENTS = achievementsData;
             SKILLS.map((skillGroup) => (
                 <div class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 hover:border-purple-400 dark:hover:border-gray-600 transition-colors shadow-sm">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">
-                        {skillGroup.category}
+                        {lang === "en" && skillGroup.category_en
+                            ? skillGroup.category_en
+                            : skillGroup.category}
                     </h3>
                     <div class="flex flex-wrap gap-3">
                         {skillGroup.items.map((item) => (
@@ -162,6 +171,13 @@ const ACHIEVEMENTS = achievementsData;
                                 {item === "Gamemaker" && (
                                     <GameMakerIcon class="size-4" />
                                 )}
+                                {item === "Bootstrap" && (
+                                    <BootstrapIcon class="size-4" />
+                                )}
+                                {item === "JQuery" && (
+                                    <JQueryIcon class="size-4" />
+                                )}
+                                {item === "Bash" && <BashIcon class="size-4" />}
                                 {item === "Visual Studio" && (
                                     <VisualStudioIcon class="size-4" />
                                 )}
@@ -240,7 +256,7 @@ const ACHIEVEMENTS = achievementsData;
         <h3
             class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center relative z-10"
         >
-            Logros Destacados
+            {t("skills.achievements")}
         </h3>
 
         <div
@@ -374,7 +390,9 @@ const ACHIEVEMENTS = achievementsData;
                             )}
                         </div>
                         <p class="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
-                            {achievement.title}
+                            {lang === "en" && achievement.title_en
+                                ? achievement.title_en
+                                : achievement.title}
                         </p>
                     </div>
                 ))

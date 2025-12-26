@@ -56,13 +56,32 @@ import ExcelIcon from "./icons/Excel.astro";
 import PowerpointIcon from "./icons/Powerpoint.astro";
 import KotlinIcon from "./icons/Kotlin.astro";
 import ExpressIcon from "./icons/Express.astro";
+import BootstrapIcon from "./icons/Bootstrap.astro";
+import JQueryIcon from "./icons/Jquery.astro";
+import YoutubeIcon from "./icons/YoutubeIcon.astro";
+import BehanceIcon from "./icons/BehanceIcon.astro";
+import BashIcon from "./icons/Bash.astro";
 import { projectTags } from "../data/projectTags";
 import { projectsData } from "../data/projects";
 import { projectCategories } from "../data/projectCategories";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const TAGS = projectTags;
 const PROJECTS = projectsData;
 const CATEGORIES = projectCategories;
+
+const categoryKeys: Record<string, string> = {
+  Todos: "projects.all",
+  Editorial: "categories.editorial",
+  Producto: "categories.producto",
+  Videojuegos: "categories.videojuegos",
+  Audiovisual: "categories.audiovisual",
+  Web: "categories.web",
+  Programación: "categories.programacion",
+};
 ---
 
 <div class="flex flex-col items-center gap-y-8 w-full" id="proyectos-section">
@@ -75,7 +94,7 @@ const CATEGORIES = projectCategories;
           data-category={category}
           data-active={category === "Todos"}
         >
-          {category}
+          {categoryKeys[category] ? t(categoryKeys[category] as any) : category}
         </button>
       ))
     }
@@ -88,10 +107,26 @@ const CATEGORIES = projectCategories;
   >
     {
       PROJECTS.map(
-        ({ image, title, description, tags, category, github, link }) => (
+        ({
+          image,
+          title,
+          description,
+          title_en,
+          description_en,
+          tags,
+          category,
+          github,
+          link,
+          link2,
+          figma,
+          behance,
+          youtube,
+        }) => (
           <article
             class="project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            data-category={category}
+            data-category={
+              Array.isArray(category) ? category.join(",") : category
+            }
           >
             <div class="relative h-48 overflow-hidden">
               <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300 z-10" />
@@ -105,11 +140,11 @@ const CATEGORIES = projectCategories;
 
             <div class="flex flex-col flex-1 p-6">
               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
-                {title}
+                {lang === "en" && title_en ? title_en : title}
               </h3>
 
               <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3 flex-1">
-                {description}
+                {lang === "en" && description_en ? description_en : description}
               </p>
 
               <div class="flex flex-wrap gap-2 mb-4">
@@ -166,6 +201,11 @@ const CATEGORIES = projectCategories;
                     {tag.name === "Gamemaker" && (
                       <GameMakerIcon class="size-3.5" />
                     )}
+                    {tag.name === "Bootstrap" && (
+                      <BootstrapIcon class="size-3.5" />
+                    )}
+                    {tag.name === "JQuery" && <JQueryIcon class="size-3.5" />}
+                    {tag.name === "Bash" && <BashIcon class="size-3.5" />}
                     {tag.name === "C" && <CIcon class="size-3.5" />}
                     {tag.name === "C++" && <CPlusPlusIcon class="size-3.5" />}
                     {tag.name === "Flutter" && <FlutterIcon class="size-3.5" />}
@@ -219,13 +259,21 @@ const CATEGORIES = projectCategories;
                 ))}
               </div>
 
-              <footer class="flex items-center gap-x-2 mt-auto">
-                {github && (
-                  <LinkButtonIcon href={github}>
-                    <GitHubIcon class="size-4" />
-                    Código
-                  </LinkButtonIcon>
-                )}
+              <footer class="flex flex-wrap items-center gap-2 mt-auto">
+                {github &&
+                  (Array.isArray(github) ? (
+                    github.map((githubUrl, index) => (
+                      <LinkButtonIcon href={githubUrl}>
+                        <GitHubIcon class="size-4" />
+                        {t("projects.code")} {index + 1}
+                      </LinkButtonIcon>
+                    ))
+                  ) : (
+                    <LinkButtonIcon href={github}>
+                      <GitHubIcon class="size-4" />
+                      {t("projects.code")}
+                    </LinkButtonIcon>
+                  ))}
                 {link && (
                   <LinkButtonIcon href={link}>
                     <svg
@@ -243,7 +291,45 @@ const CATEGORIES = projectCategories;
                       <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
                       <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
                     </svg>
-                    Preview
+                    {t("projects.preview")}
+                  </LinkButtonIcon>
+                )}
+                {link2 && (
+                  <LinkButtonIcon href={link2}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-link size-4"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M9 15l6 -6" />
+                      <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+                      <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+                    </svg>
+                    {t("projects.preview")} 2
+                  </LinkButtonIcon>
+                )}
+                {figma && (
+                  <LinkButtonIcon href={figma}>
+                    <FigmaIcon class="size-4" />
+                    {t("projects.design")}
+                  </LinkButtonIcon>
+                )}
+                {behance && (
+                  <LinkButtonIcon href={behance}>
+                    <BehanceIcon class="size-4" />
+                    {t("projects.design")}
+                  </LinkButtonIcon>
+                )}
+                {youtube && (
+                  <LinkButtonIcon href={youtube}>
+                    <YoutubeIcon class="size-4" />
+                    {t("projects.videos")}
                   </LinkButtonIcon>
                 )}
               </footer>
@@ -286,8 +372,9 @@ const CATEGORIES = projectCategories;
 
     cards.forEach((card) => {
       const cardCategory = card.getAttribute("data-category");
+      const categories = cardCategory ? cardCategory.split(",") : [];
       const matches =
-        currentCategory === "Todos" || cardCategory === currentCategory;
+        currentCategory === "Todos" || categories.includes(currentCategory);
 
       if (matches) {
         totalFiltered++;

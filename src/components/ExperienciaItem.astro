@@ -1,5 +1,8 @@
 ---
 import LinkInline from "../components/LinkInline.astro";
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
 
 interface Props {
   title: string;
@@ -9,9 +12,23 @@ interface Props {
   date: string;
   tags?: string[];
   isLeft?: boolean;
+  date_en?: string;
+  title_en?: string;
+  description_en?: string;
 }
 
-const { title, company, description, link, date, tags, isLeft } = Astro.props;
+const {
+  title,
+  company,
+  description,
+  link,
+  date,
+  tags,
+  isLeft,
+  title_en,
+  description_en,
+  date_en,
+} = Astro.props;
 ---
 
 <div
@@ -53,14 +70,14 @@ const { title, company, description, link, date, tags, isLeft } = Astro.props;
           <path d="M8 15h2"></path>
         </svg>
         <span class="text-sky-600 dark:text-sky-400 font-bold text-sm"
-          >{date}</span
+          >{lang === "en" && date_en ? date_en : date}</span
         >
       </div>
 
       <h3
         class="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight"
       >
-        {title}
+        {lang === "en" && title_en ? title_en : title}
       </h3>
 
       <div
@@ -93,7 +110,7 @@ const { title, company, description, link, date, tags, isLeft } = Astro.props;
       </div>
 
       <p class="text-gray-700 dark:text-slate-300 mb-6 text-sm leading-relaxed">
-        {description}
+        {lang === "en" && description_en ? description_en : description}
       </p>
 
       {

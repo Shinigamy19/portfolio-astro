@@ -1,4 +1,9 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const personalImageAlt = "Eros Benitez";
 ---
 
@@ -8,33 +13,75 @@ const personalImageAlt = "Eros Benitez";
   <div
     class="[&>p]:mb-4 [&>p>strong]:text-sky-600 dark:[&>p>strong]:text-yellow-500 text-pretty order-2 md:order-1"
   >
-    <p>
-      Me llamo Eros, pero la mayoria de la gente me conoce como Shini. <br />
-      Soy técnico en <strong>Diseño Multimedia</strong>,
-      <strong>full-stack developer</strong> y <strong
-        >creador de contenido</strong
-      >. <br />
-      Trabajo desde Buenos Aires, Argentina, combinando diseño, desarrollo y tecnología
-      para crear soluciones funcionales, claras y bien pensadas.
-    </p>
+    {
+      lang === "es" ? (
+        <>
+          <p>
+            Me llamo Eros, pero la mayoria de la gente me conoce como Shini.{" "}
+            <br />
+            Soy técnico en <strong>Diseño Multimedia</strong>,
+            <strong>full-stack developer</strong> y{" "}
+            <strong>creador de contenido</strong>. <br />
+            Trabajo desde Buenos Aires, Argentina, combinando diseño, desarrollo
+            y tecnología para crear soluciones funcionales, claras y bien
+            pensadas.
+          </p>
 
-    <p>
-      Empecé a muy corta edad a interesarme por la tecnología pero encontré mi
-      lugar en el mundo <strong> enseñando todo lo que podía hacer</strong>. Con
-      eso en mente, me propuse <strong>crear un canal de Youtube</strong>. En el
-      que me dedico a crear <strong>Tutoriales y Soluciones</strong>
-      de diversas áreas del mundo <strong>IT</strong>.
-    </p>
+          <p>
+            Empecé a muy corta edad a interesarme por la tecnología pero
+            encontré mi lugar en el mundo{" "}
+            <strong> enseñando todo lo que podía hacer</strong>. Con eso en
+            mente, me propuse <strong>crear un canal de Youtube</strong>. En el
+            que me dedico a crear <strong>Tutoriales y Soluciones</strong>
+            de diversas áreas del mundo <strong>IT</strong>.
+          </p>
 
-    <p>
-      Como creador de contenido, mi objetivo es que más gente se acerque de
-      manera segura a la tecnología, además quiero que mi canal sea un oasis
-      para la resolución de problemas, cosas que aún no están muy documentadas
-      en internet. <br />
-      Mi objetivo es que más personas se acerquen a la tecnología de forma segura,
-      sin humo y con contenido que realmente sirva.
-      <strong>Si te interesa, te invito a seguirme en esta aventura.</strong>
-    </p>
+          <p>
+            Como creador de contenido, mi objetivo es que más gente se acerque
+            de manera segura a la tecnología, además quiero que mi canal sea un
+            oasis para la resolución de problemas, cosas que aún no están muy
+            documentadas en internet. <br />
+            Mi objetivo es que más personas se acerquen a la tecnología de forma
+            segura, sin humo y con contenido que realmente sirva.
+            <strong>
+              Si te interesa, te invito a seguirme en esta aventura.
+            </strong>
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            My name is Eros, but most people know me as Shini. <br />
+            I'm a <strong>Multimedia Design</strong> technician,
+            <strong>full-stack developer</strong>, and{" "}
+            <strong>content creator</strong>. <br />I work from Buenos Aires,
+            Argentina, combining design, development, and technology to create
+            functional, clear, and well-thought-out solutions.
+          </p>
+
+          <p>
+            I started getting interested in technology at a very young age, but
+            I found my place in the world{" "}
+            <strong>teaching everything I could do</strong>. With that in mind,
+            I set out to <strong>create a YouTube channel</strong>. There, I
+            focus on creating <strong>Tutorials and Solutions</strong>
+            in various areas of the <strong>IT</strong> world.
+          </p>
+
+          <p>
+            As a content creator, my goal is for more people to approach
+            technology safely. Additionally, I want my channel to be an oasis
+            for problem solving—things that are not yet well documented on the
+            internet. <br />
+            My goal is for more people to get closer to technology safely,
+            without fluff and with content that actually helps.
+            <strong>
+              If you're interested, I invite you to follow me on this adventure.
+            </strong>
+          </p>
+        </>
+      )
+    }
   </div>
 
   <img

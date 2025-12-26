@@ -5,5 +5,5 @@ export const projectCategories: string[] = [
     "Videojuegos",
     "Audiovisual",
     "Web",
-    "Gráfico",
+    "Programación",
 ];
