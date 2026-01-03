@@ -7,7 +7,7 @@ export const projectsData: Project[] = [
         description:
             "Edición y diseño editorial. Maquetación, ilustraciones y diseño de portadas.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/1400/220268106950343.5f9bc1d528994.jpg",
+            "/el amanecer de la tormenta.webp",
         tags: [projectTags.INDESIGN, projectTags.PHOTOSHOP],
         category: "Editorial",
         link: "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
@@ -36,9 +36,21 @@ export const projectsData: Project[] = [
             "https://mir-s3-cdn-cf.behance.net/project_modules/1400/f35602106950343.5f9bc1d529241.jpg",
         tags: [projectTags.ILLUSTRATOR, projectTags.PHOTOSHOP],
         category: "Producto",
-        behance: "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
+        behance: "https://www.behance.net/gallery/152318265/Break-Friends",
         title_en: "Break Friends - Board Game",
         description_en: "Integral creation of a board game: card design, board, rule manual, and packaging.",
+    },
+    {
+        title: "Diseño de Logos",
+        description:
+            "Creacion de logos como freelance para varias empresas.",
+        image:
+            "https://mir-s3-cdn-cf.behance.net/project_modules/1400/220268106950343.5f9bc1d528994.jpg",
+        tags: [projectTags.INDESIGN, projectTags.PHOTOSHOP],
+        category: "Editorial",
+        behance: "https://www.behance.net/gallery/180431813/Logos",
+        title_en: "Logo Design",
+        description_en: "Logo design for various companies as a freelancer.",
     },
     {
         title: "La cueva de las manos",
@@ -61,7 +73,7 @@ export const projectsData: Project[] = [
             "https://mir-s3-cdn-cf.behance.net/project_modules/fs/8c7295106950343.5f9bc1d5299da.png",
         tags: [projectTags.UNITY, projectTags.GODOT, projectTags.CSHARP, projectTags.ASPRITES],
         category: "Videojuegos",
-        github: "https://github.com/Shinigamy19",
+        behance: "https://www.behance.net/gallery/241093809/End-Of-Bioworld",
         link: "https://shinigamy19.itch.io/end-of-bioworld",
         title_en: "End Of Bioworld - 2D Game",
         description_en: "Complete development of a 2D platformer. Character design, levels, and mechanics. Started in Unity and migrated to Godot.",
