@@ -7,147 +7,186 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const EXPERIENCE = experienceData;
+
+const CATEGORIES = ["Todos", "Programación", "Diseño", "Educación", "Otros"];
+
+const categoryKeys: Record<string, string> = {
+  Todos: "projects.all",
+  Programación: "categories.programacion",
+  Diseño: "categories.diseno",
+  Educación: "categories.educacion",
+  Otros: "categories.otros",
+};
 ---
 
-<div class="" id="experiencia-section">
-    <div class="relative">
-        <div
-            class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-sky-400 dark:bg-sky-500 hidden md:block"
+<div class="flex flex-col items-center gap-y-8 w-full" id="experiencia-section">
+  <!-- Category Tabs -->
+  <div class="flex flex-wrap justify-center gap-4 mb-8">
+    {
+      CATEGORIES.map((category) => (
+        <button
+          class="experience-category-btn px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border border-gray-600 dark:border-gray-600 bg-transparent text-gray-800 dark:text-white hover:bg-blue-600 hover:text-white hover:border-blue-600 data-[active=true]:bg-blue-600 data-[active=true]:text-white data-[active=true]:border-blue-600"
+          data-category={category}
+          data-active={category === "Todos"}
         >
-        </div>
+          {categoryKeys[category] ? t(categoryKeys[category] as any) : category}
+        </button>
+      ))
+    }
+  </div>
 
-        <ol class="relative mt-8 flex flex-col gap-12" id="experience-list">
-            {
-                EXPERIENCE.map((experience, index) => (
-                    <li
-                        class={`experience-item relative ${index >= 3 ? "hidden" : ""}`}
-                    >
-                        <ExperienciaItem
-                            {...experience}
-                            isLeft={index % 2 === 0}
-                        />
-                    </li>
-                ))
+  <div class="relative w-full">
+    <div
+      class="experience-timeline absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-sky-400 dark:bg-sky-500 hidden md:block"
+    >
+    </div>
+
+    <ol class="relative mt-8 flex flex-col gap-12 w-full" id="experience-list">
+      {
+        EXPERIENCE.map((experience, index) => (
+          <li
+            class="experience-item relative"
+            data-category={
+              Array.isArray(experience.category)
+                ? experience.category.join(",")
+                : experience.category
             }
-        </ol>
-    </div>
+          >
+            <ExperienciaItem {...experience} isLeft={index % 2 === 0} />
+          </li>
+        ))
+      }
+    </ol>
+  </div>
 
-    <div class="mt-8 flex justify-center gap-4">
-        <button
-            id="load-more-btn"
-            class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300"
-        >
-            {t("buttons.showMore")}
-        </button>
-        <button
-            id="show-less-btn"
-            class="hidden bg-gray-500 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300"
-        >
-            {t("buttons.showLess")}
-        </button>
-    </div>
+  <div class="mt-8 flex justify-center gap-4">
+    <button
+      id="load-more-btn"
+      class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300"
+    >
+      {t("buttons.showMore")}
+    </button>
+    <button
+      id="show-less-btn"
+      class="hidden bg-gray-500 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300"
+    >
+      {t("buttons.showLess")}
+    </button>
+  </div>
 </div>
 
 <script>
-    const list = document.getElementById("experience-list");
-    const loadMoreBtn = document.getElementById("load-more-btn");
-    const showLessBtn = document.getElementById("show-less-btn");
-    const items = list?.querySelectorAll(".experience-item");
-    const INITIAL_ITEMS = 3;
-    let currentItems = INITIAL_ITEMS;
+  const list = document.getElementById("experience-list");
+  const loadMoreBtn = document.getElementById("load-more-btn");
+  const showLessBtn = document.getElementById("show-less-btn");
+  const categoryButtons = document.querySelectorAll(".experience-category-btn");
+  const timeline = document.querySelector(".experience-timeline");
+  const items = list?.querySelectorAll(".experience-item");
+  const INITIAL_ITEMS = 3;
+  let currentCategory = "Todos";
+  let visibleCount = INITIAL_ITEMS;
 
-    if (loadMoreBtn && showLessBtn && items) {
-        // Hide load more button if no more items initially
-        if (items.length <= INITIAL_ITEMS) {
-            loadMoreBtn.style.display = "none";
+  function updateExperienceVisibility() {
+    let itemsShown = 0;
+    let totalMatches = 0;
+
+    items?.forEach((item) => {
+      const itemCategoryStr = item.getAttribute("data-category") || "";
+      const itemCategories = itemCategoryStr.split(",");
+      const matches =
+        currentCategory === "Todos" || itemCategories.includes(currentCategory);
+
+      if (matches) {
+        totalMatches++;
+        if (itemsShown < visibleCount) {
+          item.classList.remove("hidden");
+          item.classList.add("fade-in");
+          itemsShown++;
+        } else {
+          item.classList.add("hidden");
+          item.classList.remove("fade-in");
         }
+      } else {
+        item.classList.add("hidden");
+        item.classList.remove("fade-in");
+      }
+    });
 
-        loadMoreBtn.addEventListener("click", () => {
-            let nextItems = 0;
-            items.forEach((item, index) => {
-                if (index >= currentItems && nextItems < 3) {
-                    item.classList.remove("hidden");
-                    item.classList.add("fade-in");
-                    nextItems++;
-                }
-            });
-            currentItems += 3;
-
-            // Show 'Show Less' button if we showing more than initial items
-            if (currentItems > INITIAL_ITEMS) {
-                showLessBtn.classList.remove("hidden");
-            }
-
-            // Hide 'Load More' button if all items are visible
-            if (currentItems >= items.length) {
-                loadMoreBtn.style.display = "none";
-            }
-        });
-
-        showLessBtn.addEventListener("click", () => {
-            items.forEach((item, index) => {
-                if (index >= INITIAL_ITEMS) {
-                    item.classList.add("hidden");
-                    item.classList.remove("fade-in");
-                }
-            });
-            currentItems = INITIAL_ITEMS;
-
-            // Scroll back to experience section smoothly
-            const experienciaSection = document.getElementById(
-                "experiencia-section",
-            );
-            if (experienciaSection) {
-                const yOffset = -100;
-                const targetY =
-                    experienciaSection.getBoundingClientRect().top +
-                    window.pageYOffset +
-                    yOffset;
-                const startY = window.pageYOffset;
-                const distance = targetY - startY;
-                const duration = 1200;
-                let start: number | null = null;
-
-                function easeInOutCubic(t: number): number {
-                    return t < 0.5
-                        ? 4 * t * t * t
-                        : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                }
-
-                function step(timestamp: number) {
-                    if (!start) start = timestamp;
-                    const progress = Math.min(
-                        (timestamp - start) / duration,
-                        1,
-                    );
-                    const easeProgress = easeInOutCubic(progress);
-                    window.scrollTo(0, startY + distance * easeProgress);
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
-                }
-
-                window.requestAnimationFrame(step);
-            }
-
-            loadMoreBtn.style.display = "block"; // Show 'Load More' again
-            showLessBtn.classList.add("hidden"); // Hide 'Show Less'
-        });
+    // Update Timeline line visibility
+    if (timeline) {
+      if (itemsShown === 0) {
+        (timeline as HTMLElement).style.display = "none";
+      } else {
+        (timeline as HTMLElement).style.display = "";
+      }
     }
+
+    // Handle buttons
+    if (loadMoreBtn && showLessBtn) {
+      if (itemsShown >= totalMatches) {
+        loadMoreBtn.style.display = "none";
+      } else {
+        loadMoreBtn.style.display = "block";
+      }
+
+      if (visibleCount > INITIAL_ITEMS) {
+        showLessBtn.classList.remove("hidden");
+      } else {
+        showLessBtn.classList.add("hidden");
+      }
+    }
+  }
+
+  // Initialize
+  updateExperienceVisibility();
+
+  categoryButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Update active state
+      categoryButtons.forEach((b) => b.setAttribute("data-active", "false"));
+      btn.setAttribute("data-active", "true");
+
+      currentCategory = btn.getAttribute("data-category") || "Todos";
+      visibleCount = INITIAL_ITEMS;
+      updateExperienceVisibility();
+    });
+  });
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener("click", () => {
+      visibleCount += 3;
+      updateExperienceVisibility();
+    });
+  }
+
+  if (showLessBtn) {
+    showLessBtn.addEventListener("click", () => {
+      visibleCount = INITIAL_ITEMS;
+      updateExperienceVisibility();
+
+      const experienciaSection = document.getElementById("experiencia-section");
+      if (experienciaSection) {
+        experienciaSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  }
 </script>
 
 <style>
-    .fade-in {
-        animation: fadeIn 0.5s ease-in-out;
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
     }
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
 </style>

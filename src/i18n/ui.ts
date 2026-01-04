@@ -32,6 +32,9 @@ export const ui = {
     "categories.audiovisual": "Audiovisual",
     "categories.web": "Web",
     "categories.programacion": "Programación",
+    "categories.diseno": "Diseño",
+    "categories.educacion": "Educación",
+    "categories.otros": "Otros",
   },
   en: {
     "nav.experience": "Experience",
@@ -59,5 +62,8 @@ export const ui = {
     "categories.audiovisual": "Audiovisual",
     "categories.web": "Web",
     "categories.programacion": "Programming",
+    "categories.diseno": "Design",
+    "categories.educacion": "Education",
+    "categories.otros": "Others",
   },
 } as const;
