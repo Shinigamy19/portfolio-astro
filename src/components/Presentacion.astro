@@ -4,6 +4,8 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+const yearsExperience = new Date().getFullYear() - 2019;
+
 const personalImageAlt = "Shinigamy19 Logo";
 import Badge from "../components/Badge.astro";
 import GithubIcon from "../components/icons/GithubIcon.astro";
@@ -53,7 +55,8 @@ import SocialPill from "../components/SocialPill.astro";
             Mi nombre es Eros Douglas Benitez Dos Santos.
             <br />
             Pero todos me conocen como <strong>Shinigamy19</strong>.
-            <br />Y cuento con <strong>+7 años de experiencia.</strong>
+            <br />Y cuento con{" "}
+            <strong>+{yearsExperience} años de experiencia.</strong>
           </>
         ) : (
           <>
@@ -65,7 +68,7 @@ import SocialPill from "../components/SocialPill.astro";
             <br />
             But everyone knows me as <strong>Shinigamy19</strong>.
             <br />
-            And I have <strong>+7 years of experience.</strong>
+            And I have <strong>+{yearsExperience} years of experience.</strong>
           </>
         )
       }

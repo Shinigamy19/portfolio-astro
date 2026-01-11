@@ -18,4 +18,5 @@ export interface Project {
     youtube?: string;
     title_en?: string;
     description_en?: string;
+    comingSoon?: boolean;
 }

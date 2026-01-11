@@ -3,12 +3,84 @@ import { projectTags } from "./projectTags";
 
 export const projectsData: Project[] = [
     {
+        title: "Afk Bardo",
+        description:
+            "Este es un experimento de narrativa procesal y pérdida de tiempo consciente. Realizado con Next.js y Tailwind CSS.",
+        image:
+            "/preview/afk-bardo.webp",
+        tags: [projectTags.NEXT, projectTags.TAILWIND, projectTags.TYPESCRIPT, projectTags.REACT],
+        category: "Web",
+        comingSoon: true,
+        title_en: "Afk Bardo",
+        description_en: "This is an experiment of procedural narrative and conscious time loss. Built with Next.js and Tailwind CSS.",
+    },
+    {
+        title: "CineEstrenos",
+        description:
+            "Pagina web de Películas y Series en nuevas Cines y Plataformas realizada con Angular y Sass.",
+        image:
+            "/preview/cineestreno.webp",
+        tags: [projectTags.ANGULAR, projectTags.SASS, projectTags.JSON],
+        category: "Web",
+        comingSoon: true,
+        title_en: "CineEstrenos",
+        description_en: "Website for Movies and Series in new Cinemas and Platforms made with Angular and Sass.",
+    },
+    {
+        title: "SVG Gallery",
+        description:
+            "Pagina web para crear Svgs y compartirlo con la comunidad. Realizada con Next.js y Tailwind CSS.",
+        image:
+            "/preview/svg-gallery.webp",
+        tags: [projectTags.NEXT, projectTags.TAILWIND, projectTags.TYPESCRIPT, projectTags.REACT, projectTags.PRISMA, projectTags.MYSQL],
+        category: "Web",
+        comingSoon: true,
+        title_en: "SVG Gallery",
+        description_en: "Website for creating Svgs and sharing them with the community. Built with Next.js and Tailwind CSS.",
+    },
+    {
+        title: "Trello Clone",
+        description:
+            "Pagina clon de trello con nuevas funcionalidades. Realizada con Next.js, React, TypeScript y Tailwind CSS.",
+        image:
+            "/preview/trello-clone.webp",
+        tags: [projectTags.NEXT, projectTags.TAILWIND, projectTags.TYPESCRIPT, projectTags.REACT],
+        category: "Web",
+        comingSoon: true,
+        title_en: "Trello Clone",
+        description_en: "Trello clone with new features. Built with Next.js, React, TypeScript and Tailwind CSS.",
+    },
+    {
+        title: "Pomodoro Timer",
+        description:
+            "Pomodoro colaborativo que funciona en conjunto con Discord y Twitch. Realizado con Next.js, Tailwind CSS, TypeScript, MongoDB y Discord.js.",
+        image:
+            "/preview/pomodoro.webp",
+        tags: [projectTags.NEXT, projectTags.TAILWIND, projectTags.TYPESCRIPT, projectTags.MONGODB, projectTags.DISCORDJS],
+        category: "Web",
+        comingSoon: true,
+        title_en: "Pomodoro Timer",
+        description_en: "Collaborative Pomodoro timer that works in conjunction with Discord and Twitch. Built with Next.js, Tailwind CSS, TypeScript, MongoDB and Discord.js.",
+    },
+    {
+        title: "Qr Generator",
+        description:
+            "Generador de Qr realizado con HTML, CSS y JavaScript.",
+        image:
+            "/preview/qr-generator.webp",
+        tags: [projectTags.HTML, projectTags.CSS, projectTags.JAVASCRIPT],
+        category: "Web",
+        link: "https://qr-generator-rust-seven.vercel.app/", 
+        title_en: "Qr Generator",
+        description_en: "Qr generator made with HTML, CSS and JavaScript.",
+    },
+    {
         title: "El Amanecer de la tormenta - Novela",
         description:
             "Edición y diseño editorial. Maquetación, ilustraciones y diseño de portadas.",
         image:
-            "/el amanecer de la tormenta.webp",
-        tags: [projectTags.INDESIGN, projectTags.PHOTOSHOP],
+            "/preview/el-amanecer-de-la-tormenta-mock.webp",
+        tags: [projectTags.INDESIGN, projectTags.PHOTOSHOP, projectTags.ILLUSTRATOR],
         category: "Editorial",
         link: "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
         behance: "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
@@ -20,8 +92,8 @@ export const projectsData: Project[] = [
         description:
             "Edición y diseño editorial completo de libro de poemas. Maquetación, ilustraciones y diseño de portada.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/1400/220268106950343.5f9bc1d528994.jpg",
-        tags: [projectTags.INDESIGN, projectTags.PHOTOSHOP],
+            "/preview/inmortal-mock.webp",
+        tags: [projectTags.INDESIGN, projectTags.PHOTOSHOP, projectTags.ILLUSTRATOR],
         category: "Editorial",
         behance: "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
         link: "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
@@ -33,7 +105,7 @@ export const projectsData: Project[] = [
         description:
             "Creación integral de juego de mesa: diseño de cartas, tablero, manual de reglas y empaquetado.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/1400/f35602106950343.5f9bc1d529241.jpg",
+            "/preview/juego-de-mesa.webp",
         tags: [projectTags.ILLUSTRATOR, projectTags.PHOTOSHOP],
         category: "Producto",
         behance: "https://www.behance.net/gallery/152318265/Break-Friends",
@@ -45,8 +117,8 @@ export const projectsData: Project[] = [
         description:
             "Creacion de logos como freelance para varias empresas.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/1400/220268106950343.5f9bc1d528994.jpg",
-        tags: [projectTags.INDESIGN, projectTags.PHOTOSHOP],
+            "/preview/logos-mock.webp",
+        tags: [projectTags.ILLUSTRATOR, projectTags.PHOTOSHOP],
         category: "Editorial",
         behance: "https://www.behance.net/gallery/180431813/Logos",
         title_en: "Logo Design",
@@ -57,8 +129,8 @@ export const projectsData: Project[] = [
         description:
             "Edición de Articulo de revista científica sobre la cueva de las manos realizada para Arqueologos Argentinos.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/1400/220268106950343.5f9bc1d528994.jpg",
-        tags: [projectTags.INDESIGN, projectTags.PHOTOSHOP],
+            "/preview/la-cueva-de-las-manos.webp",
+        tags: [projectTags.ILLUSTRATOR, projectTags.PHOTOSHOP],
         category: "Editorial",
         behance: "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
         link: "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
@@ -70,7 +142,7 @@ export const projectsData: Project[] = [
         description:
             "Desarrollo completo de videojuego de plataformas 2D. Diseño de personajes, niveles y mecánicas de juego. Migrado de Unity a Godot.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/fs/8c7295106950343.5f9bc1d5299da.png",
+            "/preview/end-of-bioworld.webp",
         tags: [projectTags.UNITY, projectTags.GODOT, projectTags.CSHARP, projectTags.ASPRITES],
         category: "Videojuegos",
         behance: "https://www.behance.net/gallery/241093809/End-Of-Bioworld",
@@ -83,8 +155,8 @@ export const projectsData: Project[] = [
         description:
             "Tutoriales de Processing para principiantes en YouTube.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/fs/8c7295106950343.5f9bc1d5299da.png",
-        tags: [projectTags.JAVA, projectTags.PROCESSING],
+            "/preview/curso-processing.webp",
+        tags: [projectTags.JAVA, projectTags.PROCESSING, projectTags.OBSSTUDIO, projectTags.PREMIERE],
         category: ["Audiovisual", "Programación"],
         github: "https://github.com/Shinigamy19/Menu-de-atajos-tutorial",
         youtube: "https://studio.youtube.com/playlist/PLALOGywm7ZvLAI-JL7pjyrQlSPdTWvYNv/edit",
@@ -96,8 +168,8 @@ export const projectsData: Project[] = [
         description:
             "Tutoriales de Batch para principiantes en YouTube.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/fs/8c7295106950343.5f9bc1d5299da.png",
-        tags: [projectTags.BASH],
+            "/preview/tutoriales-batch.webp",
+        tags: [projectTags.BASH, projectTags.OBSSTUDIO, projectTags.PREMIERE],
         category: ["Audiovisual", "Programación"],
         github: "https://github.com/Shinigamy19/Menu-de-atajos-tutorial",
         youtube: "https://studio.youtube.com/playlist/PLALOGywm7ZvLAI-JL7pjyrQlSPdTWvYNv/edit",
@@ -108,7 +180,7 @@ export const projectsData: Project[] = [
         title: "Una conversacion con El Roles",
         description:
             "Novela visual y Aventura conversacional realizada en processing.",
-        image: "/Uccer.webp",
+        image: "/preview/uccer.webp",
         tags: [projectTags.JAVA, projectTags.PROCESSING],
         category: ["Videojuegos", "Programación"],
         github: "https://github.com/Shinigamy19/Una-Conversacion-Con-El-Roles",
@@ -120,9 +192,9 @@ export const projectsData: Project[] = [
         title: "Centro de procesamiento de audio",
         description:
             "Programa para procesar audio, con vsts, efectos, filtros y pedales.",
-        image: "/Pedales.webp",
+        image: "/preview/pedales.webp",
         tags: [projectTags.PUREDATA, projectTags.ARDUINO],
-        category: "Programación",
+        category: ["Audiovisual", "Programación"],
         github: "https://github.com/Shinigamy19",
         title_en: "Audio Processing Center",
         description_en: "Program to process audio, with VSTs, effects, filters, and pedals.",
@@ -132,7 +204,7 @@ export const projectsData: Project[] = [
         description:
             "Pagina web de la empresa Codigo DEIN.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/codigo-dein.webp",
         tags: [projectTags.HTML, projectTags.CSS, projectTags.JAVASCRIPT, projectTags.TAILWIND],
         category: "Web",
         github: "https://github.com/Shinigamy19/Proyecto-final-html-css",
@@ -145,7 +217,7 @@ export const projectsData: Project[] = [
         description:
             "Blog personal realizado con HTML, CSS, JavaScript, JQuery y Bootstrap",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/blog-shinigamy19.webp",
         tags: [projectTags.HTML, projectTags.CSS, projectTags.JAVASCRIPT, projectTags.JQUERY, projectTags.BOOTSTRAP],
         category: "Web",
         github: "https://github.com/Shinigamy19/Blog-Shinigamy19",
@@ -158,7 +230,7 @@ export const projectsData: Project[] = [
         description:
             "Sistema Policial en Java para control de escuadrones.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/sistema-policial.webp",
         tags: [projectTags.JAVA],
         category: "Programación",
         github: "https://github.com/Shinigamy19/Policia-Java-Tecno-3F",
@@ -170,7 +242,7 @@ export const projectsData: Project[] = [
         description:
             "Calculadora en Python con tkinter",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/calculadora.webp",
         tags: [projectTags.PYTHON],
         category: "Programación",
         github: "https://github.com/Shinigamy19/calculadora-phyton",
@@ -182,7 +254,7 @@ export const projectsData: Project[] = [
         description:
             "Sistema de Tickets - Tateti - Conversor de temperatura en Python realizado con tkinter para trabajo final de un curso de programación.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/tateti.webp",
         tags: [projectTags.PYTHON],
         category: "Programación",
         github: "https://github.com/Shinigamy19/Trabajo-Final-Phyton",
@@ -194,7 +266,7 @@ export const projectsData: Project[] = [
         description:
             "Programa en Python que calcula el factorial de un numero entero.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/numero-entero.webp",
         tags: [projectTags.PYTHON],
         category: "Programación",
         github: "https://github.com/Shinigamy19/Numero-Entero-Factorial",
@@ -206,7 +278,7 @@ export const projectsData: Project[] = [
         description:
             "Juego de adivinar el numero en Python y Java.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/adivina-el-numero.webp",
         tags: [projectTags.PYTHON, projectTags.JAVA],
         category: "Programación",
         github: ["https://github.com/Shinigamy19/Adivina-el-numero-java", "https://github.com/Shinigamy19/Adivina-el-numero-phyton"],
@@ -218,7 +290,7 @@ export const projectsData: Project[] = [
         description:
             "Batalla Vikinga es una aventura conversacional programada en C++",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/batalla-vikinga.webp",
         tags: [projectTags.CPP],
         category: ["Videojuegos", "Programación"],
         github: "https://github.com/Shinigamy19/Batalla-vikinga",
@@ -230,7 +302,7 @@ export const projectsData: Project[] = [
         description:
             "Paint brush. Realizado en Processing.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/paint-brush.webp",
         tags: [projectTags.JAVA, projectTags.PROCESSING],
         category: "Programación",
         github: "https://github.com/Shinigamy19/Paint-Brush",
@@ -242,7 +314,7 @@ export const projectsData: Project[] = [
         description:
             "Pikachu con PImage. Realizada en Processing.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/pikachu.webp",
         tags: [projectTags.JAVA, projectTags.PROCESSING],
         category: "Programación",
         github: "https://github.com/Shinigamy19/Pikachu-Processing",
@@ -254,7 +326,7 @@ export const projectsData: Project[] = [
         description:
             "Pieza visual en formato de papel tapiz. Realizada en Processing.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/papeltapiz.webp",
         tags: [projectTags.JAVA, projectTags.PROCESSING],
         category: "Programación",
         github: "https://github.com/Shinigamy19/Papel-Tapiz",
@@ -266,9 +338,9 @@ export const projectsData: Project[] = [
         description:
             "Ociladores de audio para Pure Data.",
         image:
-            "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5b6342106950343.5f9bc1d52ac4d.png",
+            "/preview/osciladores.webp",
         tags: [projectTags.PUREDATA],
-        category: "Audiovisual",
+        category: ["Audiovisual", "Programación"],
         github: "https://github.com/Shinigamy19/Osciladores",
         title_en: "Oscillators",
         description_en: "Audio oscillators for Pure Data.",
@@ -278,8 +350,8 @@ export const projectsData: Project[] = [
         description:
             "Rompecabezas con tematica anime realizado con html, css y js.",
         image:
-            "/rompecabezas.webp",
-        tags: [projectTags.HTML, projectTags.CSS, projectTags.JAVASCRIPT],
+            "/preview/rompecabezas.webp",
+        tags: [projectTags.HTML, projectTags.CSS, projectTags.JAVASCRIPT, projectTags.JQUERY],
         category: ["Videojuegos", "Web"],
         github: "https://github.com/Shinigamy19/Rompecabezas-html",
         title_en: "Puzzle",

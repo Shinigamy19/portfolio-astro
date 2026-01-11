@@ -23,15 +23,15 @@ export const projectTags: Record<string, ProjectTag> = {
     },
     PHOTOSHOP: {
         name: "Photoshop",
-        class: "bg-[#31A8FF] text-white",
+        class: "bg-[#18537f] text-white",
     },
     ILLUSTRATOR: {
         name: "Illustrator",
-        class: "bg-[#FF9A00] text-black",
+        class: "bg-[#ff9a00] text-black",
     },
     INDESIGN: {
         name: "InDesign",
-        class: "bg-[#FF3366] text-white",
+        class: "bg-[#651328] text-white",
     },
     PREMIERE: {
         name: "Premiere Pro",
@@ -123,11 +123,11 @@ export const projectTags: Record<string, ProjectTag> = {
     },
     JAVASCRIPT: {
         name: "JavaScript",
-        class: "bg-[#c8bd60] text-black",
+        class: "bg-[#7b743b] text-black",
     },
     JSON: {
         name: "JSON",
-        class: "bg-[#000000] text-white",
+        class: "bg-[#262626] text-white",
     },
     PHP: {
         name: "PHP",
@@ -167,11 +167,11 @@ export const projectTags: Record<string, ProjectTag> = {
     },
     MONGODB: {
         name: "MongoDB",
-        class: "bg-[#47A248] text-white",
+        class: "bg-[#255525] text-white",
     },
     DISCORDJS: {
         name: "Discord.js",
-        class: "bg-[#5865F2] text-white",
+        class: "bg-[#292f72] text-white",
     },
     NODEJS: {
         name: "Node.js",
@@ -195,7 +195,7 @@ export const projectTags: Record<string, ProjectTag> = {
     },
     ARDUINO: {
         name: "Arduino",
-        class: "bg-[#00979D] text-white",
+        class: "bg-[#004d50] text-white",
     },
     AUTOCAD: {
         name: "AutoCAD",
@@ -240,5 +240,21 @@ export const projectTags: Record<string, ProjectTag> = {
     BASH: {
         name: "Bash",
         class: "bg-[#1e430e] text-white",
+    },
+    ANGULAR: {
+        name: "Angular",
+        class: "bg-[#43000f] text-white",
+    },
+    SASS: {
+        name: "Sass",
+        class: "bg-[#4c2538] text-white",
+    },
+    TYPESCRIPT: {
+        name: "TypeScript",
+        class: "bg-[#112a45] text-white",
+    },
+    REACT: {
+        name: "React",
+        class: "bg-[#003159] text-white",
     },
 };
