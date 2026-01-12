@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -7,13 +7,13 @@ const t = useTranslations(lang);
 const yearsExperience = new Date().getFullYear() - 2019;
 
 const personalImageAlt = "Shinigamy19 Logo";
-import Badge from "../components/Badge.astro";
-import GithubIcon from "../components/icons/GithubIcon.astro";
-import LinkedinIcon from "../components/icons/LinkedinIcon.astro";
-import BehanceIcon from "../components/icons/BehanceIcon.astro";
-import YoutubeIcon from "../components/icons/YoutubeIcon.astro";
-import GmailIcon from "../components/icons/GmailIcon.astro";
-import SocialPill from "../components/SocialPill.astro";
+import Badge from "../ui/Badge.astro";
+import GithubIcon from "../icons/GithubIcon.astro";
+import LinkedinIcon from "../icons/LinkedinIcon.astro";
+import BehanceIcon from "../icons/BehanceIcon.astro";
+import YoutubeIcon from "../icons/YoutubeIcon.astro";
+import GmailIcon from "../icons/GmailIcon.astro";
+import SocialPill from "../ui/SocialPill.astro";
 ---
 
 <div

@@ -1,8 +1,8 @@
 ---
 import EducacionItem from "./EducacionItem.astro";
-import { educationData } from "../data/education";
-import { coursesData } from "../data/courses";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { educationData } from "../../data/education";
+import { coursesData } from "../../data/courses";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

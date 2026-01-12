@@ -1,81 +1,81 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-import SectionContainer from "../../components/SectionContainer.astro";
-import TitleSection from "../../components/TitleSection.astro";
-import Presentacion from "../../components/Presentacion.astro";
-import Experiencia from "../../components/Experiencia.astro";
-import Proyectos from "../../components/Proyectos.astro";
-import SobreMi from "../../components/SobreMi.astro";
+import SectionContainer from "../../components/ui/SectionContainer.astro";
+import TitleSection from "../../components/ui/TitleSection.astro";
+import Presentacion from "../../components/sections/Presentacion.astro";
+import Experiencia from "../../components/sections/Experiencia.astro";
+import Proyectos from "../../components/sections/Proyectos.astro";
+import SobreMi from "../../components/sections/SobreMi.astro";
 
 import CodeIcon from "../../components/icons/CodeIcon.astro";
 import MaletaIcon from "../../components/icons/MaletaIcon.astro";
 import ProfileIcon from "../../components/icons/ProfileIcon.astro";
 import ContactoIcon from "../../components/icons/ContactoIcon.astro";
-import Contacto from "../../components/Contacto.astro";
-import Habilidades from "../../components/Habilidades.astro";
+import Contacto from "../../components/sections/Contacto.astro";
+import Habilidades from "../../components/sections/Habilidades.astro";
 import SkillsIcon from "../../components/icons/SkillsIcon.astro";
-import Educacion from "../../components/Educacion.astro";
+import Educacion from "../../components/sections/Educacion.astro";
 import EducacionIcon from "../../components/icons/EducacionIcon.astro";
 ---
 
 <Layout
-    title="Portfolio Shinigamy19 - Multimedia Designer & Content Creator."
-    description="I'm Eros, Multimedia Designer, Content Creator, Developer and Programmer from Argentina."
+  title="Portfolio Shinigamy19 - Multimedia Designer & Content Creator."
+  description="I'm Eros, Multimedia Designer, Content Creator, Developer and Programmer from Argentina."
 >
-    <main class="px-4">
-        <SectionContainer class="pt-28 pb-16 md:py-36">
-            <Presentacion />
-        </SectionContainer>
-    </main>
+  <main class="px-4">
+    <SectionContainer class="pt-28 pb-16 md:py-36">
+      <Presentacion />
+    </SectionContainer>
+  </main>
 
-    <div class="space-y-24">
-        <SectionContainer id="experiencia" maxWidth="lg:max-w-6xl md:max-w-4xl">
-            <TitleSection>
-                <MaletaIcon class="size 8" />
-                Work Experience
-            </TitleSection>
-            <Experiencia />
-        </SectionContainer>
+  <div class="space-y-24">
+    <SectionContainer id="experiencia" maxWidth="lg:max-w-6xl md:max-w-4xl">
+      <TitleSection>
+        <MaletaIcon class="size 8" />
+        Work Experience
+      </TitleSection>
+      <Experiencia />
+    </SectionContainer>
 
-        <SectionContainer id="proyectos" maxWidth="lg:max-w-6xl md:max-w-4xl">
-            <TitleSection>
-                <CodeIcon class="size-7" />
-                Projects
-            </TitleSection>
-            <Proyectos />
-        </SectionContainer>
+    <SectionContainer id="proyectos" maxWidth="lg:max-w-6xl md:max-w-4xl">
+      <TitleSection>
+        <CodeIcon class="size-7" />
+        Projects
+      </TitleSection>
+      <Proyectos />
+    </SectionContainer>
 
-        <SectionContainer id="sobre-mi" maxWidth="lg:max-w-6xl md:max-w-4xl">
-            <TitleSection>
-                <ProfileIcon class="size-8" />
-                About Me
-            </TitleSection>
-            <SobreMi />
-        </SectionContainer>
+    <SectionContainer id="sobre-mi" maxWidth="lg:max-w-6xl md:max-w-4xl">
+      <TitleSection>
+        <ProfileIcon class="size-8" />
+        About Me
+      </TitleSection>
+      <SobreMi />
+    </SectionContainer>
 
-        <SectionContainer id="habilidades" maxWidth="lg:max-w-6xl md:max-w-4xl">
-            <TitleSection>
-                <SkillsIcon class="size-8" />
-                Skills
-            </TitleSection>
-            <Habilidades />
-        </SectionContainer>
+    <SectionContainer id="habilidades" maxWidth="lg:max-w-6xl md:max-w-4xl">
+      <TitleSection>
+        <SkillsIcon class="size-8" />
+        Skills
+      </TitleSection>
+      <Habilidades />
+    </SectionContainer>
 
-        <SectionContainer id="educacion" maxWidth="lg:max-w-6xl md:max-w-4xl">
-            <TitleSection>
-                <EducacionIcon class="size-8" />
-                Education
-            </TitleSection>
-            <Educacion />
-        </SectionContainer>
+    <SectionContainer id="educacion" maxWidth="lg:max-w-6xl md:max-w-4xl">
+      <TitleSection>
+        <EducacionIcon class="size-8" />
+        Education
+      </TitleSection>
+      <Educacion />
+    </SectionContainer>
 
-        <SectionContainer id="contacto" maxWidth="lg:max-w-6xl md:max-w-4xl">
-            <TitleSection>
-                <ContactoIcon class="size-8" />
-                Contact
-            </TitleSection>
-            <Contacto />
-        </SectionContainer>
-    </div>
+    <SectionContainer id="contacto" maxWidth="lg:max-w-6xl md:max-w-4xl">
+      <TitleSection>
+        <ContactoIcon class="size-8" />
+        Contact
+      </TitleSection>
+      <Contacto />
+    </SectionContainer>
+  </div>
 </Layout>

@@ -1,72 +1,72 @@
 ---
-import { skillsData } from "../data/skills";
-import { achievementsData } from "../data/achievements";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { skillsData } from "../../data/skills";
+import { achievementsData } from "../../data/achievements";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 // Icons
-import FigmaIcon from "./icons/FigmaIcon.astro";
-import HtmlIcon from "./icons/Html.astro";
-import CssIcon from "./icons/Css.astro";
-import JsIcon from "./icons/Js.astro";
-import JsonIcon from "./icons/Json.astro";
-import GmlIcon from "./icons/Gml.astro";
-import ObsstudioIcon from "./icons/Obsstudio.astro";
-import CanvaIcon from "./icons/Canva.astro";
-import CoreldrawIcon from "./icons/Coreldraw.astro";
-import KritaIcon from "./icons/Krita.astro";
-import GimpIcon from "./icons/Gimp.astro";
-import InkscapeIcon from "./icons/Inkscape.astro";
-import UnrealEngineIcon from "./icons/Unrealengine.astro";
-import GameMakerIcon from "./icons/Gamemaker.astro";
-import VisualStudioIcon from "./icons/VisualStudio.astro";
-import AndroidstudioIcon from "./icons/Androidstudio.astro";
-import MongodbIcon from "./icons/Mongodb.astro";
-import DiscordjsIcon from "./icons/Discordjs.astro";
-import NodejsIcon from "./icons/Nodejs.astro";
-import LaravelIcon from "./icons/Laravel.astro";
-import PrismaIcon from "./icons/Prisma.astro";
-import P5jsIcon from "./icons/P5js.astro";
-import AstroIcon from "./icons/AstroIcon.astro";
-import ArduinoIcon from "./icons/Arduino.astro";
-import AutocadIcon from "./icons/Autocad.astro";
-import WordIcon from "./icons/Word.astro";
-import ExcelIcon from "./icons/Excel.astro";
-import PowerpointIcon from "./icons/Powerpoint.astro";
-import NextJSIcon from "./icons/NextJSIcon.astro";
-import TailwindIcon from "./icons/TailwindIcon.astro";
-import JavaIcon from "./icons/JavaIcon.astro";
-import ProcessingIcon from "./icons/ProcessingIcon.astro";
-import PuredataIcon from "./icons/PuredataIcon.astro";
-import UnityIcon from "./icons/Unity.astro";
-import PhotoshopIcon from "./icons/Photoshop.astro";
-import CSharpIcon from "./icons/Csharp.astro";
-import PhpIcon from "./icons/Php.astro";
-import AfterEffectsIcon from "./icons/Aftereffects.astro";
-import AsepriteIcon from "./icons/Asesprite.astro";
-import GodotIcon from "./icons/Godot.astro";
-import IllustratorIcon from "./icons/Illustrator.astro";
-import InDesignIcon from "./icons/Indiseing.astro";
-import PremiereIcon from "./icons/Premiere.astro";
-import PythonIcon from "./icons/Python.astro";
-import WordpressIcon from "./icons/Wordpress.astro";
-import MysqlIcon from "./icons/Mysql.astro";
-import AuditionIcon from "./icons/Audition.astro";
-import BlenderIcon from "./icons/Blender.astro";
-import ReaperIcon from "./icons/Reaper.astro";
-import CIcon from "./icons/C.astro";
-import CPlusPlusIcon from "./icons/Cplusplus.astro";
-import FlutterIcon from "./icons/Flutter.astro";
-import DockerIcon from "./icons/Docker.astro";
-import KotlinIcon from "./icons/Kotlin.astro";
-import ExpressIcon from "./icons/Express.astro";
-import BootstrapIcon from "./icons/Bootstrap.astro";
-import JQueryIcon from "./icons/Jquery.astro";
-import BashIcon from "./icons/Bash.astro";
-import AngularIcon from "./icons/Angular.astro";
-import SassIcon from "./icons/Sass.astro";
+import FigmaIcon from "../icons/FigmaIcon.astro";
+import HtmlIcon from "../icons/Html.astro";
+import CssIcon from "../icons/Css.astro";
+import JsIcon from "../icons/Js.astro";
+import JsonIcon from "../icons/Json.astro";
+import GmlIcon from "../icons/Gml.astro";
+import ObsstudioIcon from "../icons/Obsstudio.astro";
+import CanvaIcon from "../icons/Canva.astro";
+import CoreldrawIcon from "../icons/Coreldraw.astro";
+import KritaIcon from "../icons/Krita.astro";
+import GimpIcon from "../icons/Gimp.astro";
+import InkscapeIcon from "../icons/Inkscape.astro";
+import UnrealEngineIcon from "../icons/Unrealengine.astro";
+import GameMakerIcon from "../icons/Gamemaker.astro";
+import VisualStudioIcon from "../icons/VisualStudio.astro";
+import AndroidstudioIcon from "../icons/Androidstudio.astro";
+import MongodbIcon from "../icons/Mongodb.astro";
+import DiscordjsIcon from "../icons/Discordjs.astro";
+import NodejsIcon from "../icons/Nodejs.astro";
+import LaravelIcon from "../icons/Laravel.astro";
+import PrismaIcon from "../icons/Prisma.astro";
+import P5jsIcon from "../icons/P5js.astro";
+import AstroIcon from "../icons/AstroIcon.astro";
+import ArduinoIcon from "../icons/Arduino.astro";
+import AutocadIcon from "../icons/Autocad.astro";
+import WordIcon from "../icons/Word.astro";
+import ExcelIcon from "../icons/Excel.astro";
+import PowerpointIcon from "../icons/Powerpoint.astro";
+import NextJSIcon from "../icons/NextJSIcon.astro";
+import TailwindIcon from "../icons/TailwindIcon.astro";
+import JavaIcon from "../icons/JavaIcon.astro";
+import ProcessingIcon from "../icons/ProcessingIcon.astro";
+import PuredataIcon from "../icons/PuredataIcon.astro";
+import UnityIcon from "../icons/Unity.astro";
+import PhotoshopIcon from "../icons/Photoshop.astro";
+import CSharpIcon from "../icons/Csharp.astro";
+import PhpIcon from "../icons/Php.astro";
+import AfterEffectsIcon from "../icons/Aftereffects.astro";
+import AsepriteIcon from "../icons/Asesprite.astro";
+import GodotIcon from "../icons/Godot.astro";
+import IllustratorIcon from "../icons/Illustrator.astro";
+import InDesignIcon from "../icons/Indiseing.astro";
+import PremiereIcon from "../icons/Premiere.astro";
+import PythonIcon from "../icons/Python.astro";
+import WordpressIcon from "../icons/Wordpress.astro";
+import MysqlIcon from "../icons/Mysql.astro";
+import AuditionIcon from "../icons/Audition.astro";
+import BlenderIcon from "../icons/Blender.astro";
+import ReaperIcon from "../icons/Reaper.astro";
+import CIcon from "../icons/C.astro";
+import CPlusPlusIcon from "../icons/Cplusplus.astro";
+import FlutterIcon from "../icons/Flutter.astro";
+import DockerIcon from "../icons/Docker.astro";
+import KotlinIcon from "../icons/Kotlin.astro";
+import ExpressIcon from "../icons/Express.astro";
+import BootstrapIcon from "../icons/Bootstrap.astro";
+import JQueryIcon from "../icons/Jquery.astro";
+import BashIcon from "../icons/Bash.astro";
+import AngularIcon from "../icons/Angular.astro";
+import SassIcon from "../icons/Sass.astro";
 
 const SKILLS = skillsData;
 const ACHIEVEMENTS = achievementsData;
@@ -178,7 +178,7 @@ const ACHIEVEMENTS = achievementsData;
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 relative z-10">
       {
         ACHIEVEMENTS.map((achievement) => (
-          <div class="flex items-start gap-4 p-3 rounded-xl hover:bg-purple-100/50 dark:hover:bg-white/5 transition-colors border border-transparent hover:border-purple-200 dark:hover:border-white/10">
+          <div class="flex items-start gap-4 p-3 rounded-xl hover:bg-purple-100/50 dark:hover:bg-white/5 transition-colors border border-transparent hover:border-purple-200 dark:hover:border-white/10 cursor-default">
             <div class={`shrink-0 mt-1 ${achievement.color}`}>
               {achievement.icon === "trophy" && (
                 <svg

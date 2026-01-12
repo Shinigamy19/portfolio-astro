@@ -1,7 +1,7 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
-import LanguageSelector from "./LanguageSelector.astro";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import ThemeToggle from "../ui/ThemeToggle.astro";
+import LanguageSelector from "../ui/LanguageSelector.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

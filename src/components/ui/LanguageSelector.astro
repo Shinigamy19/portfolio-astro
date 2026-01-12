@@ -1,0 +1,117 @@
+---
+import { languages } from "../../i18n/ui";
+import { getLangFromUrl } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const languageEntries = Object.entries(languages);
+---
+
+<div class="relative ml-1 mr-1">
+  <button
+    transition:persist
+    class="lang-toggle-btn appearance-none border-none flex items-center gap-1 hover:scale-110 transition relative"
+  >
+    <span class="sr-only">Elige el idioma</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="size-5"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M4 5h7"></path>
+      <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
+      <path d="M5 9c0 2.144 2.952 3.908 6.7 4"></path>
+      <path d="M12 20l4 -9l4 9"></path>
+      <path d="M19.1 18h-6.2"></path>
+    </svg>
+    <span class="uppercase text-sm font-medium">{lang}</span>
+  </button>
+  <div
+    transition:persist
+    class="lang-menu absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-xl"
+  >
+    <ul>
+      {
+        languageEntries.map(([key, label]) => (
+          <li>
+            <a
+              href={`/${key}/`}
+              class="lang-menu-option block px-2 py-1.5 cursor-pointer hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
+              data-lang={key}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<style>
+  .lang-menu.open {
+    display: block;
+    animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  @keyframes scale-up-center {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    // Close all language menus when clicking outside
+    document.addEventListener("click", () =>
+      document
+        .querySelectorAll(".lang-menu")
+        .forEach((menu) => menu.classList.remove("open"))
+    );
+
+    document.querySelectorAll(".lang-toggle-btn").forEach((btn) => {
+      // Prevent duplicate listeners by checking if already initialized
+      if (btn.dataset.langInitialized) return;
+      btn.dataset.langInitialized = "true";
+
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const menu = btn.nextElementSibling;
+        if (menu && menu.classList.contains("lang-menu")) {
+          const isClosed = !menu.classList.contains("open");
+          // Close all menus (both theme and language)
+          document
+            .querySelectorAll(".lang-menu, .themes-menu")
+            .forEach((m) => m.classList.remove("open"));
+          menu.classList[isClosed ? "add" : "remove"]("open");
+        }
+      });
+    });
+
+    // Close menu when a language is selected
+    document.querySelectorAll(".lang-menu-option").forEach((element) => {
+      // Prevent duplicate listeners
+      if (element.dataset.langInitialized) return;
+      element.dataset.langInitialized = "true";
+
+      element.addEventListener("click", () => {
+        // The navigation will happen via the href, just close the menu
+        document
+          .querySelectorAll(".lang-menu")
+          .forEach((menu) => menu.classList.remove("open"));
+      });
+    });
+  })();
+</script>

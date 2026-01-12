@@ -1,0 +1,187 @@
+---
+import { getLangFromUrl } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+interface Props {
+  title: string;
+  institution: string;
+  description: string;
+  date: string;
+  type: string;
+  gradient: string;
+  icon: string;
+  skills: string[];
+  index: number;
+  title_en?: string;
+  description_en?: string;
+  type_en?: string;
+}
+
+const {
+  title,
+  institution,
+  description,
+  date,
+  type,
+  gradient,
+  icon,
+  skills,
+  index,
+  title_en,
+  description_en,
+  type_en,
+} = Astro.props;
+
+// Iconos SVG personalizados
+const icons = {
+  graduation: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6"/><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4"/>`,
+  book: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/><path d="M3 6l0 13"/><path d="M12 6l0 13"/><path d="M21 6l0 13"/>`,
+  certificate: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 15m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5" /><path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73" /><path d="M6 9l12 0" /><path d="M6 12l3 0" /><path d="M6 15l2 0" />`,
+};
+---
+
+<div class="group relative h-full">
+  <!-- Tarjeta principal con gradiente -->
+  <div
+    class="relative h-full overflow-hidden rounded-3xl bg-gradient-to-br shadow-2xl transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:scale-[1.02]"
+    class:list={[gradient]}
+  >
+    <!-- Overlay para mejorar legibilidad (funciona en modo claro y oscuro) -->
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
+
+    <!-- Efecto de brillo animado -->
+    <div
+      class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"
+      >
+      </div>
+    </div>
+
+    <!-- Contenido -->
+    <div class="relative p-4 sm:p-6 lg:p-8 h-full flex flex-col">
+      <!-- Header con icono y fecha -->
+      <div
+        class="flex flex-col sm:flex-row items-start sm:justify-between gap-4 mb-4 sm:mb-6"
+      >
+        <div class="flex items-center gap-3 sm:gap-4">
+          <!-- Icono grande -->
+          <div class="relative">
+            <div class="absolute inset-0 bg-white/20 rounded-2xl blur-xl"></div>
+            <div
+              class="relative bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-white/20"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 sm:w-8 sm:h-8 text-white"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                set:html={icons[icon as keyof typeof icons]}
+              />
+            </div>
+          </div>
+
+          <!-- Badge de tipo -->
+          <div
+            class="bg-white/20 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/30"
+          >
+            <span class="text-white font-bold text-xs sm:text-sm tracking-wide"
+              >{lang === "en" && type_en ? type_en : type}</span
+            >
+          </div>
+        </div>
+
+        <!-- Fecha -->
+        <div
+          class="flex items-center gap-2 bg-black/30 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/80"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
+            ></path>
+            <path d="M16 3v4"></path>
+            <path d="M8 3v4"></path>
+            <path d="M4 11h16"></path>
+          </svg>
+          <span class="text-white/90 font-semibold text-xs sm:text-sm"
+            >{date}</span
+          >
+        </div>
+      </div>
+
+      <!-- Título -->
+      <h3
+        class="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4 leading-tight drop-shadow-lg"
+      >
+        {lang === "en" && title_en ? title_en : title}
+      </h3>
+
+      <!-- Institución -->
+      <div class="flex items-center gap-2 mb-3 sm:mb-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 sm:w-5 sm:h-5 text-white/70 flex-shrink-0"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M3 21l18 0"></path>
+          <path d="M9 8l1 0"></path>
+          <path d="M9 12l1 0"></path>
+          <path d="M9 16l1 0"></path>
+          <path d="M14 8l1 0"></path>
+          <path d="M14 12l1 0"></path>
+          <path d="M14 16l1 0"></path>
+          <path d="M5 21l0 -16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2l0 16"></path>
+        </svg>
+        <p class="text-white/90 font-medium text-sm sm:text-base">
+          {institution}
+        </p>
+      </div>
+
+      <!-- Descripción -->
+      <p
+        class="text-white/80 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 flex-grow"
+      >
+        {lang === "en" && description_en ? description_en : description}
+      </p>
+
+      <!-- Skills badges -->
+      <div class="flex flex-wrap gap-2 mt-auto">
+        {
+          skills.map((skill) => (
+            <span class="bg-white/10 backdrop-blur-sm text-white text-xs font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors duration-300">
+              {skill}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Decoración esquina -->
+    <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full">
+    </div>
+    <div class="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-tr-full">
+    </div>
+  </div>
+</div>
