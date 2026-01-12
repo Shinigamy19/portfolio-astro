@@ -76,103 +76,110 @@ const categoryKeys: Record<string, string> = {
 </div>
 
 <script>
-  const list = document.getElementById("experience-list");
-  const loadMoreBtn = document.getElementById("load-more-btn");
-  const showLessBtn = document.getElementById("show-less-btn");
-  const categoryButtons = document.querySelectorAll(".experience-category-btn");
-  const timeline = document.querySelector(".experience-timeline");
-  const items = list?.querySelectorAll(".experience-item");
-  const INITIAL_ITEMS = 3;
-  let currentCategory = "Todos";
-  let visibleCount = INITIAL_ITEMS;
+  document.addEventListener("astro:page-load", () => {
+    const list = document.getElementById("experience-list");
+    const loadMoreBtn = document.getElementById("load-more-btn");
+    const showLessBtn = document.getElementById("show-less-btn");
+    const categoryButtons = document.querySelectorAll(
+      ".experience-category-btn"
+    );
+    const timeline = document.querySelector(".experience-timeline");
+    const items = list?.querySelectorAll(".experience-item");
+    const INITIAL_ITEMS = 3;
+    let currentCategory = "Todos";
+    let visibleCount = INITIAL_ITEMS;
 
-  function updateExperienceVisibility() {
-    let itemsShown = 0;
-    let totalMatches = 0;
+    function updateExperienceVisibility() {
+      let itemsShown = 0;
+      let totalMatches = 0;
 
-    items?.forEach((item) => {
-      const itemCategoryStr = item.getAttribute("data-category") || "";
-      const itemCategories = itemCategoryStr.split(",");
-      const matches =
-        currentCategory === "Todos" || itemCategories.includes(currentCategory);
+      items?.forEach((item) => {
+        const itemCategoryStr = item.getAttribute("data-category") || "";
+        const itemCategories = itemCategoryStr.split(",");
+        const matches =
+          currentCategory === "Todos" ||
+          itemCategories.includes(currentCategory);
 
-      if (matches) {
-        totalMatches++;
-        if (itemsShown < visibleCount) {
-          item.classList.remove("hidden");
-          item.classList.add("fade-in");
-          itemsShown++;
+        if (matches) {
+          totalMatches++;
+          if (itemsShown < visibleCount) {
+            item.classList.remove("hidden");
+            item.classList.add("fade-in");
+            itemsShown++;
+          } else {
+            item.classList.add("hidden");
+            item.classList.remove("fade-in");
+          }
         } else {
           item.classList.add("hidden");
           item.classList.remove("fade-in");
         }
-      } else {
-        item.classList.add("hidden");
-        item.classList.remove("fade-in");
-      }
-    });
+      });
 
-    // Update Timeline line visibility
-    if (timeline) {
-      if (itemsShown === 0) {
-        (timeline as HTMLElement).style.display = "none";
-      } else {
-        (timeline as HTMLElement).style.display = "";
-      }
-    }
-
-    // Handle buttons
-    if (loadMoreBtn && showLessBtn) {
-      if (itemsShown >= totalMatches) {
-        loadMoreBtn.style.display = "none";
-      } else {
-        loadMoreBtn.style.display = "block";
+      // Update Timeline line visibility
+      if (timeline) {
+        if (itemsShown === 0) {
+          (timeline as HTMLElement).style.display = "none";
+        } else {
+          (timeline as HTMLElement).style.display = "";
+        }
       }
 
-      if (visibleCount > INITIAL_ITEMS) {
-        showLessBtn.classList.remove("hidden");
-      } else {
-        showLessBtn.classList.add("hidden");
+      // Handle buttons
+      if (loadMoreBtn && showLessBtn) {
+        if (itemsShown >= totalMatches) {
+          loadMoreBtn.style.display = "none";
+        } else {
+          loadMoreBtn.style.display = "block";
+        }
+
+        if (visibleCount > INITIAL_ITEMS) {
+          showLessBtn.classList.remove("hidden");
+        } else {
+          showLessBtn.classList.add("hidden");
+        }
       }
     }
-  }
 
-  // Initialize
-  updateExperienceVisibility();
+    // Initialize
+    updateExperienceVisibility();
 
-  categoryButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // Update active state
-      categoryButtons.forEach((b) => b.setAttribute("data-active", "false"));
-      btn.setAttribute("data-active", "true");
+    categoryButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // Update active state
+        categoryButtons.forEach((b) => b.setAttribute("data-active", "false"));
+        btn.setAttribute("data-active", "true");
 
-      currentCategory = btn.getAttribute("data-category") || "Todos";
-      visibleCount = INITIAL_ITEMS;
-      updateExperienceVisibility();
+        currentCategory = btn.getAttribute("data-category") || "Todos";
+        visibleCount = INITIAL_ITEMS;
+        updateExperienceVisibility();
+      });
     });
+
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener("click", () => {
+        visibleCount += 3;
+        updateExperienceVisibility();
+      });
+    }
+
+    if (showLessBtn) {
+      showLessBtn.addEventListener("click", () => {
+        visibleCount = INITIAL_ITEMS;
+        updateExperienceVisibility();
+
+        const experienciaSection = document.getElementById(
+          "experiencia-section"
+        );
+        if (experienciaSection) {
+          experienciaSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      });
+    }
   });
-
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener("click", () => {
-      visibleCount += 3;
-      updateExperienceVisibility();
-    });
-  }
-
-  if (showLessBtn) {
-    showLessBtn.addEventListener("click", () => {
-      visibleCount = INITIAL_ITEMS;
-      updateExperienceVisibility();
-
-      const experienciaSection = document.getElementById("experiencia-section");
-      if (experienciaSection) {
-        experienciaSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    });
-  }
 </script>
 
 <style>

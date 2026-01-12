@@ -378,110 +378,112 @@ const categoryKeys: Record<string, string> = {
       id="projects-load-more"
       class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300"
     >
-      Ver más proyectos
+      {t("buttons.showMore")}
     </button>
     <button
       id="projects-show-less"
       class="hidden bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300"
     >
-      Ver menos
+      {t("buttons.showLess")}
     </button>
   </div>
 </div>
 
 <script>
-  const buttons = document.querySelectorAll(".category-btn");
-  const cards = document.querySelectorAll(".project-card");
-  const loadMoreBtn = document.getElementById("projects-load-more");
-  const showLessBtn = document.getElementById("projects-show-less");
-  const INITIAL_SHOW = 6;
-  let currentCategory = "Todos";
-  let visibleCount = INITIAL_SHOW;
+  document.addEventListener("astro:page-load", () => {
+    const buttons = document.querySelectorAll(".category-btn");
+    const cards = document.querySelectorAll(".project-card");
+    const loadMoreBtn = document.getElementById("projects-load-more");
+    const showLessBtn = document.getElementById("projects-show-less");
+    const INITIAL_SHOW = 6;
+    let currentCategory = "Todos";
+    let visibleCount = INITIAL_SHOW;
 
-  // Function to filter and show cards based on category and pagination
-  function updateVisibility() {
-    let shown = 0;
-    let totalFiltered = 0;
+    // Function to filter and show cards based on category and pagination
+    function updateVisibility() {
+      let shown = 0;
+      let totalFiltered = 0;
 
-    cards.forEach((card) => {
-      const cardCategory = card.getAttribute("data-category");
-      const categories = cardCategory ? cardCategory.split(",") : [];
-      const matches =
-        currentCategory === "Todos" || categories.includes(currentCategory);
+      cards.forEach((card) => {
+        const cardCategory = card.getAttribute("data-category");
+        const categories = cardCategory ? cardCategory.split(",") : [];
+        const matches =
+          currentCategory === "Todos" || categories.includes(currentCategory);
 
-      if (matches) {
-        totalFiltered++;
-        if (shown < visibleCount) {
-          card.classList.remove("hidden");
-          card.classList.add("animate-fade-in");
-          shown++;
+        if (matches) {
+          totalFiltered++;
+          if (shown < visibleCount) {
+            card.classList.remove("hidden");
+            card.classList.add("animate-fade-in");
+            shown++;
+          } else {
+            card.classList.add("hidden");
+            card.classList.remove("animate-fade-in");
+          }
         } else {
           card.classList.add("hidden");
           card.classList.remove("animate-fade-in");
         }
-      } else {
-        card.classList.add("hidden");
-        card.classList.remove("animate-fade-in");
-      }
-    });
+      });
 
-    // Handle Buttons Visibility
-    if (loadMoreBtn && showLessBtn) {
-      if (shown >= totalFiltered) {
-        loadMoreBtn.style.display = "none";
-      } else {
-        loadMoreBtn.style.display = "block";
-      }
+      // Handle Buttons Visibility
+      if (loadMoreBtn && showLessBtn) {
+        if (shown >= totalFiltered) {
+          loadMoreBtn.style.display = "none";
+        } else {
+          loadMoreBtn.style.display = "block";
+        }
 
-      if (visibleCount > INITIAL_SHOW) {
-        showLessBtn.classList.remove("hidden");
-      } else {
-        showLessBtn.classList.add("hidden");
+        if (visibleCount > INITIAL_SHOW) {
+          showLessBtn.classList.remove("hidden");
+        } else {
+          showLessBtn.classList.add("hidden");
+        }
       }
     }
-  }
 
-  // Initialize
-  updateVisibility();
+    // Initialize
+    updateVisibility();
 
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // Update active state
-      buttons.forEach((b) => b.setAttribute("data-active", "false"));
-      btn.setAttribute("data-active", "true");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // Update active state
+        buttons.forEach((b) => b.setAttribute("data-active", "false"));
+        btn.setAttribute("data-active", "true");
 
-      // Update current category and reset pagination
-      currentCategory = btn.getAttribute("data-category") || "Todos";
-      visibleCount = INITIAL_SHOW;
+        // Update current category and reset pagination
+        currentCategory = btn.getAttribute("data-category") || "Todos";
+        visibleCount = INITIAL_SHOW;
 
-      updateVisibility();
+        updateVisibility();
+      });
     });
+
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener("click", () => {
+        visibleCount += 3;
+        updateVisibility();
+      });
+    }
+
+    if (showLessBtn) {
+      showLessBtn.addEventListener("click", () => {
+        visibleCount = INITIAL_SHOW;
+        updateVisibility();
+
+        // Scroll back to projects section smoothly
+        const proyectosSection = document.getElementById("proyectos-section");
+        if (proyectosSection) {
+          const yOffset = -100;
+          const y =
+            proyectosSection.getBoundingClientRect().top +
+            window.pageYOffset +
+            yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      });
+    }
   });
-
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener("click", () => {
-      visibleCount += 3;
-      updateVisibility();
-    });
-  }
-
-  if (showLessBtn) {
-    showLessBtn.addEventListener("click", () => {
-      visibleCount = INITIAL_SHOW;
-      updateVisibility();
-
-      // Scroll back to projects section smoothly
-      const proyectosSection = document.getElementById("proyectos-section");
-      if (proyectosSection) {
-        const yOffset = -100;
-        const y =
-          proyectosSection.getBoundingClientRect().top +
-          window.pageYOffset +
-          yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }
-    });
-  }
 </script>
 
 <style>

@@ -135,7 +135,13 @@ const COURSES = coursesData;
   </div>
 </div>
 
-<script define:vars={{ lang }}>
+<script
+  define:vars={{
+    lang,
+    showMoreTextTrans: t("education.showMore"),
+    showLessTextTrans: t("education.showLess"),
+  }}
+>
   document.addEventListener("astro:page-load", () => {
     const loadMoreBtn = document.getElementById("load-more-courses");
     const loadMoreText = loadMoreBtn?.querySelector("span");
@@ -152,7 +158,7 @@ const COURSES = coursesData;
             course.classList.remove("hidden");
             course.classList.add("animate-fade-in");
           });
-          loadMoreText.innerText = lang === "es" ? "Ver menos" : "Show less";
+          loadMoreText.innerText = showLessTextTrans;
           loadMoreIcon.style.transform = "rotate(180deg)";
           isExpanded = true;
         } else {
@@ -193,8 +199,7 @@ const COURSES = coursesData;
             window.requestAnimationFrame(step);
           }
 
-          loadMoreText.innerText =
-            lang === "es" ? "Ver más cursos" : "Show more courses";
+          loadMoreText.innerText = showMoreTextTrans;
           loadMoreIcon.style.transform = "rotate(0deg)";
           isExpanded = false;
         }
