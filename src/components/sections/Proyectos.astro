@@ -69,6 +69,11 @@ import { projectTags } from "../../data/projectTags";
 import { projectsData } from "../../data/projects";
 import { projectCategories } from "../../data/projectCategories";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { Image } from "astro:assets";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/preview/*.webp"
+);
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -135,12 +140,25 @@ const categoryKeys: Record<string, string> = {
           >
             <div class="relative h-48 overflow-hidden">
               <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300 z-10" />
-              <img
-                alt={title}
-                class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
-                src={image || "/placeholder-project.jpg"}
-                loading="lazy"
-              />
+              {
+                image && images["../../assets" + image] ? (
+                  <Image
+                    alt={title}
+                    class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
+                    src={images["../../assets" + image]()}
+                    loading="lazy"
+                    width={400}
+                    height={192}
+                  />
+                ) : (
+                  <img
+                    alt={title}
+                    class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
+                    src={image || "/placeholder-project.jpg"}
+                    loading="lazy"
+                  />
+                )
+              }
             </div>
 
             <div class="flex flex-col flex-1 p-6">
