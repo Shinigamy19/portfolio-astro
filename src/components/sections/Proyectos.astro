@@ -92,6 +92,8 @@ const categoryKeys: Record<string, string> = {
   Web: "categories.web",
   Programación: "categories.programacion",
 };
+
+const INITIAL_SHOW = 6;
 ---
 
 <div class="flex flex-col items-center gap-y-8 w-full" id="proyectos-section">
@@ -117,24 +119,27 @@ const categoryKeys: Record<string, string> = {
   >
     {
       PROJECTS.map(
-        ({
-          image,
-          title,
-          description,
-          title_en,
-          description_en,
-          tags,
-          category,
-          github,
-          link,
-          link2,
-          figma,
-          behance,
-          youtube,
-          comingSoon,
-        }) => (
+        (
+          {
+            image,
+            title,
+            description,
+            title_en,
+            description_en,
+            tags,
+            category,
+            github,
+            link,
+            link2,
+            figma,
+            behance,
+            youtube,
+            comingSoon,
+          },
+          index
+        ) => (
           <article
-            class="project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+            class={`project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${index >= INITIAL_SHOW ? "hidden" : ""}`}
             data-category={
               Array.isArray(category) ? category.join(",") : category
             }
@@ -149,6 +154,8 @@ const categoryKeys: Record<string, string> = {
                 class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
                 width={400}
                 height={200}
+                widths={[400, 800]}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 loading="lazy"
                 decoding="async"
               />
