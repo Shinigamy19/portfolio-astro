@@ -69,6 +69,12 @@ import { projectTags } from "../../data/projectTags";
 import { projectsData } from "../../data/projects";
 import { projectCategories } from "../../data/projectCategories";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { Image } from "astro:assets";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/preview/*.webp",
+  { eager: true }
+);
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -135,11 +141,16 @@ const categoryKeys: Record<string, string> = {
           >
             <div class="relative h-48 overflow-hidden">
               <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300 z-10" />
-              <img
+              <Image
+                src={images[`/src/assets${image}`]?.default ||
+                  image ||
+                  "/placeholder-project.jpg"}
                 alt={title}
                 class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
-                src={image || "/placeholder-project.jpg"}
+                width={400}
+                height={200}
                 loading="lazy"
+                decoding="async"
               />
             </div>
 
