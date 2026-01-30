@@ -8,6 +8,8 @@ const t = useTranslations(lang);
 
 const EXPERIENCE = experienceData;
 
+const INITIAL_ITEMS = 3;
+
 const CATEGORIES = ["Todos", "Programación", "Diseño", "Educación", "Otros"];
 
 const categoryKeys: Record<string, string> = {
@@ -45,7 +47,7 @@ const categoryKeys: Record<string, string> = {
       {
         EXPERIENCE.map((experience, index) => (
           <li
-            class="experience-item relative"
+            class={`experience-item relative ${index >= INITIAL_ITEMS ? "hidden" : ""}`}
             data-category={
               Array.isArray(experience.category)
                 ? experience.category.join(",")
@@ -75,7 +77,7 @@ const categoryKeys: Record<string, string> = {
   </div>
 </div>
 
-<script>
+<script define:vars={{ INITIAL_ITEMS }}>
   document.addEventListener("astro:page-load", () => {
     const list = document.getElementById("experience-list");
     const loadMoreBtn = document.getElementById("load-more-btn");
@@ -85,7 +87,7 @@ const categoryKeys: Record<string, string> = {
     );
     const timeline = document.querySelector(".experience-timeline");
     const items = list?.querySelectorAll(".experience-item");
-    const INITIAL_ITEMS = 3;
+
     let currentCategory = "Todos";
     let visibleCount = INITIAL_ITEMS;
 
@@ -117,11 +119,11 @@ const categoryKeys: Record<string, string> = {
       });
 
       // Update Timeline line visibility
-      if (timeline) {
+      if (timeline instanceof HTMLElement) {
         if (itemsShown === 0) {
-          (timeline as HTMLElement).style.display = "none";
+          timeline.style.display = "none";
         } else {
-          (timeline as HTMLElement).style.display = "";
+          timeline.style.display = "";
         }
       }
 
