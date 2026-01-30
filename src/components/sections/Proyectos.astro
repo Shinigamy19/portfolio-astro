@@ -83,6 +83,8 @@ const TAGS = projectTags;
 const PROJECTS = projectsData;
 const CATEGORIES = projectCategories;
 
+const INITIAL_SHOW = 6;
+
 const categoryKeys: Record<string, string> = {
   Todos: "projects.all",
   Editorial: "categories.editorial",
@@ -155,7 +157,7 @@ const INITIAL_SHOW = 6;
                 width={400}
                 height={200}
                 widths={[400, 800]}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                 loading="lazy"
                 decoding="async"
               />
@@ -407,13 +409,13 @@ const INITIAL_SHOW = 6;
   </div>
 </div>
 
-<script>
+<script define:vars={{ INITIAL_SHOW }}>
   document.addEventListener("astro:page-load", () => {
     const buttons = document.querySelectorAll(".category-btn");
     const cards = document.querySelectorAll(".project-card");
     const loadMoreBtn = document.getElementById("projects-load-more");
     const showLessBtn = document.getElementById("projects-show-less");
-    const INITIAL_SHOW = 6;
+
     let currentCategory = "Todos";
     let visibleCount = INITIAL_SHOW;
 

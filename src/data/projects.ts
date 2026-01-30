@@ -15,18 +15,6 @@ export const projectsData: Project[] = [
         description_en: "This is an experiment of procedural narrative and conscious time loss. Built with Next.js and Tailwind CSS.",
     },
     {
-        title: "CineEstrenos",
-        description:
-            "Pagina web de Películas y Series en nuevas Cines y Plataformas realizada con Angular y Sass.",
-        image:
-            "/preview/cineestreno.webp",
-        tags: [projectTags.ANGULAR, projectTags.SASS, projectTags.JSON],
-        category: "Web",
-        comingSoon: true,
-        title_en: "CineEstrenos",
-        description_en: "Website for Movies and Series in new Cinemas and Platforms made with Angular and Sass.",
-    },
-    {
         title: "SVG Gallery",
         description:
             "Pagina web para crear Svgs y compartirlo con la comunidad. Realizada con Next.js y Tailwind CSS.",
@@ -61,6 +49,18 @@ export const projectsData: Project[] = [
         comingSoon: true,
         title_en: "Pomodoro Timer",
         description_en: "Collaborative Pomodoro timer that works in conjunction with Discord and Twitch. Built with Next.js, Tailwind CSS, TypeScript, MongoDB and Discord.js.",
+    },
+    {
+        title: "CineEstrenos",
+        description:
+            "Pagina web de Películas y Series en nuevas Cines y Plataformas realizada con Angular y Sass.",
+        image:
+            "/preview/cineestreno.webp",
+        tags: [projectTags.ANGULAR, projectTags.SASS, projectTags.JSON],
+        category: "Web",
+        link: "https://angular-movies-g9qq.vercel.app/",
+        title_en: "CineEstrenos",
+        description_en: "Website for Movies and Series in new Cinemas and Platforms made with Angular and Sass.",
     },
     {
         title: "Qr Generator",
@@ -354,6 +354,7 @@ export const projectsData: Project[] = [
         tags: [projectTags.HTML, projectTags.CSS, projectTags.JAVASCRIPT, projectTags.JQUERY],
         category: ["Videojuegos", "Web"],
         github: "https://github.com/Shinigamy19/Rompecabezas-html",
+        link: "https://shinigamy19.github.io/Rompecabezas-html/",
         title_en: "Puzzle",
         description_en: "Anime-themed puzzle game made with HTML, CSS, and JS.",
     },

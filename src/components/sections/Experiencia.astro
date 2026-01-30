@@ -8,6 +8,8 @@ const t = useTranslations(lang);
 
 const EXPERIENCE = experienceData;
 
+const INITIAL_ITEMS = 3;
+
 const CATEGORIES = ["Todos", "Programación", "Diseño", "Educación", "Otros"];
 
 const categoryKeys: Record<string, string> = {
@@ -77,7 +79,7 @@ const INITIAL_ITEMS = 3;
   </div>
 </div>
 
-<script>
+<script define:vars={{ INITIAL_ITEMS }}>
   document.addEventListener("astro:page-load", () => {
     const list = document.getElementById("experience-list");
     const loadMoreBtn = document.getElementById("load-more-btn");
@@ -87,7 +89,7 @@ const INITIAL_ITEMS = 3;
     );
     const timeline = document.querySelector(".experience-timeline");
     const items = list?.querySelectorAll(".experience-item");
-    const INITIAL_ITEMS = 3;
+
     let currentCategory = "Todos";
     let visibleCount = INITIAL_ITEMS;
 
@@ -119,11 +121,11 @@ const INITIAL_ITEMS = 3;
       });
 
       // Update Timeline line visibility
-      if (timeline) {
+      if (timeline instanceof HTMLElement) {
         if (itemsShown === 0) {
-          (timeline as HTMLElement).style.display = "none";
+          timeline.style.display = "none";
         } else {
-          (timeline as HTMLElement).style.display = "";
+          timeline.style.display = "";
         }
       }
 
