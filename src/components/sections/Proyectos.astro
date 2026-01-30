@@ -72,7 +72,8 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { Image } from "astro:assets";
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "../../assets/preview/*.webp"
+  "/src/assets/preview/*.webp",
+  { eager: true }
 );
 
 const lang = getLangFromUrl(Astro.url);
@@ -81,6 +82,8 @@ const t = useTranslations(lang);
 const TAGS = projectTags;
 const PROJECTS = projectsData;
 const CATEGORIES = projectCategories;
+
+const INITIAL_SHOW = 6;
 
 const categoryKeys: Record<string, string> = {
   Todos: "projects.all",
@@ -116,49 +119,46 @@ const categoryKeys: Record<string, string> = {
   >
     {
       PROJECTS.map(
-        ({
-          image,
-          title,
-          description,
-          title_en,
-          description_en,
-          tags,
-          category,
-          github,
-          link,
-          link2,
-          figma,
-          behance,
-          youtube,
-          comingSoon,
-        }) => (
+        (
+          {
+            image,
+            title,
+            description,
+            title_en,
+            description_en,
+            tags,
+            category,
+            github,
+            link,
+            link2,
+            figma,
+            behance,
+            youtube,
+            comingSoon,
+          },
+          index
+        ) => (
           <article
-            class="project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+            class={`project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${index >= INITIAL_SHOW ? "hidden" : ""}`}
             data-category={
               Array.isArray(category) ? category.join(",") : category
             }
           >
             <div class="relative h-48 overflow-hidden">
               <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300 z-10" />
-              {
-                image && images["../../assets" + image] ? (
-                  <Image
-                    alt={title}
-                    class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
-                    src={images["../../assets" + image]()}
-                    loading="lazy"
-                    width={400}
-                    height={192}
-                  />
-                ) : (
-                  <img
-                    alt={title}
-                    class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
-                    src={image || "/placeholder-project.jpg"}
-                    loading="lazy"
-                  />
-                )
-              }
+              <Image
+                src={images[`/src/assets${image}`]?.default ||
+                  image ||
+                  "/placeholder-project.jpg"}
+                alt={title}
+                class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
+                width={400}
+                height={200}
+                widths={[400, 800]}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
 
             <div class="flex flex-col flex-1 p-6">
@@ -407,13 +407,13 @@ const categoryKeys: Record<string, string> = {
   </div>
 </div>
 
-<script>
+<script define:vars={{ INITIAL_SHOW }}>
   document.addEventListener("astro:page-load", () => {
     const buttons = document.querySelectorAll(".category-btn");
     const cards = document.querySelectorAll(".project-card");
     const loadMoreBtn = document.getElementById("projects-load-more");
     const showLessBtn = document.getElementById("projects-show-less");
-    const INITIAL_SHOW = 6;
+
     let currentCategory = "Todos";
     let visibleCount = INITIAL_SHOW;
 

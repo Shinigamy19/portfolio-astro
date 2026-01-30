@@ -3,6 +3,8 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+import { Image } from "astro:assets";
+import PerfilImage from "../../assets/ui/perfil.webp";
 
 const personalImageAlt = "Eros Benitez";
 import { Image } from "astro:assets";
@@ -87,11 +89,13 @@ import perfilImg from "../../assets/perfil.webp";
   </div>
 
   <Image
+    src={PerfilImage}
+    alt={personalImageAlt}
     width={256}
     height={256}
-    src={perfilImg}
-    alt={personalImageAlt}
     class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20"
     style="object-position: 50% 50%"
+    loading="lazy"
+    decoding="async"
   />
 </article>

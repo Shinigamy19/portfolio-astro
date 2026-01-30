@@ -4,11 +4,11 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const yearsExperience = new Date().getFullYear() - 2019;
+const yearsExperience = new Date().getFullYear() - 2017;
 
 const personalImageAlt = "Shinigamy19 Logo";
 import { Image } from "astro:assets";
-import logoImg from "../../assets/Logo.webp";
+import LogoImage from "../../assets/ui/Logo.webp";
 import Badge from "../ui/Badge.astro";
 import GithubIcon from "../icons/GithubIcon.astro";
 import LinkedinIcon from "../icons/LinkedinIcon.astro";
@@ -23,10 +23,14 @@ import SocialPill from "../ui/SocialPill.astro";
 >
   <Image
     class="rounded-full shadow-lg size-32 md:size-40 object-cover"
-    src={logoImg}
+    src={LogoImage}
     alt={personalImageAlt}
     width={160}
     height={160}
+    widths={[160, 320]}
+    sizes="(max-width: 768px) 128px, 160px"
+    loading="eager"
+    decoding="sync"
   />
   <div class="flex flex-col gap-4 flex-1">
     <h1
