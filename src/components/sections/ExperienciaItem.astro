@@ -1,5 +1,4 @@
 ---
-import LinkInline from "../ui/LinkInline.astro";
 import { getLangFromUrl } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -8,7 +7,6 @@ interface Props {
   title: string;
   company: string;
   description: string;
-  link?: string;
   date: string;
   tags?: string[];
   isLeft?: boolean;
@@ -21,7 +19,6 @@ const {
   title,
   company,
   description,
-  link,
   date,
   tags,
   isLeft,

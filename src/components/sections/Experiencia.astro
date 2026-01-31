@@ -19,8 +19,6 @@ const categoryKeys: Record<string, string> = {
   Educación: "categories.educacion",
   Otros: "categories.otros",
 };
-
-const INITIAL_ITEMS = 3;
 ---
 
 <div class="flex flex-col items-center gap-y-8 w-full" id="experiencia-section">
@@ -79,13 +77,13 @@ const INITIAL_ITEMS = 3;
   </div>
 </div>
 
-<script define:vars={{ INITIAL_ITEMS }}>
+<script is:inline define:vars={{ INITIAL_ITEMS }}>
   document.addEventListener("astro:page-load", () => {
     const list = document.getElementById("experience-list");
     const loadMoreBtn = document.getElementById("load-more-btn");
     const showLessBtn = document.getElementById("show-less-btn");
     const categoryButtons = document.querySelectorAll(
-      ".experience-category-btn"
+      ".experience-category-btn",
     );
     const timeline = document.querySelector(".experience-timeline");
     const items = list?.querySelectorAll(".experience-item");
@@ -173,7 +171,7 @@ const INITIAL_ITEMS = 3;
         updateExperienceVisibility();
 
         const experienciaSection = document.getElementById(
-          "experiencia-section"
+          "experiencia-section",
         );
         if (experienciaSection) {
           experienciaSection.scrollIntoView({

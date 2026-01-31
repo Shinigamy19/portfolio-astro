@@ -65,7 +65,7 @@ import AngularIcon from "../icons/Angular.astro";
 import SassIcon from "../icons/Sass.astro";
 import TypescriptIcon from "../icons/Typescript.astro";
 import ReactIcon from "../icons/React.astro";
-import { projectTags } from "../../data/projectTags";
+
 import { projectsData } from "../../data/projects";
 import { projectCategories } from "../../data/projectCategories";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
@@ -73,13 +73,12 @@ import { Image } from "astro:assets";
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/preview/*.webp",
-  { eager: true }
+  { eager: true },
 );
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const TAGS = projectTags;
 const PROJECTS = projectsData;
 const CATEGORIES = projectCategories;
 
@@ -94,8 +93,6 @@ const categoryKeys: Record<string, string> = {
   Web: "categories.web",
   Programación: "categories.programacion",
 };
-
-const INITIAL_SHOW = 6;
 ---
 
 <div class="flex flex-col items-center gap-y-8 w-full" id="proyectos-section">
@@ -138,7 +135,7 @@ const INITIAL_SHOW = 6;
             youtube,
             comingSoon,
           },
-          index
+          index,
         ) => (
           <article
             class={`project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${index >= INITIAL_SHOW ? "hidden" : ""}`}
@@ -149,9 +146,11 @@ const INITIAL_SHOW = 6;
             <div class="relative h-48 overflow-hidden">
               <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300 z-10" />
               <Image
-                src={images[`/src/assets${image}`]?.default ||
+                src={
+                  images[`/src/assets${image}`]?.default ||
                   image ||
-                  "/placeholder-project.jpg"}
+                  "/placeholder-project.jpg"
+                }
                 alt={title}
                 class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
                 width={400}
@@ -388,7 +387,7 @@ const INITIAL_SHOW = 6;
               </footer>
             </div>
           </article>
-        )
+        ),
       )
     }
   </div>
@@ -409,7 +408,7 @@ const INITIAL_SHOW = 6;
   </div>
 </div>
 
-<script define:vars={{ INITIAL_SHOW }}>
+<script is:inline define:vars={{ INITIAL_SHOW }}>
   document.addEventListener("astro:page-load", () => {
     const buttons = document.querySelectorAll(".category-btn");
     const cards = document.querySelectorAll(".project-card");

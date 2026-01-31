@@ -1,14 +1,11 @@
 ---
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { getLangFromUrl } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 import { Image } from "astro:assets";
 import PerfilImage from "../../assets/ui/perfil.webp";
 
 const personalImageAlt = "Eros Benitez";
-import { Image } from "astro:assets";
-import perfilImg from "../../assets/perfil.webp";
 ---
 
 <article

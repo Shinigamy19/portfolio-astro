@@ -29,7 +29,7 @@ const COURSES = coursesData;
     {
       EDUCATION.map((education, index) => (
         <div class="education-card" style={`animation-delay: ${index * 0.2}s;`}>
-          <EducacionItem {...education} index={index} />
+          <EducacionItem {...education} />
         </div>
       ))
     }
@@ -136,6 +136,7 @@ const COURSES = coursesData;
 </div>
 
 <script
+  is:inline
   define:vars={{
     lang,
     showMoreTextTrans: t("education.showMore"),
