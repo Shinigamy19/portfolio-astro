@@ -1,11 +1,15 @@
 ---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="py-10 mt-20 border-t border-gray-800/50">
   <div class="w-full text-center">
     <p class="text-gray-500 font-medium">
-      © {currentYear} Eros Douglas Benitez Dos Santos. Todos los derechos reservados.
+      © {currentYear} Eros Douglas Benitez Dos Santos. {t("footer.rights")}
     </p>
   </div>
 </footer>

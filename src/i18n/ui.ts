@@ -45,6 +45,7 @@ export const ui = {
     "contact.success": "¡Gracias por tu mensaje! Te responderé pronto.",
     "contact.error": "No se pudo enviar. Intenta nuevamente más tarde.",
     "contact.emailError": "Por favor, ingresa un correo válido.",
+    "footer.rights": "Todos los derechos reservados.",
   },
   en: {
     "nav.experience": "Experience",
@@ -85,5 +86,6 @@ export const ui = {
     "contact.success": "Thanks for your message! I'll get back to you soon.",
     "contact.error": "Could not send. Please try again later.",
     "contact.emailError": "Please enter a valid email.",
+    "footer.rights": "All rights reserved.",
   },
 } as const;
