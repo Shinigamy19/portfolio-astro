@@ -69,6 +69,15 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
             />
           </div>
 
+          <!-- Honeypot field -->
+          <input
+            type="text"
+            name="_gotcha"
+            style="display:none"
+            aria-hidden="true"
+            tabindex="-1"
+          />
+
           <div>
             <label
               for="message"
@@ -290,6 +299,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
     emailErrorMsg: t("contact.emailError"),
     sendingMsg: t("contact.sending"),
     sendMsg: t("contact.send"),
+    emailsDoNotMatchMsg: t("contact.emailsDoNotMatch"),
     envMailURL: import.meta.env.PUBLIC_FORMSPREE_URL,
   }}
 >
@@ -298,6 +308,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
     const status = document.getElementById("form-status");
     const submitBtn = document.getElementById("submit-btn");
     const btnText = document.getElementById("btn-text");
+    const loadTime = Date.now();
 
     const mailURL = envMailURL || "https://formspree.io/f/xbddjddy";
 
@@ -307,19 +318,29 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
 
         const formData = new FormData(form);
         const email = formData.get("email");
+        const gotcha = formData.get("_gotcha");
         const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+        const timeDiff = Date.now() - loadTime;
+
+        // Honeypot check
+        if (gotcha || timeDiff < 2000) {
+          console.log("Bot detected or submission too fast");
+          if (gotcha) return; // Silent fail for honeypot
+        }
 
         // Custom email validation
         if (!email || !emailRegex.test(email.toString())) {
-          status.innerText = emailErrorMsg;
-          status.className = "text-red-600 text-center font-medium mb-4";
-          status.classList.remove("hidden");
+          showStatus(emailErrorMsg, "text-red-600");
+          return;
+        }
 
-          // Hide status after 5 seconds
+        function showStatus(msg, className) {
+          status.innerText = msg;
+          status.className = `${className} text-center font-medium mb-4`;
+          status.classList.remove("hidden");
           setTimeout(() => {
             status.classList.add("hidden");
           }, 5000);
-          return;
         }
 
         // Disable button and show loading

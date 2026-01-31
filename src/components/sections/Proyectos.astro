@@ -419,7 +419,7 @@ const categoryKeys: Record<string, string> = {
     let visibleCount = INITIAL_SHOW;
 
     // Function to filter and show cards based on category and pagination
-    function updateVisibility() {
+    function updateVisibility(behavior = "instant") {
       let shown = 0;
       let totalFiltered = 0;
 
@@ -432,16 +432,26 @@ const categoryKeys: Record<string, string> = {
         if (matches) {
           totalFiltered++;
           if (shown < visibleCount) {
-            card.classList.remove("hidden");
-            card.classList.add("animate-fade-in");
+            if (card.classList.contains("hidden")) {
+              card.classList.remove("hidden");
+              card.classList.add("animate-card-in");
+            }
             shown++;
           } else {
-            card.classList.add("hidden");
-            card.classList.remove("animate-fade-in");
+            if (!card.classList.contains("hidden")) {
+              if (behavior === "smooth") {
+                card.classList.add("animate-card-out");
+                setTimeout(() => {
+                  card.classList.add("hidden");
+                  card.classList.remove("animate-card-out");
+                }, 400);
+              } else {
+                card.classList.add("hidden");
+              }
+            }
           }
         } else {
           card.classList.add("hidden");
-          card.classList.remove("animate-fade-in");
         }
       });
 
@@ -474,31 +484,46 @@ const categoryKeys: Record<string, string> = {
         currentCategory = btn.getAttribute("data-category") || "Todos";
         visibleCount = INITIAL_SHOW;
 
-        updateVisibility();
+        updateVisibility("instant");
       });
     });
 
     if (loadMoreBtn) {
       loadMoreBtn.addEventListener("click", () => {
         visibleCount += 3;
-        updateVisibility();
+        updateVisibility("instant");
       });
     }
 
     if (showLessBtn) {
       showLessBtn.addEventListener("click", () => {
         visibleCount = INITIAL_SHOW;
-        updateVisibility();
+        updateVisibility("smooth");
 
         // Scroll back to projects section smoothly
         const proyectosSection = document.getElementById("proyectos-section");
         if (proyectosSection) {
           const yOffset = -100;
-          const y =
+          const targetY =
             proyectosSection.getBoundingClientRect().top +
             window.pageYOffset +
             yOffset;
-          window.scrollTo({ top: y, behavior: "smooth" });
+          const startY = window.pageYOffset;
+          const distance = targetY - startY;
+          const duration = 800;
+          let start = null;
+
+          function easeInOutCubic(t) {
+            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          }
+
+          function step(timestamp) {
+            if (!start) start = timestamp;
+            const progress = Math.min((timestamp - start) / duration, 1);
+            window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+            if (progress < 1) window.requestAnimationFrame(step);
+          }
+          window.requestAnimationFrame(step);
         }
       });
     }
@@ -506,17 +531,30 @@ const categoryKeys: Record<string, string> = {
 </script>
 
 <style>
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out;
+  .animate-card-in {
+    animation: cardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  @keyframes fadeIn {
+  .animate-card-out {
+    animation: cardOut 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes cardIn {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: scale(0.9) translateY(20px);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1) translateY(0);
+    }
+  }
+  @keyframes cardOut {
+    from {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
     }
   }
 </style>

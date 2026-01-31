@@ -45,6 +45,8 @@ export const ui = {
     "contact.success": "¡Gracias por tu mensaje! Te responderé pronto.",
     "contact.error": "No se pudo enviar. Intenta nuevamente más tarde.",
     "contact.emailError": "Por favor, ingresa un correo válido.",
+    "contact.confirmEmail": "Confirmar Correo Electrónico",
+    "contact.emailsDoNotMatch": "Los correos electrónicos no coinciden.",
     "footer.rights": "Todos los derechos reservados.",
   },
   en: {
@@ -86,6 +88,8 @@ export const ui = {
     "contact.success": "Thanks for your message! I'll get back to you soon.",
     "contact.error": "Could not send. Please try again later.",
     "contact.emailError": "Please enter a valid email.",
+    "contact.confirmEmail": "Confirm Email",
+    "contact.emailsDoNotMatch": "Emails do not match.",
     "footer.rights": "All rights reserved.",
   },
 } as const;
