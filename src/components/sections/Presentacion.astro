@@ -40,7 +40,13 @@ import SocialPill from "../ui/SocialPill.astro";
     <h1
       class="hero-title text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
     >
-      {lang === "es" ? "Hola, soy Eros Benitez" : "Hi, I'm Eros Benitez"}
+      {
+        lang === "es"
+          ? "Hola, soy Eros Benitez"
+          : lang === "pt"
+            ? "Olá, eu sou Eros Benitez"
+            : "Hi, I'm Eros Benitez"
+      }
     </h1>
     <a
       href="https://linkedin.com/in/eros-benitez"
@@ -50,7 +56,11 @@ import SocialPill from "../ui/SocialPill.astro";
     >
       <Badge
         >{
-          lang === "es" ? "Disponible para trabajar" : "Available to work"
+          lang === "es"
+            ? "Disponible para trabajar"
+            : lang === "pt"
+              ? "Disponível para trabalhar"
+              : "Available to work"
         }</Badge
       >
     </a>
@@ -69,6 +79,19 @@ import SocialPill from "../ui/SocialPill.astro";
             Pero todos me conocen como <strong>Shinigamy19</strong>.
             <br />Y cuento con{" "}
             <strong>+{yearsExperience} años de experiencia.</strong>
+          </>
+        ) : lang === "pt" ? (
+          <>
+            <strong>
+              Designer Multimídia, Desenvolvedor Fullstack e Criador de
+              Conteúdo.
+            </strong>
+            <br />
+            Meu nome é Eros Douglas Benitez Dos Santos.
+            <br />
+            Mas todos me conhecem como <strong>Shinigamy19</strong>.
+            <br />E conto com{" "}
+            <strong>+{yearsExperience} anos de experiência.</strong>
           </>
         ) : (
           <>

@@ -17,6 +17,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Mar 2025 - Present",
         title_en: "Cell Phone Repair Teacher",
         description_en: "Labor training course, analysis and diagnosis of mobile devices, soldering, budgeting, and social media management.",
+        date_pt: "Mar 2025 - Atualidade",
+        title_pt: "Professor de Reparo de Celulares",
+        description_pt: "Curso de formação profissional, análise e diagnóstico de dispositivos móveis, soldagem, elaboração de orçamentos e gestão de redes sociais.",
     },
     {
         date: "Nov 2024 - Actualidad",
@@ -29,6 +32,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Nov 2024 - Present",
         title_en: "Software Developer, Network Analyst, Multimedia Designer, and Community Manager",
         description_en: "Software Developer, Network Analyst, Customer Service, PC Assembly, Multimedia Designer, and Community Manager.",
+        date_pt: "Nov 2024 - Atualidade",
+        title_pt: "Desenvolvedor de Software, Analista de Redes, Designer Multimídia e Community Manager",
+        description_pt: "Desenvolvedor de software, analista de redes, atendimento ao cliente, montagem de PCs, designer multimídia e community manager.",
     },
     {
         date: "Mar 2018 - Actualidad",
@@ -52,6 +58,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Mar 2018 - Present",
         title_en: "Freelance",
         description_en: "Web design and development, audiovisual production, graphic editing, and brand management for various clients, Event Photography, textile work, 3D printing, Streaming, and Community Manager.",
+        date_pt: "Mar 2018 - Atualidade",
+        title_pt: "Freelance",
+        description_pt: "Design e desenvolvimento web, produção audiovisual, edição gráfica e gestão de marca para diversos clientes, fotografia de eventos, trabalhos têxteis, impressão 3D, streaming e community manager.",
     },
     {
         date: "Feb 2022 - Nov 2024",
@@ -64,6 +73,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Feb 2022 - Nov 2024",
         title_en: "Photo Editor and Measurements, prepared for editorial article",
         description_en: "Image processing, analysis with DStretch, measurements, preparing images for publication in magazines and newspapers about Cueva de las Manos.",
+        date_pt: "Fev 2022 - Nov 2024",
+        title_pt: "Editor de Fotos e Medições, preparado para artigo editorial",
+        description_pt: "Tratamento de imagens, análise com DStretch, medições, preparação de imagens para publicação em revistas e jornais sobre a Cueva de las Manos.",
     },
     {
         date: "Nov 2023 - Oct 2024",
@@ -86,6 +98,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Nov 2023 - Oct 2024",
         title_en: "Audio Editor and Prompt Engineering",
         description_en: "Video editing, Audio editing, Image editing, and AI content generation.",
+        date_pt: "Nov 2023 - Out 2024",
+        title_pt: "Editor de Áudio e Prompt Engineering",
+        description_pt: "Edição de vídeo, edição de áudio, edição de imagens e geração de conteúdo com IA.",
     },
     {
         date: "Abr 2023 - Oct 2023",
@@ -98,6 +113,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Apr 2023 - Oct 2023",
         title_en: "Backoffice SRC Analyst",
         description_en: "Backoffice, Salesforce management, spare parts tracking, customer portfolio tracking, internal management, automotive parts tracking and telephone assistance, customer service, and outbound calls.",
+        date_pt: "Abr 2023 - Out 2023",
+        title_pt: "Analista de Backoffice SRC",
+        description_pt: "Backoffice, gestão de Salesforce, acompanhamento de peças de reposição, acompanhamento de carteira de clientes, gestões internas, acompanhamento de autopeças e assistência por telefone, atendimento ao cliente e chamadas ativas.",
     },
     {
         date: "Sep 2022 - Abr 2023",
@@ -121,6 +139,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Sep 2022 - Apr 2023",
         title_en: "Multiskill Technical Support",
         description_en: "Help desk, technical support, CRM management, network management in I3, service sales, and customer service under TMO modality.",
+        date_pt: "Set 2022 - Abr 2023",
+        title_pt: "Suporte Técnico Multiskill",
+        description_pt: "Suporte técnico, mesa de ajuda, gestão de CRM, gerenciamento de redes no I3, venda de serviços e atendimento ao cliente sob modalidade TMO.",
     },
     {
         date: "Mar 2018 - Ene 2020",
@@ -132,6 +153,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Mar 2018 - Jan 2020",
         title_en: "Music Teacher",
         description_en: "Guitar and ensemble classes for children and adults.",
+        date_pt: "Mar 2018 - Jan 2020",
+        title_pt: "Professor de Música",
+        description_pt: "Aulas de violão e conjunto para crianças e adultos.",
     },
     {
         date: "Mar 2018 - Ene 2020",
@@ -143,6 +167,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Mar 2018 - Jan 2020",
         title_en: "Recycled Art Teacher",
         description_en: "Recycled art classes for children and adults.",
+        date_pt: "Mar 2018 - Jan 2020",
+        title_pt: "Professor de Arte Reciclada",
+        description_pt: "Aulas de arte reciclada para crianças e adultos.",
     },
     {
         date: "Mar 2018 - Ene 2020",
@@ -154,6 +181,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Mar 2018 - Jan 2020",
         title_en: "Customer Service",
         description_en: "Public relations, plan management, and sales.",
+        date_pt: "Mar 2018 - Jan 2020",
+        title_pt: "Atendimento ao Cliente",
+        description_pt: "Atendimento ao público, gestão de planos e vendas.",
     },
     {
         date: "Jun 2018 - Dic 2020",
@@ -166,6 +196,9 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Jun 2018 - Dec 2020",
         title_en: "School Proctor",
         description_en: 'School proctor for 2nd 6th and 5th 2nd classes at Commercial School No. 12 D.E. 21 "Juan XXIII".',
+        date_pt: "Jun 2018 - Dez 2020",
+        title_pt: "Preceptor Escolar",
+        description_pt: 'Preceptor de turmas da Escola de Comércio Nº 12 D.E. 21 "Juan XXIII".',
     },
     {
         date: "Feb 2016 - Sep 2017",
@@ -188,5 +221,8 @@ export const experienceData: ExperienceItem[] = [
         date_en: "Feb 2016 - Sep 2017",
         title_en: "Graphic Designer",
         description_en: "Sale of school supplies and photocopies; design of business cards, flyers, brochures, pet items, packaging, and caps.",
+        date_pt: "Fev 2016 - Set 2017",
+        title_pt: "Designer Gráfico",
+        description_pt: "Venda de materiais escolares e fotocópias; design de cartões, panfletos, folhetos, itens para pets, embalagens e bonés.",
     },
 ];

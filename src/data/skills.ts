@@ -4,6 +4,7 @@ export const skillsData: SkillGroup[] = [
     {
         category: "Lenguajes de Programación",
         category_en: "Programming Languages",
+        category_pt: "Linguagens de Programação",
         items: [
             "HTML5",
             "CSS3",
@@ -24,6 +25,7 @@ export const skillsData: SkillGroup[] = [
     {
         category: "Frameworks & Librerías",
         category_en: "Frameworks & Libraries",
+        category_pt: "Frameworks e Bibliotecas",
         items: [
             "Next.js",
             "React",
@@ -44,6 +46,7 @@ export const skillsData: SkillGroup[] = [
     {
         category: "Diseño & Edición",
         category_en: "Design & Editing",
+        category_pt: "Design e Edição",
         items: [
             "Photoshop",
             "Illustrator",
@@ -66,6 +69,7 @@ export const skillsData: SkillGroup[] = [
     {
         category: "Desarrollo & Herramientas",
         category_en: "Development & Tools",
+        category_pt: "Desenvolvimento e Ferramentas",
         items: [
             "Godot",
             "Unreal Engine",
@@ -91,6 +95,7 @@ export const skillsData: SkillGroup[] = [
     {
         category: "Idiomas",
         category_en: "Languages",
+        category_pt: "Idiomas",
         items: [
             "Español (Nativo)",
             "Portugués (Nativo)",

@@ -22,7 +22,9 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
       {
         lang === "es"
           ? "¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte"
-          : "Have a project in mind? Let's talk about how I can help you"
+          : lang === "pt"
+            ? "Tem um projeto em mente? Vamos conversar sobre como posso te ajudar"
+            : "Have a project in mind? Let's talk about how I can help you"
       }
     </p>
   </div>
@@ -156,7 +158,13 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
         </div>
         <div>
           <p class="text-gray-500 dark:text-gray-400 font-medium mb-1">
-            {lang === "es" ? "Teléfono / WhatsApp" : "Phone / WhatsApp"}
+            {
+              lang === "es"
+                ? "Teléfono / WhatsApp"
+                : lang === "pt"
+                  ? "Telefone / WhatsApp"
+                  : "Phone / WhatsApp"
+            }
           </p>
           <a
             href="https://wa.me/541123977610"
@@ -197,7 +205,13 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
         </div>
         <div>
           <p class="text-gray-500 dark:text-gray-400 font-medium mb-1">
-            {lang === "es" ? "Ubicación" : "Location"}
+            {
+              lang === "es"
+                ? "Ubicación"
+                : lang === "pt"
+                  ? "Localização"
+                  : "Location"
+            }
           </p>
           <p class="text-gray-900 dark:text-white text-lg font-semibold">
             Buenos Aires, Argentina

@@ -10,4 +10,7 @@ export interface EducationItem {
     title_en?: string;
     description_en?: string;
     type_en?: string;
+    title_pt?: string;
+    description_pt?: string;
+    type_pt?: string;
 }

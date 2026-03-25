@@ -8,4 +8,7 @@ export interface ExperienceItem {
     date_en?: string;
     title_en?: string;
     description_en?: string;
+    date_pt?: string;
+    title_pt?: string;
+    description_pt?: string;
 }

@@ -83,6 +83,8 @@ const ACHIEVEMENTS = achievementsData;
           <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 relative z-10 transition-colors group-hover:text-purple-600 dark:group-hover:text-purple-400">
             {lang === "en" && skillGroup.category_en
               ? skillGroup.category_en
+              : lang === "pt" && skillGroup.category_pt
+              ? skillGroup.category_pt
               : skillGroup.category}
           </h3>
           <div class="flex flex-wrap gap-3 relative z-10">
@@ -159,6 +161,7 @@ const ACHIEVEMENTS = achievementsData;
                 {item === "Flutter" && <FlutterIcon class="size-4" />}
                 {item === "Kotlin" && <KotlinIcon class="size-4" />}
                 {item === "Figma" && <FigmaIcon class="size-4" />}
+                {item === "React" && <ReactIcon class="size-4" />}
                 {item === "React Native" && <ReactIcon class="size-4" />}
                 {item}
               </span>
@@ -277,6 +280,8 @@ const ACHIEVEMENTS = achievementsData;
             <p class="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
               {lang === "en" && achievement.title_en
                 ? achievement.title_en
+                : lang === "pt" && achievement.title_pt
+                ? achievement.title_pt
                 : achievement.title}
             </p>
           </div>

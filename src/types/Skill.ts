@@ -2,6 +2,7 @@ export interface SkillGroup {
     category: string;
     items: string[];
     category_en?: string;
+    category_pt?: string;
 }
 
 export interface Achievement {
@@ -9,4 +10,5 @@ export interface Achievement {
     icon: string;
     color: string;
     title_en?: string;
+    title_pt?: string;
 }

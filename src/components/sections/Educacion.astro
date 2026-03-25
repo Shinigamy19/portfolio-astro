@@ -91,10 +91,18 @@ const COURSES = coursesData;
               </svg>
             </div>
             <h4 class="font-bold text-gray-900 dark:text-white text-lg mb-1 leading-tight group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-              {course.title}
+              {lang === "en" && course.title_en
+                ? course.title_en
+                : lang === "pt" && course.title_pt
+                ? course.title_pt
+                : course.title}
             </h4>
             <p class="text-sm text-gray-500 dark:text-gray-400">
-              {course.platform === "Certificado"
+              {lang === "en" && course.platform_en
+                ? course.platform_en
+                : lang === "pt" && course.platform_pt
+                ? course.platform_pt
+                : course.platform === "Certificado"
                 ? lang === "es"
                   ? "Certificado"
                   : "Certificate"

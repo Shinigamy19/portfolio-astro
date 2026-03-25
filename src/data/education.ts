@@ -20,6 +20,9 @@ export const educationData: EducationItem[] = [
         title_en: "Multimedia Design Technician",
         description_en: "Comprehensive training in graphic design, editorial editing, web development, audiovisual production, and multimedia project management.",
         type_en: "Associate's Degree",
+        title_pt: "Técnico em Design Multimídia",
+        description_pt: "Formação integral em design gráfico, edição editorial, desenvolvimento web, produção audiovisual e gestão de projetos multimídia.",
+        type_pt: "Curso Técnico",
     },
     {
         date: "2023",
@@ -40,6 +43,9 @@ export const educationData: EducationItem[] = [
         title_en: "Diploma in Education",
         description_en: 'Titles: "Diploma in Popular Education", "Diploma in Strategies, Resources, and Tools for Trainers".',
         type_en: "Postgraduate Diploma",
+        title_pt: "Diploma em Educação",
+        description_pt: 'Títulos: "Diploma em Educação Popular", "Diploma em Estratégias, Recursos e Ferramentas para Formadores".',
+        type_pt: "Pós-graduação",
     },
     {
         date: "2014 - 2019",
@@ -60,5 +66,8 @@ export const educationData: EducationItem[] = [
         title_en: "Business Expert with Accounting and Tax Specialization",
         description_en: "Complete secondary education with a focus on economic sciences and mathematics.",
         type_en: "High School",
+        title_pt: "Perito Mercantil com especialização Contábil e Tributária",
+        description_pt: "Ensino médio completo com orientação em ciências econômicas e matemática.",
+        type_pt: "Ensino Médio",
     },
 ];
