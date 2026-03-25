@@ -3,6 +3,30 @@ import { projectTags } from "./projectTags";
 
 export const projectsData: Project[] = [
     {
+        title: "Nexo Digital",
+        description:
+            "Nexo Digital es una comunidad abierta para personas del mundo digital: desarrollo, diseño, edición, audio, domótica, tecnología, IA y más.",
+        image:
+            "/preview/nexo-digital.webp",
+        tags: [projectTags.ASTRO, projectTags.CSS3, projectTags.TYPESCRIPT],
+        category: "Web",
+        link: "https://nexo-digital-pi.vercel.app/",
+        title_en: "Nexo Digital",
+        description_en: "Nexo Digital is an open community for people from the digital world: development, design, editing, audio, home automation, technology, AI and more.",
+    },
+    {
+        title: "Link Collection",
+        description:
+            "Aplicación móvil para la gestión organizada de enlaces. Desarrollada de manera dual con React Native y Android Nativo.",
+        image:
+            "/preview/link-collection.webp",
+        tags: [projectTags.REACTNATIVE, projectTags.ANDROIDNATIVE],
+        category: "Programación",
+        title_en: "Link Collection",
+        comingSoon: true,
+        description_en: "Mobile application for organized link management. Dually developed with React Native and Native Android.",
+    },
+    {
         title: "Afk Bardo",
         description:
             "Este es un experimento de narrativa procesal y pérdida de tiempo consciente. Realizado con Next.js y Tailwind CSS.",
@@ -70,7 +94,7 @@ export const projectsData: Project[] = [
             "/preview/qr-generator.webp",
         tags: [projectTags.HTML, projectTags.CSS, projectTags.JAVASCRIPT],
         category: "Web",
-        link: "https://qr-generator-rust-seven.vercel.app/", 
+        link: "https://qr-generator-rust-seven.vercel.app/",
         title_en: "Qr Generator",
         description_en: "Qr generator made with HTML, CSS and JavaScript.",
     },

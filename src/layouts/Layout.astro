@@ -138,6 +138,21 @@ const lang = getLangFromUrl(Astro.url);
           color: rgba(255, 255, 255, 0.9);
         }
       }
+
+      /* ===== Global Cursor Override ===== */
+      /* Prevent the I-beam text editing cursor on normal text elements */
+      html, body, p, h1, h2, h3, h4, h5, h6, span, div, li, ul, ol {
+        cursor: default;
+      }
+      /* Ensure interactive elements keep their pointer cursor with !important */
+      a, button, [role="button"], label, select, .cursor-pointer,
+      a *, button *, [role="button"] *, .cursor-pointer * {
+        cursor: pointer !important;
+      }
+      /* Re-enable text cursor only for form inputs */
+      input, textarea {
+        cursor: text !important;
+      }
     </style>
 
     <script>

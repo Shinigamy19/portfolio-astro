@@ -31,9 +31,10 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
     <!-- Contact Form Column -->
     <div class="flex flex-col gap-6">
       <div
-        class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-8 rounded-3xl flex-1"
+        class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-8 rounded-3xl flex-1 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/10 relative overflow-hidden group/form"
       >
-        <form id="contact-form" class="space-y-5">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent opacity-0 group-hover/form:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <form id="contact-form" class="space-y-5 relative z-10">
           <div id="form-status" class="hidden text-center font-medium mb-4">
           </div>
 
@@ -49,7 +50,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
               name="name"
               id="name"
               required
-              class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all dark:text-white"
+              class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 focus:scale-[1.01] hover:border-blue-300 dark:hover:border-blue-700 dark:text-white"
             />
           </div>
 
@@ -66,7 +67,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
               id="email"
               required
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all dark:text-white"
+              class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 focus:scale-[1.01] hover:border-blue-300 dark:hover:border-blue-700 dark:text-white"
             />
           </div>
 
@@ -91,14 +92,14 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
               id="message"
               rows="4"
               required
-              class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all dark:text-white resize-none"
+              class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 focus:scale-[1.01] hover:border-blue-300 dark:hover:border-blue-700 dark:text-white resize-none"
             ></textarea>
           </div>
 
           <button
             type="submit"
             id="submit-btn"
-            class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 transform active:scale-95 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all duration-300 transform active:scale-95 disabled:bg-gray-400 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-blue-500/30"
           >
             <span id="btn-text">{t("contact.send")}</span>
           </button>
@@ -110,10 +111,10 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
     <div class="flex flex-col gap-6">
       <!-- Email -->
       <div
-        class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-6 rounded-2xl flex items-center gap-6 hover:border-blue-400 dark:hover:border-gray-700 transition-colors"
+        class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-6 rounded-2xl flex items-center gap-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 group cursor-default"
       >
         <div
-          class="bg-blue-100 dark:bg-blue-900/20 p-4 rounded-xl text-blue-600 dark:text-blue-500"
+          class="bg-blue-100 dark:bg-blue-900/20 p-4 rounded-xl text-blue-600 dark:text-blue-500 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -146,10 +147,10 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
 
       <!-- Phone -->
       <div
-        class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-6 rounded-2xl flex items-center gap-6 hover:border-blue-400 dark:hover:border-gray-700 transition-colors"
+        class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-6 rounded-2xl flex items-center gap-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 group cursor-default"
       >
         <div
-          class="bg-blue-100 dark:bg-blue-900/20 p-4 rounded-xl text-blue-600 dark:text-blue-500"
+          class="bg-blue-100 dark:bg-blue-900/20 p-4 rounded-xl text-blue-600 dark:text-blue-500 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
         >
           <WhatsappIcon class="size-6" />
         </div>
@@ -170,10 +171,10 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
 
       <!-- Location -->
       <div
-        class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-6 rounded-2xl flex items-center gap-6 hover:border-blue-400 dark:hover:border-gray-700 transition-colors"
+        class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-6 rounded-2xl flex items-center gap-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 group cursor-default"
       >
         <div
-          class="bg-blue-100 dark:bg-blue-900/20 p-4 rounded-xl text-blue-600 dark:text-blue-500"
+          class="bg-blue-100 dark:bg-blue-900/20 p-4 rounded-xl text-blue-600 dark:text-blue-500 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +211,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           href="https://linkedin.com/in/eros-benitez"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
           aria-label="LinkedIn"
         >
           <LinkedinIcon class="size-6" />
@@ -219,7 +220,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           href="https://github.com/shinigamy19"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
           aria-label="GitHub"
         >
           <GithubIcon class="size-6" />
@@ -228,7 +229,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           href="https://www.behance.net/shinigamy19"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
           aria-label="Behance"
         >
           <BehanceIcon class="size-6" />
@@ -237,7 +238,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           href="https://www.youtube.com/c/shinigamy19"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
           aria-label="Youtube"
         >
           <YoutubeIcon class="size-6" />
@@ -246,7 +247,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           href="https://desarrolladornocturno.substack.com/"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
           aria-label="Substack"
         >
           <SubstackIcon class="size-6" />
@@ -255,7 +256,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           href="https://twitch.tv/shinigamy_19"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
           aria-label="Twitch"
         >
           <TwitchIcon class="size-6" />
@@ -264,7 +265,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           href="https://kick.com/shinigamy19"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
           aria-label="Kick"
         >
           <KickIcon class="size-6" />
@@ -273,7 +274,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           href="https://discord.gg/px9fcpbp3T"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
           aria-label="Discord"
         >
           <DiscordIcon class="size-6" />
@@ -282,7 +283,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           href="https://www.instagram.com/shinigamy19_art"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
           aria-label="Instagram Art"
         >
           <InstagramIcon class="size-6" />
@@ -291,7 +292,7 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           href="https://www.instagram.com/shinigamy19"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all hover:scale-110"
+          class="bg-white/80 dark:bg-gray-900/50 p-4 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 dark:hover:border-gray-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
           aria-label="Instagram Personal"
         >
           <InstagramIcon class="size-6" />

@@ -257,4 +257,12 @@ export const projectTags: Record<string, ProjectTag> = {
         name: "React",
         class: "bg-[#003159] text-white",
     },
+    REACTNATIVE: {
+        name: "React Native",
+        class: "bg-[#003159] text-white",
+    },
+    ANDROIDNATIVE: {
+        name: "Android Nativo",
+        class: "bg-[#3DDC84] text-black",
+    },
 };

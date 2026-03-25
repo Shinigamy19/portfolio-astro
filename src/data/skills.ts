@@ -26,6 +26,8 @@ export const skillsData: SkillGroup[] = [
         category_en: "Frameworks & Libraries",
         items: [
             "Next.js",
+            "React",
+            "React Native",
             "Angular",
             "Astro",
             "Laravel",
@@ -71,6 +73,7 @@ export const skillsData: SkillGroup[] = [
             "Gamemaker",
             "Visual Studio",
             "Android Studio",
+            "Android Nativo",
             "MongoDB",
             "Node.js",
             "Docker",

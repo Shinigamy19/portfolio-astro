@@ -42,6 +42,7 @@ import GimpIcon from "../icons/Gimp.astro";
 import InkscapeIcon from "../icons/Inkscape.astro";
 import VisualStudioIcon from "../icons/VisualStudio.astro";
 import AndroidstudioIcon from "../icons/Androidstudio.astro";
+import AndroidIcon from "../icons/Android.astro";
 import MongodbIcon from "../icons/Mongodb.astro";
 import DiscordjsIcon from "../icons/Discordjs.astro";
 import NodejsIcon from "../icons/Nodejs.astro";
@@ -258,6 +259,9 @@ const categoryKeys: Record<string, string> = {
                     {tag.name === "Android Studio" && (
                       <AndroidstudioIcon class="size-3.5" />
                     )}
+                    {tag.name === "Android Nativo" && (
+                      <AndroidIcon class="size-3.5" />
+                    )}
                     {tag.name === "MongoDB" && <MongodbIcon class="size-3.5" />}
                     {tag.name === "Discord.js" && (
                       <DiscordjsIcon class="size-3.5" />
@@ -283,7 +287,7 @@ const categoryKeys: Record<string, string> = {
                     {tag.name === "TypeScript" && (
                       <TypescriptIcon class="size-3.5" />
                     )}
-                    {tag.name === "React" && <ReactIcon class="size-3.5" />}
+                    {(tag.name === "React" || tag.name === "React Native") && <ReactIcon class="size-3.5" />}
                     {tag.name}
                   </span>
                 ))}
