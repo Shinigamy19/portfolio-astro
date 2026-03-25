@@ -1,11 +1,12 @@
 ---
 const { class: className, id, maxWidth } = Astro.props;
+const revealClass = id ? "reveal" : "";
 ---
 
 <section
   id={id}
   data-section={id}
-  class={`section ${className} scroll-m-20 w-full mx-auto container px-4 ${maxWidth || "lg:max-w-4xl md:max-w-2xl"}`}
+  class={`section ${revealClass} ${className} scroll-m-20 w-full mx-auto container px-4 ${maxWidth || "lg:max-w-4xl md:max-w-2xl"}`}
 >
   <slot />
 </section>

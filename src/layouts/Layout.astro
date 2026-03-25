@@ -30,15 +30,45 @@ const lang = getLangFromUrl(Astro.url);
   </head>
 
   <body class="relative text-black dark:text-white">
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] z-[60] bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 transition-none" style="width: 0%;"></div>
+
     <div
       class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-gray-950
       bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0.8))]
       dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(70,130,180,0.3),rgba(255,255,255,0))]"
     >
     </div>
+
+    <!-- Animated Background Canvas -->
+    <canvas id="bg-canvas" class="fixed inset-0 z-[-1] pointer-events-none"></canvas>
+
     <Header />
     <slot />
     <Footer />
+
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      aria-label="Volver al inicio"
+      class="fixed bottom-8 right-8 z-50 p-3 rounded-full
+        bg-white/80 dark:bg-gray-800/80 backdrop-blur-md
+        border border-gray-200 dark:border-gray-700
+        text-gray-600 dark:text-gray-300
+        shadow-lg shadow-black/5 dark:shadow-black/20
+        hover:bg-blue-600 hover:text-white hover:border-blue-600
+        dark:hover:bg-blue-600 dark:hover:text-white dark:hover:border-blue-600
+        hover:shadow-blue-500/25 hover:scale-110
+        transition-all duration-300
+        opacity-0 translate-y-4 pointer-events-none"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M12 5l0 14"></path>
+        <path d="M18 11l-6 -6"></path>
+        <path d="M6 11l6 -6"></path>
+      </svg>
+    </button>
 
     <style is:global>
       :root {
@@ -58,9 +88,48 @@ const lang = getLangFromUrl(Astro.url);
         overscroll-behavior: none;
       }
 
+      /* ===== Scroll Progress Bar ===== */
+      #scroll-progress {
+        will-change: width;
+        box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+      }
+      .dark #scroll-progress {
+        box-shadow: 0 0 8px rgba(34, 211, 238, 0.4);
+      }
+
+      /* ===== Back to Top Button ===== */
+      #back-to-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      /* ===== Scroll Reveal Animations ===== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
         }
       }
 
@@ -70,5 +139,213 @@ const lang = getLangFromUrl(Astro.url);
         }
       }
     </style>
+
+    <script>
+      document.addEventListener("astro:page-load", () => {
+        // ===== Animated Background Orbs (Dynamic) =====
+        const canvas = document.getElementById("bg-canvas") as HTMLCanvasElement;
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        let animationId: number;
+        let startTime = performance.now();
+
+        interface Orb {
+          x: number;
+          y: number;
+          baseRadius: number;
+          radius: number;
+          vx: number;
+          vy: number;
+          baseOpacity: number;
+          opacity: number;
+          hue: number;
+          baseHue: number;
+          phase: number;        // unique phase offset for sine wave
+          pulseSpeed: number;   // how fast the radius pulses
+          driftAmplitude: number; // amplitude of sine drift
+          driftFrequency: number; // frequency of sine drift
+          hueDrift: number;     // speed of hue color shifting
+        }
+
+        let orbs: Orb[] = [];
+        let scrollY = 0;
+
+        window.addEventListener('scroll', () => {
+          scrollY = window.scrollY;
+        }, { passive: true });
+
+        function isDark() {
+          return document.documentElement.classList.contains("dark");
+        }
+
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+
+        function createOrbs() {
+          const count = Math.min(Math.floor((window.innerWidth * window.innerHeight) / 25000), 50);
+          orbs = [];
+          const dark = isDark();
+          for (let i = 0; i < count; i++) {
+            const baseHue = dark
+              ? 190 + Math.random() * 60   // blue-cyan-purple for dark
+              : 220 + Math.random() * 70;  // blue-purple-pink for light
+            const baseRadius = 2 + Math.random() * 4;
+
+            orbs.push({
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height * 2, // Double height to allow scrolling
+              baseRadius,
+              radius: baseRadius,
+              vx: (Math.random() - 0.5) * 0.8,
+              vy: (Math.random() - 0.5) * 0.8,
+              baseOpacity: dark ? 0.4 + Math.random() * 0.4 : 0.4 + Math.random() * 0.4,
+              opacity: 0,
+              hue: baseHue,
+              baseHue,
+              phase: Math.random() * Math.PI * 2,
+              pulseSpeed: 0.3 + Math.random() * 0.5,
+              driftAmplitude: 0,
+              driftFrequency: 0,
+              hueDrift: 3 + Math.random() * 8,
+            });
+          }
+        }
+
+        function draw(timestamp: number) {
+          if (!ctx) return;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const dark = isDark();
+
+          // Parallax offset
+          const offsetY = scrollY * 0.4;
+
+          // Update positions
+          orbs.forEach((orb) => {
+            orb.x += orb.vx;
+            orb.y += orb.vy;
+
+            // Simple boundary bounce
+            if (orb.x < 0 || orb.x > canvas.width) orb.vx *= -1;
+            // For Y, we have a taller conceptual area
+            if (orb.y < 0 || orb.y > canvas.height * 2) orb.vy *= -1;
+          });
+
+          // Draw connections
+          for (let i = 0; i < orbs.length; i++) {
+            for (let j = i + 1; j < orbs.length; j++) {
+              const dx = orbs[i].x - orbs[j].x;
+              // Take parallax into account for distance calc
+              const dy = (orbs[i].y - offsetY) - (orbs[j].y - offsetY);
+              const distSq = dx * dx + dy * dy;
+
+              if (distSq < 22500) { // 150*150
+                const dist = Math.sqrt(distSq);
+                ctx.beginPath();
+                ctx.moveTo(orbs[i].x, orbs[i].y - offsetY);
+                ctx.lineTo(orbs[j].x, orbs[j].y - offsetY);
+                ctx.strokeStyle = `hsla(${orbs[i].baseHue}, 70%, 50%, ${(1 - dist / 150) * 0.25})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
+          }
+
+          // Draw particles
+          orbs.forEach((orb) => {
+            const drawY = orb.y - offsetY;
+            
+            // Only draw if within visible viewport
+            if (drawY < -50 || drawY > canvas.height + 50) return;
+
+            ctx.beginPath();
+            ctx.arc(orb.x, drawY, orb.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(${orb.baseHue}, 70%, 55%, ${orb.baseOpacity})`;
+            ctx.fill();
+            
+            // Subtle glow
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = `hsla(${orb.baseHue}, 70%, 55%, 0.5)`;
+            ctx.fill();
+            ctx.shadowBlur = 0; // Reset
+          });
+
+          animationId = requestAnimationFrame(draw);
+        }
+
+        // Check reduced motion preference
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (!prefersReducedMotion) {
+          resize();
+          createOrbs();
+          animationId = requestAnimationFrame(draw);
+
+          window.addEventListener("resize", () => {
+            resize();
+            createOrbs();
+          });
+        }
+
+        // Cleanup on page transition
+        document.addEventListener("astro:before-swap", () => {
+          cancelAnimationFrame(animationId);
+        }, { once: true });
+
+        // ===== Scroll Progress Bar + Back to Top =====
+        const progressBar = document.getElementById("scroll-progress");
+        const backToTopBtn = document.getElementById("back-to-top");
+
+        function updateScrollUI() {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+          // Progress bar
+          if (progressBar) {
+            progressBar.style.width = `${scrollPercent}%`;
+          }
+
+          // Back to top button
+          if (backToTopBtn) {
+            if (scrollTop > 500) {
+              backToTopBtn.classList.add("visible");
+            } else {
+              backToTopBtn.classList.remove("visible");
+            }
+          }
+        }
+
+        window.addEventListener("scroll", updateScrollUI, { passive: true });
+        updateScrollUI(); // initial call
+
+        if (backToTopBtn) {
+          backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+
+        // ===== Scroll Reveal Observer =====
+        const revealElements = document.querySelectorAll(".reveal");
+        if (revealElements.length > 0) {
+          const revealObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("revealed");
+                  revealObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+          );
+
+          revealElements.forEach((el) => revealObserver.observe(el));
+        }
+      });
+    </script>
   </body>
 </html>

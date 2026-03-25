@@ -1,5 +1,27 @@
-<h2
-  class={`flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white ${Astro.props.className}`}
->
-  <slot />
-</h2>
+<div class="title-section-wrapper mb-6">
+  <h2
+    class={`flex items-center text-3xl font-semibold gap-x-3 text-black/80 dark:text-white ${Astro.props.className}`}
+  >
+    <slot />
+  </h2>
+  <div class="title-underline mt-2 h-[2px] w-0 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 rounded-full"></div>
+</div>
+
+<style>
+  :global(.revealed) .title-underline {
+    animation: underlineSlide 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  }
+
+  @keyframes underlineSlide {
+    to {
+      width: 80px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .title-underline {
+      width: 80px;
+      animation: none;
+    }
+  }
+</style>
