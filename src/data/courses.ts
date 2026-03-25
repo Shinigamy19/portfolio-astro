@@ -2,6 +2,94 @@ import type { Course } from "../types/Course";
 
 export const coursesData: Course[] = [
   {
+    title: "Curso de introducción a Machine Learning",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/1bPt-DvuYcRx4JRR-Y76bFVZlQdHz6aSn/view?usp=sharing",
+  },
+  {
+    title: "Curso Profesional de Docker",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/1Ad1grppNgurNq7vKPWovwl2-rOBBA5ak/view?usp=sharing",
+  },
+  {
+    title: "Curso de Introducción a DevOps: Bases y Conceptos",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/16Vg1IV-5ts867BTFtq7mTA3g9avjc8nT/view?usp=sharing",
+  },
+  {
+    title: "Curso de fundamentos de arquitectura de software",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/1yWBoMLmmbnc8mXxUBR_1nAVzwDcqStWK/view?usp=sharing",
+  },
+  {
+    title: "Curso de Bases y conceptos de la Ciencia de Datos",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/1uPp7egC_Q2x2eQ2GAudOsH561z-B2QaB/view?usp=sharing",
+  },
+  {
+    title: "Curso de Java Profesional",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/1Ki90uco1sHdzamYJmCGApWfdAiCUU33d/view?usp=sharing",
+  },
+  {
+    title: "Curso profesional de Git",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/15AqXjOZIWs5m-X7neHtfpoFP4ovnDhN5/view?usp=sharing",
+  },
+  {
+    title: "Ruta de aprendizaje para crear una web app de Pokémon con React",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/1mQRuJAO6BfkNBba4QTa4DzpdpEEOnFpQ/view?usp=sharing",
+  },
+  {
+    title: "Claude Code: primeros pasos en 20 minutos",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/1jE6ZZqK-7uaZGgZJomRdNlGJ0pAEZb2t/view?usp=sharing",
+  },
+  {
+    title: "Minicurso práctico de Flexbox y Grid",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/1ZfYLkL674_daKCksuyWlMYyjWWTS8wa2/view?usp=sharing",
+  },
+  {
+    title: "Curso de ingeniería de prompts",
+    platform: "Certificado - Codigo Facilito",
+    year: "2026",
+    icon: "code",
+    certificateUrl:
+      "https://drive.google.com/file/d/1eup7NfV_eitHtFK4mTlrcSpJzwy0LmY6/view?usp=sharing",
+  },
+  {
     title: "AWS Community Day Argentina 2025",
     platform: "AWS Community",
     year: "2025",
@@ -11,7 +99,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Diseño web con HTML y CSS",
-    platform: "Certificado",
+    platform: "Certificado - Tecno 3F",
     year: "2025",
     icon: "html",
     certificateUrl:
@@ -19,7 +107,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Introducción a Java",
-    platform: "Certificado",
+    platform: "Certificado - Tecno 3F",
     year: "2025",
     icon: "java",
     certificateUrl:
@@ -27,7 +115,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Introducción a Python",
-    platform: "Certificado",
+    platform: "Certificado - Tecno 3F",
     year: "2025",
     icon: "python",
     certificateUrl:
@@ -35,7 +123,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Programación con PHP y MySQL",
-    platform: "Certificado",
+    platform: "Certificado - Tecno 3F",
     year: "2025",
     icon: "php",
     certificateUrl:
@@ -75,7 +163,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Curso Profesional de TypeScript",
-    platform: "Certificado",
+    platform: "Certificado - Codigo Facilito",
     year: "2024",
     icon: "code",
     certificateUrl:
@@ -83,7 +171,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Curso Profesional de Node.js",
-    platform: "Certificado",
+    platform: "Certificado - Codigo Facilito",
     year: "2024",
     icon: "node",
     certificateUrl:
@@ -91,7 +179,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Curso a fondo de GitHub",
-    platform: "Certificado",
+    platform: "Certificado - Codigo Facilito",
     year: "2024",
     icon: "github",
     certificateUrl:
@@ -99,7 +187,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Introducción a las Pruebas de Software (QA)",
-    platform: "Certificado",
+    platform: "Certificado - Codigo Facilito",
     year: "2024",
     icon: "code",
     certificateUrl:
@@ -107,7 +195,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Curso de Laravel Profesional",
-    platform: "Certificado",
+    platform: "Certificado - Codigo Facilito",
     year: "2024",
     icon: "laravel",
     certificateUrl:
@@ -115,7 +203,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Curso profesional de Flutter",
-    platform: "Certificado",
+    platform: "Certificado - Codigo Facilito",
     year: "2024",
     icon: "flutter",
     certificateUrl:
@@ -123,7 +211,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Curso profesional de JavaScript",
-    platform: "Certificado",
+    platform: "Certificado - Codigo Facilito",
     year: "2024",
     icon: "js",
     certificateUrl:
@@ -131,7 +219,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Curso profesional de React",
-    platform: "Certificado",
+    platform: "Certificado - Codigo Facilito",
     year: "2024",
     icon: "react",
     certificateUrl:
@@ -139,7 +227,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Cómo Crear un Proyecto de Ingeniería de Datos",
-    platform: "Certificado",
+    platform: "Certificado - Codigo Facilito",
     year: "2024",
     icon: "code",
     certificateUrl:
@@ -171,7 +259,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Creación de Contenido para YouTube",
-    platform: "Certificado",
+    platform: "Certificado - Platzi",
     year: "2020",
     icon: "code",
     certificateUrl:
@@ -179,7 +267,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Edición con Premiere",
-    platform: "Certificado",
+    platform: "Certificado - Platzi",
     year: "2020",
     icon: "premiere",
     certificateUrl:
@@ -187,7 +275,7 @@ export const coursesData: Course[] = [
   },
   {
     title: "Fotografía con Teléfono",
-    platform: "Certificado",
+    platform: "Certificado - Platzi",
     year: "2020",
     icon: "code",
     certificateUrl:
