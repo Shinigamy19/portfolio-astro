@@ -191,7 +191,7 @@ export const projectTags: Record<string, ProjectTag> = {
     },
     ASTRO: {
         name: "Astro",
-        class: "bg-[#BC52EE] text-white",
+        class: "bg-[#a5572b] text-white",
     },
     ARDUINO: {
         name: "Arduino",
