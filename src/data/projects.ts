@@ -24,6 +24,7 @@ export const projectsData: Project[] = [
             "/preview/link-collection.webp",
         tags: [projectTags.REACTNATIVE, projectTags.ANDROIDNATIVE],
         category: "Programación",
+        link: "https://linkcollection.work/",
         title_en: "Link Collection",
         comingSoon: true,
         description_en: "Mobile application for organized link management. Dually developed with React Native and Native Android.",
