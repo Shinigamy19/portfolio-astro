@@ -29,7 +29,7 @@ const languageEntries = Object.entries(languages);
       <path d="M12 20l4 -9l4 9"></path>
       <path d="M19.1 18h-6.2"></path>
     </svg>
-    <span class="uppercase text-sm font-medium">{lang}</span>
+    <span class="lang-text uppercase text-sm font-medium">{lang}</span>
   </button>
   <div
     transition:persist
@@ -111,6 +111,16 @@ const languageEntries = Object.entries(languages);
         document
           .querySelectorAll(".lang-menu")
           .forEach((menu) => menu.classList.remove("open"));
+      });
+    });
+
+    // Update language text on page transition (since component is persisted)
+    document.addEventListener("astro:page-load", () => {
+      const path = window.location.pathname;
+      const match = path.match(/^\/(es|en|pt)/);
+      const currentLang = match ? match[1] : 'es';
+      document.querySelectorAll('.lang-text').forEach((el) => {
+        el.textContent = currentLang;
       });
     });
   })();
