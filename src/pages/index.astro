@@ -1,3 +1,87 @@
 ---
-return Astro.redirect("/es/");
+// Reemplazamos la redirección interna de Astro por una página de carga HTML interactiva y temática
 ---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargando...</title>
+  
+  <!-- Redirección automática inmediata usando meta refresh -->
+  <meta http-equiv="refresh" content="0;url=/es/" />
+
+  <!-- Estilos en línea para asegurar carga inmediata sin renderizar destellos en blanco -->
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg-color: #f9fafb; /* gray-50 */
+      --spinner-color: #3b82f6; /* blue-500 */
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #030712; /* gray-950 */
+        --spinner-color: #60a5fa; /* blue-400 */
+      }
+    }
+    
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--bg-color);
+      font-family: system-ui, sans-serif;
+      overflow: hidden;
+    }
+
+    .loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(128, 128, 128, 0.2);
+      border-radius: 50%;
+      border-top-color: var(--spinner-color);
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Fondo radial degradado sutil acorde al diseño de la página web */
+    .bg-gradient {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      z-index: -1;
+      background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 119, 198, 0.2), transparent);
+    }
+    @media (prefers-color-scheme: dark) {
+      .bg-gradient {
+        background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(70, 130, 180, 0.15), transparent);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+    // Redirección por JS de reserva, en caso de que meta refresh tarde o se ignore
+    // Usa replace() para no mantener esta página de transicion en el historial
+    window.location.replace('/es/');
+  </script>
+</body>
+</html>
