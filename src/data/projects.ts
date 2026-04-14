@@ -3,6 +3,20 @@ import { projectTags } from "./projectTags";
 
 export const projectsData: Project[] = [
     {
+        title: "Cyber Bunker",
+        description:
+            "Catálogo de productos y panel de administración para Cyber Bunker. Desarrollado con Astro, base de datos MySQL y totalmente hecho con CSS puro.",
+        image:
+            "/preview/cyber-bunker-mockup.webp",
+        tags: [projectTags.ASTRO, projectTags.MYSQL, projectTags.CSS],
+        category: "Web",
+        link: "https://cyber-bunker.vercel.app/",
+        title_en: "Cyber Bunker",
+        description_en: "Product catalog and administration panel for Cyber Bunker. Developed with Astro, MySQL database and entirely made with pure CSS.",
+        title_pt: "Cyber Bunker",
+        description_pt: "Catálogo de produtos e painel de administração para Cyber Bunker. Desenvolvido com Astro, banco de dados MySQL e totalmente feito com CSS puro.",
+    },
+    {
         title: "Nexo Digital",
         description:
             "Nexo Digital es una comunidad abierta para personas del mundo digital: desarrollo, diseño, edición, audio, domótica, tecnología, IA y más.",
