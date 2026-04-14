@@ -8,7 +8,7 @@ export const projectsData: Project[] = [
             "Catálogo de productos y panel de administración para Cyber Bunker. Desarrollado con Astro, base de datos MySQL y totalmente hecho con CSS puro.",
         image:
             "/preview/cyber-bunker-mockup.webp",
-        tags: [projectTags.ASTRO, projectTags.MYSQL, projectTags.CSS],
+        tags: [projectTags.ASTRO, projectTags.MYSQL, projectTags.CSS, projectTags.TYPESCRIPT],
         category: "Web",
         link: "https://cyber-bunker.vercel.app/",
         title_en: "Cyber Bunker",
