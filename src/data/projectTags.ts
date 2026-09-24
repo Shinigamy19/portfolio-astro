@@ -265,4 +265,16 @@ export const projectTags: Record<string, ProjectTag> = {
         name: "Android Nativo",
         class: "bg-[#3DDC84] text-black",
     },
+    EXPO: {
+        name: "Expo",
+        class: "bg-[#000020] text-white",
+    },
+    FIREBASE: {
+        name: "Firebase",
+        class: "bg-[#FFCA28] text-black",
+    },
+    NATIVEWIND: {
+        name: "NativeWind",
+        class: "bg-[#41C3E9] text-black",
+    },
 };

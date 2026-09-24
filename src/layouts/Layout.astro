@@ -4,17 +4,24 @@ import Footer from "../components/layout/Footer.astro";
 
 import { ClientRouter } from "astro:transitions";
 
-import "@fontsource/roboto";
+// Solo los pesos que usamos (400, 500, 700) para latin
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 interface Props {
   title: string;
   description: string;
+  image?: string;
 }
 
-const { description, title } = Astro.props;
+const { description, title, image = "/og-image.png" } = Astro.props;
 import { getLangFromUrl } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
+const siteUrl = Astro.site?.href || "https://shinigamy19.tech";
+const ogImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
+const locale = lang === "es" ? "es_AR" : lang === "pt" ? "pt_BR" : "en_US";
 ---
 
 <!doctype html>
@@ -22,10 +29,60 @@ const lang = getLangFromUrl(Astro.url);
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image" href="/Lgpag.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <!-- SEO -->
+    <meta name="author" content="Eros Douglas Benitez Dos Santos" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="theme-color" content="#3b82f6" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <link rel="canonical" href={String(Astro.url)} />
+
+    <!-- Language alternates -->
+    <link rel="alternate" hreflang="es" href={`${siteUrl}/es/`} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}/en/`} />
+    <link rel="alternate" hreflang="pt" href={`${siteUrl}/pt/`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/es/`} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={String(Astro.url)} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:site_name" content="Eros Benitez — Full-Stack Developer" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:creator" content="@shinigamy19" />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Eros Douglas Benitez Dos Santos",
+      "alternateName": "Shinigamy19",
+      "url": siteUrl,
+      "jobTitle": ["Full-Stack Developer", "Multimedia Designer", "Content Creator"],
+      "address": { "@type": "PostalAddress", "addressLocality": "Buenos Aires", "addressCountry": "AR" },
+      "sameAs": [
+        "https://linkedin.com/in/eros-benitez",
+        "https://github.com/shinigamy19",
+        "https://www.behance.net/shinigamy19",
+        "https://www.youtube.com/c/shinigamy19"
+      ],
+      "knowsAbout": ["Web Development", "UI/UX Design", "Astro", "React", "TypeScript", "Tailwind CSS"]
+    })} />
+
     <ClientRouter />
   </head>
 

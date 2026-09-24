@@ -9,6 +9,7 @@ interface Props {
   description: string;
   date: string;
   tags?: string[];
+  category?: string | string[];
   isLeft?: boolean;
   date_en?: string;
   title_en?: string;
@@ -24,6 +25,7 @@ const {
   description,
   date,
   tags,
+  category,
   isLeft,
   title_en,
   description_en,
@@ -36,6 +38,15 @@ const {
 const displayDate = lang === "en" && date_en ? date_en : lang === "pt" && date_pt ? date_pt : date;
 const displayTitle = lang === "en" && title_en ? title_en : lang === "pt" && title_pt ? title_pt : title;
 const displayDescription = lang === "en" && description_en ? description_en : lang === "pt" && description_pt ? description_pt : description;
+
+const categoryColors: Record<string, { bg: string; text: string; border: string }> = {
+  "Programación": { bg: "bg-blue-100 dark:bg-blue-900/30", text: "text-blue-700 dark:text-blue-300", border: "border-blue-300 dark:border-blue-700" },
+  "Diseño": { bg: "bg-purple-100 dark:bg-purple-900/30", text: "text-purple-700 dark:text-purple-300", border: "border-purple-300 dark:border-purple-700" },
+  "Educación": { bg: "bg-green-100 dark:bg-green-900/30", text: "text-green-700 dark:text-green-300", border: "border-green-300 dark:border-green-700" },
+  "Otros": { bg: "bg-gray-100 dark:bg-gray-800/50", text: "text-gray-700 dark:text-gray-300", border: "border-gray-300 dark:border-gray-600" },
+};
+
+const cats = Array.isArray(category) ? category : category ? [category] : [];
 ---
 
 <div
@@ -43,94 +54,97 @@ const displayDescription = lang === "en" && description_en ? description_en : la
 >
   <div class="hidden md:block md:w-[45%]"></div>
 
-  <div class="absolute left-1/2 -translate-x-1/2 mt-1 hidden md:block">
+  <div class="absolute left-1/2 -translate-x-1/2 mt-1 hidden md:block z-10">
     <div
-      class="w-4 h-4 bg-sky-500/80 dark:bg-sky-500/80 rounded-full border-4 border-white dark:border-slate-900 shadow-[0_0_10px_rgba(14,165,233,0.5)]"
+      class="w-4 h-4 bg-sky-500 rounded-full border-4 border-white dark:border-slate-900 shadow-[0_0_12px_rgba(14,165,233,0.6)] transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_20px_rgba(14,165,233,0.8)]"
     >
     </div>
   </div>
 
   <div class="w-full md:w-[45%] group">
     <div
-      class="relative p-6 bg-white/80 dark:bg-[#1e293b] border border-gray-200 dark:border-slate-600/40 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-500/50"
+      class="relative p-6 bg-white/80 dark:bg-[#1e293b] border border-gray-200 dark:border-slate-600/40 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-500/50 overflow-hidden"
     >
-      <div class="flex items-center gap-3 mb-4">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="icon icon-tabler icon-tabler-calendar-event text-sky-500 dark:text-sky-400"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path
-            d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
-          ></path>
-          <path d="M16 3v4"></path>
-          <path d="M8 3v4"></path>
-          <path d="M4 11h16"></path>
-          <path d="M8 15h2"></path>
-        </svg>
-        <span class="text-sky-600 dark:text-sky-400 font-bold text-sm"
-          >{displayDate}</span
-        >
-      </div>
+      <!-- Subtle gradient overlay on hover -->
+      <div class="absolute inset-0 bg-gradient-to-br from-sky-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-      <h3
-        class="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight"
-      >
-        {displayTitle}
-      </h3>
-
-      <div
-        class="flex items-center gap-2 mb-4 text-gray-600 dark:text-slate-300"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="icon icon-tabler icon-tabler-building-skyscraper text-gray-500 dark:text-slate-400"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M3 21l18 0"></path>
-          <path d="M5 21v-14l8 -4v18"></path>
-          <path d="M19 21v-10l-6 -4"></path>
-          <path d="M9 9l0 .01"></path>
-          <path d="M9 12l0 .01"></path>
-          <path d="M9 15l0 .01"></path>
-          <path d="M9 18l0 .01"></path>
-        </svg>
-        <h4 class="font-medium text-sm">
-          {company}
-        </h4>
-      </div>
-
-      <p class="text-gray-700 dark:text-slate-300 mb-6 text-sm leading-relaxed">
-        {displayDescription}
-      </p>
-
-      {
-        tags && (
-          <div class="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span class="bg-purple-100 dark:bg-purple-600/30 text-purple-700 dark:text-purple-200 text-xs font-semibold px-3 py-1.5 rounded-full border border-purple-300 dark:border-purple-500/30">
-                {tag}
+      <div class="relative z-10">
+        <div class="flex items-center gap-3 mb-3 flex-wrap">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-calendar-event text-sky-500 dark:text-sky-400"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+            <path d="M16 3v4"></path>
+            <path d="M8 3v4"></path>
+            <path d="M4 11h16"></path>
+            <path d="M8 15h2"></path>
+          </svg>
+          <span class="text-sky-600 dark:text-sky-400 font-bold text-sm">{displayDate}</span>
+          {cats.map((cat) => {
+            const c = categoryColors[cat] || categoryColors["Otros"];
+            return (
+              <span class={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${c.bg} ${c.text} ${c.border}`}>
+                {cat}
               </span>
-            ))}
-          </div>
-        )
-      }
+            );
+          })}
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
+          {displayTitle}
+        </h3>
+
+        <div class="flex items-center gap-2 mb-4 text-gray-600 dark:text-slate-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-building text-gray-500 dark:text-slate-400"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M3 21h18"></path>
+            <path d="M9 8h1"></path>
+            <path d="M9 12h1"></path>
+            <path d="M9 16h1"></path>
+            <path d="M14 8h1"></path>
+            <path d="M14 12h1"></path>
+            <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16"></path>
+          </svg>
+          <h4 class="font-medium text-sm">{company}</h4>
+        </div>
+
+        <p class="text-gray-700 dark:text-slate-300 mb-5 text-sm leading-relaxed">
+          {displayDescription}
+        </p>
+
+        {
+          tags && tags.length > 0 && (
+            <div class="flex flex-wrap gap-1.5">
+              {tags.map((tag) => (
+                <span class="bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-xs font-medium px-2.5 py-1 rounded-full border border-sky-200 dark:border-sky-800/50">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
+      </div>
     </div>
   </div>
 </div>

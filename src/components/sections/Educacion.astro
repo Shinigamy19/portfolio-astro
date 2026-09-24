@@ -13,14 +13,13 @@ const COURSES = coursesData;
 
 <div class="relative">
   <!-- Elementos decorativos de fondo -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
     <div
-      class="absolute top-[10%] left-1/2 -translate-x-1/2 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+      class="absolute top-[10%] left-1/2 -translate-x-1/2 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-3xl opacity-60"
     >
     </div>
     <div
-      class="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"
-      style="animation-delay: 1s;"
+      class="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-3xl opacity-60"
     >
     </div>
   </div>
@@ -119,6 +118,8 @@ const COURSES = coursesData;
           <button
             id="load-more-courses"
             class="px-6 py-2.5 rounded-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:border-purple-500 hover:text-purple-500 dark:hover:border-purple-400 dark:hover:text-purple-400 transition-all shadow-sm hover:shadow-md active:scale-95 flex items-center gap-2"
+            data-show-more={t("education.showMore")}
+            data-show-less={t("education.showLess")}
           >
             <span>{t("education.showMore")}</span>
             <svg
@@ -143,18 +144,13 @@ const COURSES = coursesData;
   </div>
 </div>
 
-<script
-  is:inline
-  define:vars={{
-    lang,
-    showMoreTextTrans: t("education.showMore"),
-    showLessTextTrans: t("education.showLess"),
-  }}
->
+<script>
   document.addEventListener("astro:page-load", () => {
     const loadMoreBtn = document.getElementById("load-more-courses");
     const loadMoreText = loadMoreBtn?.querySelector("span");
     const loadMoreIcon = loadMoreBtn?.querySelector("svg");
+    const showMoreText = loadMoreBtn?.getAttribute("data-show-more") || "Show more";
+    const showLessText = loadMoreBtn?.getAttribute("data-show-less") || "Show less";
     let isExpanded = false;
 
     if (loadMoreBtn && loadMoreText && loadMoreIcon) {
@@ -167,7 +163,7 @@ const COURSES = coursesData;
             course.classList.remove("hidden");
             course.classList.add("animate-fade-in");
           });
-          loadMoreText.innerText = showLessTextTrans;
+          loadMoreText.innerText = showLessText;
           loadMoreIcon.style.transform = "rotate(180deg)";
           isExpanded = true;
         } else {
@@ -208,7 +204,7 @@ const COURSES = coursesData;
             window.requestAnimationFrame(step);
           }
 
-          loadMoreText.innerText = showMoreTextTrans;
+          loadMoreText.innerText = showMoreText;
           loadMoreIcon.style.transform = "rotate(0deg)";
           isExpanded = false;
         }

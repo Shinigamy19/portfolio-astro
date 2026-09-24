@@ -36,41 +36,51 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
         class="bg-white/80 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 p-8 rounded-3xl flex-1 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/10 relative overflow-hidden group/form"
       >
         <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent opacity-0 group-hover/form:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-        <form id="contact-form" class="space-y-5 relative z-10">
+        <form id="contact-form" class="space-y-5 relative z-10" novalidate
+          data-success={t("contact.success")}
+          data-error={t("contact.error")}
+          data-email-error={t("contact.emailError")}
+          data-sending={t("contact.sending")}
+          data-send={t("contact.send")}
+          data-mail-url={import.meta.env.PUBLIC_FORMSPREE_URL || "https://formspree.io/f/xbddjddy"}
+        >
           <div id="form-status" class="hidden text-center font-medium mb-4">
           </div>
 
-          <div>
+          <div class="field-group">
             <label
               for="name"
               class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
-              {t("contact.name")}
+              {t("contact.name")} <span class="text-red-500">*</span>
             </label>
             <input
               type="text"
               name="name"
               id="name"
               required
-              class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 focus:scale-[1.01] hover:border-blue-300 dark:hover:border-blue-700 dark:text-white"
+              minlength="2"
+              maxlength="100"
+              class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-700 dark:text-white valid:border-green-500 dark:valid:border-green-500 invalid:border-red-400 dark:invalid:border-red-400 invalid:focus:ring-red-500"
             />
+            <p class="field-error text-red-500 text-xs mt-1 hidden"></p>
           </div>
 
-          <div>
+          <div class="field-group">
             <label
               for="email"
               class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
-              {t("contact.email")}
+              {t("contact.email")} <span class="text-red-500">*</span>
             </label>
             <input
               type="email"
               name="email"
               id="email"
               required
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 focus:scale-[1.01] hover:border-blue-300 dark:hover:border-blue-700 dark:text-white"
+              class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-700 dark:text-white valid:border-green-500 dark:valid:border-green-500 invalid:border-red-400 dark:invalid:border-red-400 invalid:focus:ring-red-500"
             />
+            <p class="field-error text-red-500 text-xs mt-1 hidden"></p>
           </div>
 
           <!-- Honeypot field -->
@@ -82,28 +92,38 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
             tabindex="-1"
           />
 
-          <div>
+          <div class="field-group">
             <label
               for="message"
               class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
-              {t("contact.message")}
+              {t("contact.message")} <span class="text-red-500">*</span>
             </label>
             <textarea
               name="message"
               id="message"
               rows="4"
               required
-              class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 focus:scale-[1.01] hover:border-blue-300 dark:hover:border-blue-700 dark:text-white resize-none"
+              minlength="10"
+              maxlength="1000"
+              class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-700 dark:text-white resize-none valid:border-green-500 dark:valid:border-green-500 invalid:border-red-400 dark:invalid:border-red-400 invalid:focus:ring-red-500"
             ></textarea>
+            <div class="flex justify-between items-center mt-1">
+              <p class="field-error text-red-500 text-xs hidden"></p>
+              <span class="text-gray-400 dark:text-gray-500 text-xs ml-auto" id="char-count">0/1000</span>
+            </div>
           </div>
 
           <button
             type="submit"
             id="submit-btn"
-            class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all duration-300 transform active:scale-95 disabled:bg-gray-400 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-blue-500/30"
+            class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all duration-300 transform active:scale-95 disabled:bg-gray-400 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-blue-500/30 flex items-center justify-center gap-2"
           >
             <span id="btn-text">{t("contact.send")}</span>
+            <svg id="btn-spinner" class="hidden animate-spin size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
           </button>
         </form>
       </div>
@@ -316,26 +336,99 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
   </div>
 </div>
 
-<script
-  is:inline
-  define:vars={{
-    successMsg: t("contact.success"),
-    errorMsg: t("contact.error"),
-    emailErrorMsg: t("contact.emailError"),
-    sendingMsg: t("contact.sending"),
-    sendMsg: t("contact.send"),
-    emailsDoNotMatchMsg: t("contact.emailsDoNotMatch"),
-    envMailURL: import.meta.env.PUBLIC_FORMSPREE_URL,
-  }}
->
+<script>
   document.addEventListener("astro:page-load", () => {
-    const form = document.getElementById("contact-form");
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    if (!form) return;
     const status = document.getElementById("form-status");
     const submitBtn = document.getElementById("submit-btn");
     const btnText = document.getElementById("btn-text");
+    const btnSpinner = document.getElementById("btn-spinner");
+    const charCount = document.getElementById("char-count");
     const loadTime = Date.now();
 
-    const mailURL = envMailURL || "https://formspree.io/f/xbddjddy";
+    const successMsg = form.getAttribute("data-success") || "Thanks!";
+    const errorMsg = form.getAttribute("data-error") || "Error";
+    const emailErrorMsg = form.getAttribute("data-email-error") || "Invalid email";
+    const sendingMsg = form.getAttribute("data-sending") || "Sending...";
+    const sendMsg = form.getAttribute("data-send") || "Send";
+    const mailURL = form.getAttribute("data-mail-url") || "https://formspree.io/f/xbddjddy";
+
+    // Real-time validation
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+
+    function validateField(input) {
+      const errorEl = input.closest(".field-group")?.querySelector(".field-error");
+      if (!errorEl) return true;
+
+      let valid = true;
+      let message = "";
+
+      if (input.required && !input.value.trim()) {
+        valid = false;
+        message = "Este campo es obligatorio";
+      } else if (input.type === "email" && input.value) {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(input.value)) {
+          valid = false;
+          message = "Ingresa un correo válido";
+        }
+      } else if (input.minLength > 0 && input.value.length < input.minLength) {
+        valid = false;
+        message = `Mínimo ${input.minLength} caracteres`;
+      }
+
+      if (valid) {
+        input.classList.remove("invalid");
+        input.classList.add("valid");
+        errorEl.classList.add("hidden");
+      } else {
+        input.classList.remove("valid");
+        input.classList.add("invalid");
+        errorEl.textContent = message;
+        errorEl.classList.remove("hidden");
+      }
+
+      return valid;
+    }
+
+    // Add blur validation
+    [nameInput, emailInput, messageInput].forEach((input) => {
+      if (!input) return;
+      input.addEventListener("blur", () => validateField(input));
+      input.addEventListener("input", () => {
+        if (input.classList.contains("invalid")) validateField(input);
+      });
+    });
+
+    // Character count for message
+    if (messageInput && charCount) {
+      messageInput.addEventListener("input", () => {
+        const len = messageInput.value.length;
+        charCount.textContent = `${len}/1000`;
+        if (len > 900) {
+          charCount.classList.add("text-orange-500");
+          charCount.classList.remove("text-red-500", "text-gray-400");
+        } else if (len >= 1000) {
+          charCount.classList.add("text-red-500");
+          charCount.classList.remove("text-orange-500", "text-gray-400");
+        } else {
+          charCount.classList.remove("text-orange-500", "text-red-500");
+          charCount.classList.add("text-gray-400");
+        }
+      });
+    }
+
+    function showStatus(msg, className) {
+      status.innerText = msg;
+      status.className = `${className} text-center font-medium mb-4`;
+      status.classList.remove("hidden");
+      setTimeout(() => {
+        status.classList.add("hidden");
+      }, 5000);
+    }
 
     if (form) {
       form.addEventListener("submit", async (e) => {
@@ -344,33 +437,32 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
         const formData = new FormData(form);
         const email = formData.get("email");
         const gotcha = formData.get("_gotcha");
-        const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
         const timeDiff = Date.now() - loadTime;
 
         // Honeypot check
         if (gotcha || timeDiff < 2000) {
-          console.log("Bot detected or submission too fast");
-          if (gotcha) return; // Silent fail for honeypot
+          if (gotcha) return;
         }
 
+        // Validate all fields
+        let allValid = true;
+        [nameInput, emailInput, messageInput].forEach((input) => {
+          if (input && !validateField(input)) allValid = false;
+        });
+
+        if (!allValid) return;
+
         // Custom email validation
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!email || !emailRegex.test(email.toString())) {
           showStatus(emailErrorMsg, "text-red-600");
           return;
         }
 
-        function showStatus(msg, className) {
-          status.innerText = msg;
-          status.className = `${className} text-center font-medium mb-4`;
-          status.classList.remove("hidden");
-          setTimeout(() => {
-            status.classList.add("hidden");
-          }, 5000);
-        }
-
         // Disable button and show loading
         submitBtn.disabled = true;
         btnText.innerText = sendingMsg;
+        btnSpinner?.classList.remove("hidden");
         status.classList.add("hidden");
 
         try {
@@ -383,25 +475,24 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
           });
 
           if (response.ok) {
-            status.innerText = successMsg;
-            status.className = "text-green-600 text-center font-medium mb-4";
-            status.classList.remove("hidden");
+            showStatus(successMsg, "text-green-600");
             form.reset();
+            charCount && (charCount.textContent = "0/1000");
+            // Remove valid/invalid states
+            [nameInput, emailInput, messageInput].forEach((input) => {
+              if (input) {
+                input.classList.remove("valid", "invalid");
+              }
+            });
           } else {
             throw new Error();
           }
         } catch (err) {
-          status.innerText = errorMsg;
-          status.className = "text-red-600 text-center font-medium mb-4";
-          status.classList.remove("hidden");
+          showStatus(errorMsg, "text-red-600");
         } finally {
           submitBtn.disabled = false;
           btnText.innerText = sendMsg;
-
-          // Hide status after 5 seconds
-          setTimeout(() => {
-            status.classList.add("hidden");
-          }, 5000);
+          btnSpinner?.classList.add("hidden");
         }
       });
     }

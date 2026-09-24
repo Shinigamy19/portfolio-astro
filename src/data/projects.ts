@@ -3,6 +3,51 @@ import { projectTags } from "./projectTags";
 
 export const projectsData: Project[] = [
     {
+        title: "TechCalendAR",
+        description:
+            "Calendario de eventos tech de Argentina. Conferencias, meetups y hackathons de tecnología con notificaciones push y PWA.",
+        image:
+            "/preview/techcalendar.webp",
+        tags: [projectTags.EXPO, projectTags.REACTNATIVE, projectTags.FIREBASE, projectTags.NATIVEWIND, projectTags.TYPESCRIPT],
+        category: ["App", "Web"],
+        link: "https://ar.techcalend.com/",
+        playstore: "https://play.google.com/store/apps/details?id=com.Shinigamy19.TechCalendAR",
+        title_en: "TechCalendAR",
+        description_en: "Tech events calendar from Argentina. Conferences, meetups and hackathons with push notifications and PWA.",
+        title_pt: "TechCalendAR",
+        description_pt: "Calendário de eventos tech da Argentina. Conferências, meetups e hackathons com notificações push e PWA.",
+    },
+    {
+        title: "TechCalendPE",
+        description:
+            "Calendario de eventos tech de Perú. Conferencias, meetups y hackathons de tecnología con notificaciones push y PWA.",
+        image:
+            "/preview/techcalendpe.webp",
+        tags: [projectTags.EXPO, projectTags.REACTNATIVE, projectTags.FIREBASE, projectTags.NATIVEWIND, projectTags.TYPESCRIPT],
+        category: ["App", "Web"],
+        link: "https://pe.techcalend.com/",
+        comingSoon: true,
+        title_en: "TechCalendPE",
+        description_en: "Tech events calendar from Peru. Conferences, meetups and hackathons with push notifications and PWA.",
+        title_pt: "TechCalendPE",
+        description_pt: "Calendário de eventos tech do Peru. Conferências, meetups e hackathons com notificações push e PWA.",
+    },
+    {
+        title: "TechCalendCL",
+        description:
+            "Calendario de eventos tech de Chile. Conferencias, meetups y hackathons de tecnología con notificaciones push y PWA.",
+        image:
+            "/preview/techcalendcl.webp",
+        tags: [projectTags.EXPO, projectTags.REACTNATIVE, projectTags.FIREBASE, projectTags.NATIVEWIND, projectTags.TYPESCRIPT],
+        category: ["App", "Web"],
+        link: "https://cl.techcalend.com/",
+        comingSoon: true,
+        title_en: "TechCalendCL",
+        description_en: "Tech events calendar from Chile. Conferences, meetups and hackathons with push notifications and PWA.",
+        title_pt: "TechCalendCL",
+        description_pt: "Calendário de eventos tech do Chile. Conferências, meetups e hackathons com notificações push e PWA.",
+    },
+    {
         title: "Cyber Bunker",
         description:
             "Catálogo de productos y panel de administración para Cyber Bunker. Desarrollado con Astro, base de datos MySQL y totalmente hecho con CSS puro.",
@@ -40,7 +85,6 @@ export const projectsData: Project[] = [
         category: "Programación",
         link: "https://linkcollection.work/",
         title_en: "Link Collection",
-        comingSoon: true,
         description_en: "Mobile application for organized link management. Dually developed with React Native and Native Android.",
         title_pt: "Link Collection",
         description_pt: "Aplicativo móvel para gestão organizada de links. Desenvolvido de forma dual com React Native e Android Nativo.",
@@ -53,7 +97,7 @@ export const projectsData: Project[] = [
             "/preview/afk-bardo.webp",
         tags: [projectTags.NEXT, projectTags.TAILWIND, projectTags.TYPESCRIPT, projectTags.REACT],
         category: "Web",
-        comingSoon: true,
+
         title_en: "Afk Bardo",
         description_en: "This is an experiment of procedural narrative and conscious time loss. Built with Next.js and Tailwind CSS.",
         title_pt: "Afk Bardo",
@@ -67,7 +111,7 @@ export const projectsData: Project[] = [
             "/preview/svg-gallery.webp",
         tags: [projectTags.NEXT, projectTags.TAILWIND, projectTags.TYPESCRIPT, projectTags.REACT, projectTags.PRISMA, projectTags.MYSQL],
         category: "Web",
-        comingSoon: true,
+
         title_en: "SVG Gallery",
         description_en: "Website for creating Svgs and sharing them with the community. Built with Next.js and Tailwind CSS.",
         title_pt: "SVG Gallery",
@@ -81,7 +125,7 @@ export const projectsData: Project[] = [
             "/preview/trello-clone.webp",
         tags: [projectTags.NEXT, projectTags.TAILWIND, projectTags.TYPESCRIPT, projectTags.REACT],
         category: "Web",
-        comingSoon: true,
+
         title_en: "Trello Clone",
         description_en: "Trello clone with new features. Built with Next.js, React, TypeScript and Tailwind CSS.",
         title_pt: "Clone do Trello",
@@ -95,7 +139,7 @@ export const projectsData: Project[] = [
             "/preview/pomodoro.webp",
         tags: [projectTags.NEXT, projectTags.TAILWIND, projectTags.TYPESCRIPT, projectTags.MONGODB, projectTags.DISCORDJS],
         category: "Web",
-        comingSoon: true,
+
         title_en: "Pomodoro Timer",
         description_en: "Collaborative Pomodoro timer that works in conjunction with Discord and Twitch. Built with Next.js, Tailwind CSS, TypeScript, MongoDB and Discord.js.",
         title_pt: "Pomodoro Timer",

@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shinigamy19.tech/sitemap-index.xml
+
+# Disallow admin/private paths
+Disallow: /.archive/
+Disallow: /.jules/
+
+# Crawl-delay for polite bots
+Crawl-delay: 1
