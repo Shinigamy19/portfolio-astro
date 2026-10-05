@@ -185,13 +185,13 @@ const COURSES = coursesData;
             const startY = window.pageYOffset;
             const distance = targetY - startY;
             const duration = 1200; // Duración más larga para transición más delicada
-            let start = null;
+            let start: number | null = null;
 
-            function easeInOutCubic(t) {
+            function easeInOutCubic(t: number) {
               return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
             }
 
-            function step(timestamp) {
+            function step(timestamp: number) {
               if (!start) start = timestamp;
               const progress = Math.min((timestamp - start) / duration, 1);
               const easeProgress = easeInOutCubic(progress);

@@ -62,7 +62,7 @@ const THEMES = ["Light", "Dark", "System"];
 
 <script>
   (() => {
-    let remove = null;
+    let remove: (() => void) | null = null;
     const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
 
     const getThemePreference = () => {
@@ -75,7 +75,7 @@ const THEMES = ["Light", "Dark", "System"];
         : "light";
     };
 
-    const updateIcon = (themePreference) => {
+    const updateIcon = (themePreference: string) => {
       document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
         if (element.getAttribute("data-theme") === themePreference) {
           element.classList.remove("opacity-0", "scale-0");
@@ -113,7 +113,7 @@ const THEMES = ["Light", "Dark", "System"];
         .forEach((menu) => menu.classList.remove("open"))
     );
 
-    document.querySelectorAll(".theme-toggle-btn").forEach((btn) => {
+    document.querySelectorAll<HTMLElement>(".theme-toggle-btn").forEach((btn) => {
       // Prevent duplicate listeners by checking if already initialized
       if (btn.dataset.themeInitialized) return;
       btn.dataset.themeInitialized = "true";
@@ -132,13 +132,15 @@ const THEMES = ["Light", "Dark", "System"];
       });
     });
 
-    document.querySelectorAll(".themes-menu-option").forEach((element) => {
+    document.querySelectorAll<HTMLElement>(".themes-menu-option").forEach((element) => {
       // Prevent duplicate listeners
       if (element.dataset.themeInitialized) return;
       element.dataset.themeInitialized = "true";
 
       element.addEventListener("click", (e) => {
-        localStorage.setItem("theme", e.target.innerText.toLowerCase().trim());
+        const target = e.target as HTMLElement | null;
+        if (!target) return;
+        localStorage.setItem("theme", target.innerText.toLowerCase().trim());
         updateTheme();
       });
     });

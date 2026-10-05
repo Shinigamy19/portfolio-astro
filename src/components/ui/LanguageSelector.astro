@@ -81,7 +81,7 @@ const languageEntries = Object.entries(languages);
         .forEach((menu) => menu.classList.remove("open"))
     );
 
-    document.querySelectorAll(".lang-toggle-btn").forEach((btn) => {
+    document.querySelectorAll<HTMLElement>(".lang-toggle-btn").forEach((btn) => {
       // Prevent duplicate listeners by checking if already initialized
       if (btn.dataset.langInitialized) return;
       btn.dataset.langInitialized = "true";
@@ -101,7 +101,7 @@ const languageEntries = Object.entries(languages);
     });
 
     // Close menu when a language is selected
-    document.querySelectorAll(".lang-menu-option").forEach((element) => {
+    document.querySelectorAll<HTMLElement>(".lang-menu-option").forEach((element) => {
       // Prevent duplicate listeners
       if (element.dataset.langInitialized) return;
       element.dataset.langInitialized = "true";

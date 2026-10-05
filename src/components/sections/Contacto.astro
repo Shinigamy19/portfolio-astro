@@ -340,9 +340,9 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
   document.addEventListener("astro:page-load", () => {
     const form = document.getElementById("contact-form") as HTMLFormElement;
     if (!form) return;
-    const status = document.getElementById("form-status");
-    const submitBtn = document.getElementById("submit-btn");
-    const btnText = document.getElementById("btn-text");
+    const status = document.getElementById("form-status") as HTMLElement | null;
+    const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
+    const btnText = document.getElementById("btn-text") as HTMLElement | null;
     const btnSpinner = document.getElementById("btn-spinner");
     const charCount = document.getElementById("char-count");
     const loadTime = Date.now();
@@ -355,11 +355,11 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
     const mailURL = form.getAttribute("data-mail-url") || "https://formspree.io/f/xbddjddy";
 
     // Real-time validation
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const messageInput = document.getElementById("message");
+    const nameInput = document.getElementById("name") as HTMLInputElement | null;
+    const emailInput = document.getElementById("email") as HTMLInputElement | null;
+    const messageInput = document.getElementById("message") as HTMLInputElement | null;
 
-    function validateField(input) {
+    function validateField(input: HTMLInputElement) {
       const errorEl = input.closest(".field-group")?.querySelector(".field-error");
       if (!errorEl) return true;
 
@@ -421,7 +421,8 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
       });
     }
 
-    function showStatus(msg, className) {
+    function showStatus(msg: string, className: string) {
+      if (!status) return;
       status.innerText = msg;
       status.className = `${className} text-center font-medium mb-4`;
       status.classList.remove("hidden");
@@ -460,10 +461,10 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
         }
 
         // Disable button and show loading
-        submitBtn.disabled = true;
-        btnText.innerText = sendingMsg;
+        if (submitBtn) submitBtn.disabled = true;
+        if (btnText) btnText.innerText = sendingMsg;
         btnSpinner?.classList.remove("hidden");
-        status.classList.add("hidden");
+        status?.classList.add("hidden");
 
         try {
           const response = await fetch(mailURL, {
@@ -490,8 +491,8 @@ import WhatsappIcon from "../icons/WhatsappIcon.astro";
         } catch (err) {
           showStatus(errorMsg, "text-red-600");
         } finally {
-          submitBtn.disabled = false;
-          btnText.innerText = sendMsg;
+          if (submitBtn) submitBtn.disabled = false;
+          if (btnText) btnText.innerText = sendMsg;
           btnSpinner?.classList.add("hidden");
         }
       });
