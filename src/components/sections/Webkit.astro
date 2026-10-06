@@ -1,0 +1,913 @@
+---
+import LinkButton from "../../components/ui/LinkButton.astro";
+import Badge from "../../components/ui/Badge.astro";
+import TitleSection from "../../components/ui/TitleSection.astro";
+
+import { iconMap } from "../../data/iconMap";
+import { projectTags } from "../../data/projectTags";
+import { skillsData } from "../../data/skills";
+import { educationData } from "../../data/education";
+
+import CodeIcon from "../../components/icons/CodeIcon.astro";
+import SkillsIcon from "../../components/icons/SkillsIcon.astro";
+
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+/* ------------------------------------------------------------------ */
+/* Live data sources — nothing on this page is a hand-maintained list */
+/* ------------------------------------------------------------------ */
+
+// 1. ALL icon components, auto-discovered from disk
+const iconModules = import.meta.glob<{ default: any }>(
+  "../../components/icons/*.astro",
+  { eager: true },
+);
+
+const icons = Object.entries(iconModules)
+  .map(([path, mod]) => {
+    const stem = (path.split("/").pop() ?? path).replace(/\.astro$/, "");
+    const Icon = mod.default;
+    const iconMapKeys = Object.entries(iconMap)
+      .filter(([, Comp]) => Comp === Icon)
+      .map(([key]) => key);
+    return { path, stem, Icon, iconMapKeys };
+  })
+  .sort((a, b) => a.stem.localeCompare(b.stem, "en"));
+
+const iconCount = icons.length;
+
+// 2. Tech-tag icons via iconMap + real projectTags badge classes
+const tagList = Object.values(projectTags);
+const projectTagCount = tagList.length;
+const techTagIcons = Object.entries(iconMap).map(([name, Icon]) => {
+  const tag = tagList.find((tg) => tg.name === name);
+  return { name, Icon, badge: tag };
+});
+
+// 3. Skill groups (per-language category labels)
+const skillGroupCount = skillsData.length;
+
+// 4. Experience category colors — token map copied from ExperienciaItem.astro
+const categoryColors: Record<
+  string,
+  { bg: string; text: string; border: string }
+> = {
+  Programación: {
+    bg: "bg-blue-100 dark:bg-blue-900/30",
+    text: "text-blue-700 dark:text-blue-300",
+    border: "border-blue-300 dark:border-blue-700",
+  },
+  Diseño: {
+    bg: "bg-purple-100 dark:bg-purple-900/30",
+    text: "text-purple-700 dark:text-purple-300",
+    border: "border-purple-300 dark:border-purple-700",
+  },
+  Educación: {
+    bg: "bg-green-100 dark:bg-green-900/30",
+    text: "text-green-700 dark:text-green-300",
+    border: "border-green-300 dark:border-green-700",
+  },
+  Otros: {
+    bg: "bg-gray-100 dark:bg-gray-800/50",
+    text: "text-gray-700 dark:text-gray-300",
+    border: "border-gray-300 dark:border-gray-600",
+  },
+};
+
+// Display labels reuse the site's existing categories.* keys
+const categoryLabels: Record<string, string> = {
+  Programación: t("categories.programacion"),
+  Diseño: t("categories.diseno"),
+  Educación: t("categories.educacion"),
+  Otros: t("categories.otros"),
+};
+
+const lightOnly = (classes: string) =>
+  classes
+    .split(/\s+/)
+    .filter((c) => c && !c.startsWith("dark:"))
+    .join(" ");
+
+const firstTag = tagList[0];
+const FirstTagIcon = firstTag ? iconMap[firstTag.name] : undefined;
+const today = new Date().toISOString().slice(0, 10);
+
+// Interpolate {icons} {tags} {groups} tokens in plain-string translations
+const fill = (str: string, vars: Record<string, string | number>) =>
+  Object.entries(vars).reduce(
+    (acc, [k, v]) => acc.split(`{${k}}`).join(String(v)),
+    str,
+  );
+
+const metaText = fill(t("webkit.meta"), {
+  icons: iconCount,
+  tags: projectTagCount,
+  groups: skillGroupCount,
+});
+
+const tagsSkillsDesc = fill(t("webkit.tagsSkills.desc"), {
+  tags: projectTagCount,
+  groups: skillGroupCount,
+});
+
+const iconsDescMid = fill(t("webkit.icons.descMid"), { icons: iconCount });
+
+const skillTitle = (skillGroup: (typeof skillsData)[number]) =>
+  lang === "en" && skillGroup.category_en
+    ? skillGroup.category_en
+    : lang === "pt" && skillGroup.category_pt
+      ? skillGroup.category_pt
+      : skillGroup.category;
+
+const educationTitle = (item: (typeof educationData)[number]) =>
+  lang === "en" && item.title_en
+    ? item.title_en
+    : lang === "pt" && item.title_pt
+      ? item.title_pt
+      : item.title;
+
+const educationType = (item: (typeof educationData)[number]) =>
+  lang === "en" && item.type_en
+    ? item.type_en
+    : lang === "pt" && item.type_pt
+      ? item.type_pt
+      : item.type;
+---
+
+<main class="px-4 pt-28 pb-16 md:pt-32" role="main">
+  <div class="mx-auto w-full max-w-6xl container px-4">
+    <!-- ============================================================ -->
+    <!-- 1. Header / intro                                            -->
+    <!-- ============================================================ -->
+    <header class="mb-4">
+      <a
+        href={`/${lang}/`}
+        class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-6"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-4"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M5 12h14"></path>
+          <path d="M5 12l6 6"></path>
+          <path d="M5 12l6 -6"></path>
+        </svg>
+        {t("webkit.back")}
+      </a>
+
+      <div class="revealed">
+        <TitleSection className="!text-4xl md:!text-5xl">
+          {t("webkit.title")}
+        </TitleSection>
+      </div>
+      <p
+        class="mt-3 text-lg text-gray-600 dark:text-gray-300 max-w-3xl"
+      >
+        {t("webkit.subtitle")}
+      </p>
+      <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+        {metaText}
+      </p>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- 2. Color tokens                                              -->
+    <!-- ============================================================ -->
+    <section id="color-tokens" class="scroll-m-24 pt-10">
+      <div class="revealed">
+        <TitleSection>{t("webkit.section.colors")}</TitleSection>
+      </div>
+
+      <div class="mt-6 flex flex-col gap-6">
+        <!-- Brand gradient -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.colors.brandGradient")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.colors.brandGradientDesc")}
+            <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+              >from-blue-500 via-purple-500 to-cyan-400</code
+            >
+          </p>
+          <div
+            class="h-8 w-full rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400"
+          >
+          </div>
+          <div class="mt-3 flex flex-wrap gap-2 text-xs">
+            <span
+              class="px-2 py-1 rounded bg-blue-500 text-white font-medium">blue-500</span
+            >
+            <span
+              class="px-2 py-1 rounded bg-purple-500 text-white font-medium">purple-500</span
+            >
+            <span
+              class="px-2 py-1 rounded bg-cyan-400 text-black font-medium">cyan-400</span
+            >
+          </div>
+        </div>
+
+        <!-- Skill badge purple -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.colors.skillPurple")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.colors.skillPurpleDesc")}
+            <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+              >#582f82</code
+            >
+            {t("webkit.colors.skillPurpleSame")}
+          </p>
+          <span
+            class="inline-flex items-center gap-2 bg-[#582f82] text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm"
+          >
+            <SkillsIcon class="size-4" aria-hidden="true" />
+            {t("webkit.colors.sampleSkill")}
+          </span>
+        </div>
+
+        <!-- Hero radial light -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.colors.heroLight")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.colors.heroLightDesc")}
+            <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+              >rgba(120,119,198,0.3)</code
+            >
+            {t("webkit.colors.heroLightTail")}
+          </p>
+          <div
+            class="rounded-xl border border-gray-200 p-6 bg-gray-50 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0.8))]"
+          >
+            <p class="text-sm text-gray-800 font-medium">
+              {t("webkit.colors.lightPanel")}
+            </p>
+          </div>
+        </div>
+
+        <!-- Hero radial dark -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.colors.heroDark")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.colors.heroDarkDesc")}
+            <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+              >rgba(70,130,180,0.3)</code
+            >
+            {t("webkit.colors.heroDarkTail")}
+          </p>
+          <div
+            class="dark rounded-xl border border-gray-700/50 p-6 bg-gray-50 dark:bg-gray-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0.8))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(70,130,180,0.3),rgba(255,255,255,0))]"
+          >
+            <p class="text-sm text-white font-medium">
+              {t("webkit.colors.darkPanel")}
+            </p>
+          </div>
+        </div>
+
+        <!-- Experience category colors -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.colors.expCategories")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.colors.expCategoriesDesc")}
+            <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+              >ExperienciaItem.astro</code
+            >
+            {t("webkit.colors.expCategoriesTail")}
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Forced light column -->
+            <div>
+              <p
+                class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3"
+              >
+                {t("webkit.colors.light")}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {
+                  Object.entries(categoryColors).map(([name, c]) => (
+                    <span
+                      class={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${lightOnly(c.bg)} ${lightOnly(c.text)} ${lightOnly(c.border)}`}
+                    >
+                      {categoryLabels[name] ?? name}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+            <!-- Forced dark column -->
+            <div class="dark">
+              <p
+                class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3"
+              >
+                {t("webkit.colors.dark")}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {
+                  Object.entries(categoryColors).map(([name, c]) => (
+                    <span
+                      class={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${c.bg} ${c.text} ${c.border}`}
+                    >
+                      {categoryLabels[name] ?? name}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education gradients -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.colors.eduGradients")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.colors.eduGradientsDesc")}
+            <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+              >src/data/education.ts</code
+            >
+            {t("webkit.colors.eduGradientsTail")}
+          </p>
+          <div class="flex flex-col gap-4">
+            {
+              educationData.map((item) => (
+                <div class="flex flex-col gap-2">
+                  <div
+                    class:list={[
+                      "h-8 w-full rounded-full bg-gradient-to-br",
+                      item.gradient,
+                    ]}
+                  />
+                  <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <span class="text-sm font-semibold text-gray-900 dark:text-white">
+                      {educationTitle(item)}
+                    </span>
+                    <span class="text-xs text-gray-500 dark:text-gray-400">
+                      {educationType(item)} · {item.date}
+                    </span>
+                    <code class="text-[11px] text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-900/30 px-1.5 py-0.5 rounded">
+                      {item.gradient}
+                    </code>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 3. Typography                                                -->
+    <!-- ============================================================ -->
+    <section id="typography" class="scroll-m-24 pt-12">
+      <div class="revealed">
+        <TitleSection>{t("webkit.section.typography")}</TitleSection>
+      </div>
+
+      <div
+        class="mt-6 bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+      >
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+          {t("webkit.typography.desc")}
+          <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+            >@fontsource/roboto</code
+          >
+          {t("webkit.typography.descTail")}
+        </p>
+
+        <div class="flex flex-col gap-6">
+          <div>
+            <p
+              class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2"
+            >
+              {t("webkit.typography.h2Label")}
+            </p>
+            <h2
+              class="text-3xl font-semibold text-black/80 dark:text-white"
+            >
+              {t("webkit.typography.h2Sample")}
+            </h2>
+          </div>
+
+          <div>
+            <p
+              class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2"
+            >
+              {t("webkit.typography.bodyLabel")}
+            </p>
+            <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              {t("webkit.typography.bodySample")}
+            </p>
+          </div>
+
+          <div>
+            <p
+              class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2"
+            >
+              {t("webkit.typography.mediumLabel")}
+            </p>
+            <p class="text-base font-medium text-gray-800 dark:text-gray-200">
+              {t("webkit.typography.mediumSample")}
+            </p>
+          </div>
+
+          <div>
+            <p
+              class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2"
+            >
+              {t("webkit.typography.smallLabel")}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs font-medium px-2.5 py-1 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50"
+                >{t("webkit.typography.tagPill")}</span
+              >
+              <span
+                class="text-xs font-semibold px-2.5 py-0.5 rounded-full border bg-blue-100 text-blue-700 border-blue-300"
+                >{t("webkit.typography.category")}</span
+              >
+              <span
+                class="text-sm font-bold text-sky-600 dark:text-sky-400">{t("webkit.typography.date")}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 4. Icons (exclusive section)                                 -->
+    <!-- ============================================================ -->
+    <section id="icons" class="scroll-m-24 pt-12">
+      <div class="revealed">
+        <TitleSection>{t("webkit.section.icons")}</TitleSection>
+      </div>
+
+      <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+        {t("webkit.icons.desc")}
+        <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+          >import.meta.glob("../components/icons/*.astro")</code
+        >
+        {iconsDescMid}
+        <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+          >src/data/iconMap.ts</code
+        >{t("webkit.icons.descEnd")}
+      </p>
+
+      <div
+        class="mt-6 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3"
+      >
+        {
+          icons.map(({ stem, Icon, iconMapKeys }) => (
+            <div
+              data-icon-stem={stem}
+              class="flex flex-col items-center gap-2 p-3 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/40 hover:border-purple-400/50 dark:hover:border-purple-500/50 hover:shadow-md transition-all"
+            >
+              <Icon class="size-8 text-gray-800 dark:text-gray-100" aria-hidden="true" />
+              <span class="text-[11px] font-medium text-gray-700 dark:text-gray-300 text-center leading-tight break-all">
+                {stem}
+              </span>
+              <span class="text-[10px] text-gray-400 dark:text-gray-500 text-center leading-tight">
+                {iconMapKeys.length > 0
+                  ? `iconMap: ${iconMapKeys.join(", ")}`
+                  : t("webkit.icons.uiIcon")}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Tech-tag icon strip via iconMap + projectTags badge classes -->
+      <h3
+        class="mt-10 text-lg font-bold text-gray-900 dark:text-white mb-1"
+      >
+        {t("webkit.icons.techTags")}
+      </h3>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        {t("webkit.icons.techTagsDesc")}
+        <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+          >iconMap</code
+        >
+        {t("webkit.icons.techTagsDescTail")}
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {
+          techTagIcons.map(({ name, Icon, badge }) =>
+            badge ? (
+              <span
+                class={`flex items-center gap-x-1.5 rounded-full text-xs font-medium px-2.5 py-1 ${badge.class}`}
+              >
+                <Icon class="size-3.5" aria-hidden="true" />
+                {name}
+              </span>
+            ) : (
+              <span class="flex items-center gap-x-1.5 rounded-full text-xs font-medium px-2.5 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">
+                <Icon class="size-3.5" aria-hidden="true" />
+                {name}
+              </span>
+            )
+          )
+        }
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 5. Tags & skills                                             -->
+    <!-- ============================================================ -->
+    <section id="tags-skills" class="scroll-m-24 pt-12">
+      <div class="revealed">
+        <TitleSection>{t("webkit.section.tagsSkills")}</TitleSection>
+      </div>
+
+      <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+        {tagsSkillsDesc}
+        <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+          >projectTags.ts</code
+        >
+        {t("webkit.tagsSkills.descAnd")}
+        <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+          >skills.ts</code
+        >
+      </p>
+
+      <!-- Project tags -->
+      <div
+        class="mt-6 bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+      >
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          {t("webkit.tagsSkills.projectTags")}
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {
+            tagList.map((tag) => {
+              const TagIcon = iconMap[tag.name];
+              return (
+                <span
+                  class={`flex items-center gap-x-1.5 rounded-full text-xs font-medium px-2.5 py-1 ${tag.class}`}
+                >
+                  {TagIcon && <TagIcon class="size-3.5" aria-hidden="true" />}
+                  {tag.name}
+                </span>
+              );
+            })
+          }
+        </div>
+      </div>
+
+      <!-- Skill groups -->
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          skillsData.map((skillGroup) => (
+            <div class="group bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 transition-all duration-500 hover:-translate-y-2 hover:border-purple-400/50 dark:hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20 dark:hover:shadow-purple-500/10 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 relative z-10 transition-colors group-hover:text-purple-600 dark:group-hover:text-purple-400">
+                {skillTitle(skillGroup)}
+              </h3>
+              <div class="flex flex-wrap gap-3 relative z-10">
+                {skillGroup.items.map((item) => {
+                  const name = typeof item === "string" ? item : item.name;
+                  const level =
+                    typeof item === "string" ? undefined : item.level;
+                  const Icon = iconMap[name];
+                  return (
+                    <span
+                      class="group/skill bg-[#582f82] dark:bg-[#582f82] text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:shadow-md hover:shadow-purple-500/40 hover:bg-purple-600 dark:hover:bg-purple-500 hover:scale-110 hover:-translate-y-1 transition-all duration-300 cursor-default flex items-center gap-2 relative"
+                      title={level !== undefined ? `${name} — ${level}%` : name}
+                    >
+                      {Icon && <Icon class="size-4" aria-hidden="true" />}
+                      {name}
+                      {level !== undefined && (
+                        <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover/skill:w-full transition-all duration-300 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 rounded-full" />
+                      )}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 6. Backgrounds & effects                                     -->
+    <!-- ============================================================ -->
+    <section id="backgrounds" class="scroll-m-24 pt-12">
+      <div class="revealed">
+        <TitleSection>{t("webkit.section.backgrounds")}</TitleSection>
+      </div>
+
+      <div class="mt-6 flex flex-col gap-6">
+        <!-- Hero radial gradient block -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.backgrounds.heroRadial")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.backgrounds.heroRadialDesc")}
+          </p>
+          <div
+            class="rounded-xl border border-gray-200 dark:border-gray-700/50 p-8 bg-gray-50 dark:bg-gray-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0.8))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(70,130,180,0.3),rgba(255,255,255,0))]"
+          >
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-200">
+              {t("webkit.backgrounds.backdropSample")}
+            </p>
+          </div>
+        </div>
+
+        <!-- TitleSection underline -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.backgrounds.underline")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.backgrounds.underlineDesc")}
+          </p>
+          <div
+            class="h-[2px] w-20 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 rounded-full"
+          >
+          </div>
+        </div>
+
+        <!-- Skill section gradient panel -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.backgrounds.skillPanel")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.backgrounds.skillPanelDesc")}
+          </p>
+          <div
+            class="bg-gradient-to-br from-purple-50 to-blue-50 dark:bg-none dark:bg-[#0f172a] border border-purple-200 dark:border-blue-900/30 rounded-2xl p-6 relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-purple-100/50 via-transparent to-blue-100/50 dark:from-blue-900/10 dark:via-transparent dark:to-purple-900/10 pointer-events-none"
+            >
+            </div>
+            <p
+              class="text-base font-bold text-gray-900 dark:text-white relative z-10"
+            >
+              {t("webkit.backgrounds.achievementsSample")}
+            </p>
+          </div>
+        </div>
+
+        <!-- Badge conic gradient -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.backgrounds.badgeConic")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.backgrounds.badgeConicDesc")}
+            <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+              >#51E4B8 → #21554E → #51E4B8</code
+            >
+          </p>
+          <Badge>{t("webkit.backgrounds.badgeAvailable")}</Badge>
+        </div>
+
+        <!-- Category tab active state -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.backgrounds.tabActive")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.backgrounds.tabActiveDesc")}
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button
+              type="button"
+              class="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border border-blue-600 bg-blue-600 text-white"
+              >{t("webkit.backgrounds.active")}</button
+            >
+            <button
+              type="button"
+              class="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border border-gray-600 dark:border-gray-600 bg-transparent text-gray-800 dark:text-white hover:bg-blue-600 hover:text-white hover:border-blue-600"
+              >{t("webkit.backgrounds.inactive")}</button
+            >
+          </div>
+        </div>
+
+        <!-- Scroll progress bar sample -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.backgrounds.scrollBar")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.backgrounds.scrollBarDesc")}
+          </p>
+          <div
+            class="h-[3px] w-2/3 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 rounded-full"
+            style="box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);"
+          >
+          </div>
+        </div>
+
+        <!-- Nav pill -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            {t("webkit.backgrounds.navPill")}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.backgrounds.navPillDesc")}
+          </p>
+          <nav
+            class="inline-flex px-4 py-2 text-sm font-medium rounded-full text-gray-700 dark:text-gray-200 justify-center items-center bg-white/70 dark:bg-gray-900/60 shadow-lg ring-1 ring-white/10 backdrop-blur-md"
+          >
+            <span class="px-3 py-2 text-gray-800 dark:text-gray-200">{t("webkit.backgrounds.nav")}</span
+            >
+            <span
+              class="px-3 py-2 text-gray-800 dark:text-gray-200 hover:text-blue-600 transition-colors"
+              >{t("webkit.backgrounds.links")}</span
+            >
+            <span class="px-3 py-2 text-gray-800 dark:text-gray-200">…</span>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 7. Components                                                -->
+    <!-- ============================================================ -->
+    <section id="components" class="scroll-m-24 pt-12">
+      <div class="revealed">
+        <TitleSection>{t("webkit.section.components")}</TitleSection>
+      </div>
+
+      <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+        {t("webkit.components.desc")}
+        <code class="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+          >src/components/ui/</code
+        >
+        {t("webkit.components.descTail")}
+      </p>
+
+      <div class="mt-6 flex flex-col gap-6">
+        <!-- LinkButton -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            LinkButton.astro
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.components.linkButtonDesc")}
+          </p>
+          <LinkButton href="#">{t("webkit.components.projectLink")}</LinkButton>
+        </div>
+
+        <!-- Badge -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            Badge.astro
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.components.badgeDesc")}
+          </p>
+          <Badge>{t("webkit.components.openToWork")}</Badge>
+        </div>
+
+        <!-- TitleSection with icon slot -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            TitleSection.astro with icon slot
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.components.titleSectionDesc")}
+          </p>
+          <div class="revealed">
+            <TitleSection>
+              <CodeIcon class="size-7" aria-hidden="true" />
+              {t("webkit.components.sampleSection")}
+            </TitleSection>
+          </div>
+        </div>
+
+        <!-- Category tab (static markup copy) -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            Category tab (static copy)
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.components.tabStaticDesc")}
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button
+              type="button"
+              data-active="true"
+              class="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border border-blue-600 bg-blue-600 text-white"
+              >{t("webkit.components.all")}</button
+            >
+            <button
+              type="button"
+              data-active="false"
+              class="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border border-gray-600 dark:border-gray-600 bg-transparent text-gray-800 dark:text-white hover:bg-blue-600 hover:text-white hover:border-blue-600"
+              >Web</button
+            >
+            <button
+              type="button"
+              data-active="false"
+              class="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border border-gray-600 dark:border-gray-600 bg-transparent text-gray-800 dark:text-white hover:bg-blue-600 hover:text-white hover:border-blue-600"
+              >App</button
+            >
+          </div>
+        </div>
+
+        <!-- Project tag pill -->
+        <div
+          class="bg-white/80 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+        >
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+            Project tag pill
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("webkit.components.tagPillDesc")}
+          </p>
+          {
+            firstTag && (
+              <span
+                class={`inline-flex items-center gap-x-1.5 rounded-full text-xs font-medium px-2.5 py-1 ${firstTag.class}`}
+              >
+                {FirstTagIcon && (
+                  <FirstTagIcon class="size-3.5" aria-hidden="true" />
+                )}
+                {firstTag.name}
+              </span>
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 8. Page footer                                               -->
+    <!-- ============================================================ -->
+    <footer
+      class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center"
+    >
+      <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+        {t("webkit.footer.generated")}
+      </p>
+      <p class="mt-1 text-xs text-gray-400 dark:text-gray-500">
+        {t("webkit.footer.staticRef")} {today}
+      </p>
+      <a
+        href={`/${lang}/`}
+        class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+      >
+        {t("webkit.footer.backHome")}
+      </a>
+    </footer>
+  </div>
+</main>

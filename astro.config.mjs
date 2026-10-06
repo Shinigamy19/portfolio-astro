@@ -6,6 +6,9 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shinigamy19.tech',
+  redirects: {
+    '/webkit': '/es/webkit',
+  },
   devToolbar: {
     enabled: false,
   },
