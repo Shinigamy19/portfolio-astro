@@ -214,5 +214,17 @@
     "mode": "screenshot",
     "source": "https://shinigamy19.github.io/Rompecabezas-html/",
     "template": 1
+  },
+  "nexo-ui-kit.webp": {
+    "hash": "1769d14c036a4656e79cfb120d9d782980adf038fa88a76cb77abf69da0cf807",
+    "mode": "screenshot",
+    "source": "https://nexo-ui-kit-chi.vercel.app/",
+    "template": 1
+  },
+  "que-comemos-hoy.webp": {
+    "hash": "0c7b445f90c05f3b1551070d28408a6c1c681ed0252661af4c1229e85aa813ec",
+    "mode": "screenshot",
+    "source": "https://que-comemos-hoy-nine.vercel.app/",
+    "template": 1
   }
 }

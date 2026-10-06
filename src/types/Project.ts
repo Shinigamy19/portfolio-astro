@@ -13,10 +13,13 @@ export interface Project {
     github?: string | string[];
     link?: string;
     link2?: string;
+    npm?: string;
     playstore?: string;
+    playstoreComingSoon?: boolean;
     figma?: string;
     behance?: string;
     youtube?: string;
+    featured?: boolean;
     title_en?: string;
     description_en?: string;
     title_pt?: string;

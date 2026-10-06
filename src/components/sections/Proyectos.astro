@@ -74,21 +74,29 @@ const categoryKeys: Record<string, string> = {
             github,
             link,
             link2,
+            npm,
             figma,
             behance,
             youtube,
             playstore,
+            playstoreComingSoon,
+            featured,
             comingSoon,
           },
           index,
         ) => (
           <article
-            class={`project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${index >= INITIAL_SHOW ? "hidden" : ""}`}
+            class={`project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${featured ? "border-purple-400/60 dark:border-purple-500/40 ring-1 ring-purple-400/30 dark:ring-purple-500/20" : "border-gray-200 dark:border-gray-800"} ${index >= INITIAL_SHOW ? "hidden" : ""}`}
             data-category={
               Array.isArray(category) ? category.join(",") : category
             }
           >
             <div class="relative h-48 overflow-hidden">
+              {featured && (
+                <span class="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-purple-600/90 text-white text-[11px] font-semibold px-2.5 py-1 backdrop-blur-sm">
+                  ★ {t("projects.featured")}
+                </span>
+              )}
               <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300 z-10" />
               <Image
                 src={
@@ -165,7 +173,22 @@ const categoryKeys: Record<string, string> = {
                     {t("projects.preview")}
                   </LinkButtonIcon>
                 )}
-                {playstore && (
+                {npm && (
+                  <LinkButtonIcon href={npm}>
+                    <span class="text-xs font-bold tracking-tight">npm</span>
+                    {t("projects.npm")}
+                  </LinkButtonIcon>
+                )}
+                {playstoreComingSoon && (
+                  <button
+                    disabled
+                    class="inline-flex bg-gray-100 text-gray-400 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-gray-500 dark:bg-gray-800 border dark:border-gray-700 rounded-xl cursor-not-allowed"
+                  >
+                    <PlayStoreIcon class="size-4" />
+                    {t("projects.playstoreSoon")}
+                  </button>
+                )}
+                {playstore && !playstoreComingSoon && (
                   <LinkButtonIcon href={playstore}>
                     <PlayStoreIcon class="size-4" />
                     {t("projects.playstore")}

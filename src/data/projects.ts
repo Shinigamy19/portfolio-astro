@@ -12,10 +12,72 @@ export const projectsData: Project[] = [
         category: ["App", "Web"],
         link: "https://ar.techcalend.com/",
         playstore: "https://play.google.com/store/apps/details?id=com.Shinigamy19.TechCalendAR",
+        featured: true,
         title_en: "TechCalendAR",
         description_en: "Tech events calendar from Argentina. Conferences, meetups and hackathons with push notifications and PWA.",
         title_pt: "TechCalendAR",
         description_pt: "Calendário de eventos tech da Argentina. Conferências, meetups e hackathons com notificações push e PWA.",
+    },
+    {
+        title: "Nexo Digital",
+        description:
+            "Nexo Digital es una comunidad abierta para personas del mundo digital: desarrollo, diseño, edición, audio, domótica, tecnología, IA y más.",
+        image:
+            "/preview/nexo-digital.webp",
+        tags: [projectTags.ASTRO, projectTags.CSS3, projectTags.TYPESCRIPT],
+        category: "Web",
+        link: "https://nexo-digital-pi.vercel.app/",
+        featured: true,
+        title_en: "Nexo Digital",
+        description_en: "Nexo Digital is an open community for people from the digital world: development, design, editing, audio, home automation, technology, AI and more.",
+        title_pt: "Nexo Digital",
+        description_pt: "Nexo Digital é uma comunidade aberta para pessoas do mundo digital: desenvolvimento, design, edição, áudio, domótica, tecnologia, IA e mais.",
+    },
+    {
+        title: "Cyber Bunker",
+        description:
+            "Catálogo de productos y panel de administración para Cyber Bunker. Desarrollado con Astro, base de datos MySQL y totalmente hecho con CSS puro.",
+        image:
+            "/preview/cyber-bunker-mockup.webp",
+        tags: [projectTags.ASTRO, projectTags.MYSQL, projectTags.CSS, projectTags.TYPESCRIPT],
+        category: "Web",
+        link: "https://cyber-bunker.vercel.app/",
+        featured: true,
+        title_en: "Cyber Bunker",
+        description_en: "Product catalog and administration panel for Cyber Bunker. Developed with Astro, MySQL database and entirely made with pure CSS.",
+        title_pt: "Cyber Bunker",
+        description_pt: "Catálogo de produtos e painel de administração para Cyber Bunker. Desenvolvido com Astro, banco de dados MySQL e totalmente feito com CSS puro.",
+    },
+    {
+        title: "Nexo UI Kit",
+        description:
+            "Sistema de diseño y componentes Astro para el ecosistema Nexo Digital Lab. Tokens `--nx-*` como fuente única de verdad, dark-first y publicado en npm.",
+        image:
+            "/preview/nexo-ui-kit.webp",
+        tags: [projectTags.ASTRO, projectTags.TYPESCRIPT, projectTags.CSS3],
+        category: ["Web", "Programación"],
+        github: "https://github.com/NexoDigital-Lab/nexo-ui-kit",
+        link: "https://nexo-ui-kit-chi.vercel.app/",
+        npm: "https://www.npmjs.com/package/@nexodigital/ui-kit",
+        title_en: "Nexo UI Kit",
+        description_en: "Design system and Astro components for the Nexo Digital Lab ecosystem. `--nx-*` tokens as the single source of truth, dark-first, published on npm.",
+        title_pt: "Nexo UI Kit",
+        description_pt: "Sistema de design e componentes Astro para o ecossistema Nexo Digital Lab. Tokens `--nx-*` como fonte única de verdade, dark-first, publicado no npm.",
+    },
+    {
+        title: "¿Qué Comemos Hoy?",
+        description:
+            "App para decidir qué comer hoy. Demo en Vercel y Play Store próximamente.",
+        image:
+            "/preview/que-comemos-hoy.webp",
+        tags: [projectTags.NEXT, projectTags.REACT, projectTags.TYPESCRIPT],
+        category: ["App", "Web"],
+        link: "https://que-comemos-hoy-nine.vercel.app/",
+        playstoreComingSoon: true,
+        title_en: "What Are We Eating Today?",
+        description_en: "App to decide what to eat today. Live demo on Vercel and Play Store coming soon.",
+        title_pt: "O Que Comemos Hoje?",
+        description_pt: "App para decidir o que comer hoje. Demo no Vercel e Play Store em breve.",
     },
     {
         title: "TechCalendPE",
@@ -46,34 +108,6 @@ export const projectsData: Project[] = [
         description_en: "Tech events calendar from Chile. Conferences, meetups and hackathons with push notifications and PWA.",
         title_pt: "TechCalendCL",
         description_pt: "Calendário de eventos tech do Chile. Conferências, meetups e hackathons com notificações push e PWA.",
-    },
-    {
-        title: "Cyber Bunker",
-        description:
-            "Catálogo de productos y panel de administración para Cyber Bunker. Desarrollado con Astro, base de datos MySQL y totalmente hecho con CSS puro.",
-        image:
-            "/preview/cyber-bunker-mockup.webp",
-        tags: [projectTags.ASTRO, projectTags.MYSQL, projectTags.CSS, projectTags.TYPESCRIPT],
-        category: "Web",
-        link: "https://cyber-bunker.vercel.app/",
-        title_en: "Cyber Bunker",
-        description_en: "Product catalog and administration panel for Cyber Bunker. Developed with Astro, MySQL database and entirely made with pure CSS.",
-        title_pt: "Cyber Bunker",
-        description_pt: "Catálogo de produtos e painel de administração para Cyber Bunker. Desenvolvido com Astro, banco de dados MySQL e totalmente feito com CSS puro.",
-    },
-    {
-        title: "Nexo Digital",
-        description:
-            "Nexo Digital es una comunidad abierta para personas del mundo digital: desarrollo, diseño, edición, audio, domótica, tecnología, IA y más.",
-        image:
-            "/preview/nexo-digital.webp",
-        tags: [projectTags.ASTRO, projectTags.CSS3, projectTags.TYPESCRIPT],
-        category: "Web",
-        link: "https://nexo-digital-pi.vercel.app/",
-        title_en: "Nexo Digital",
-        description_en: "Nexo Digital is an open community for people from the digital world: development, design, editing, audio, home automation, technology, AI and more.",
-        title_pt: "Nexo Digital",
-        description_pt: "Nexo Digital é uma comunidade aberta para pessoas do mundo digital: desenvolvimento, design, edição, áudio, domótica, tecnologia, IA e mais.",
     },
     {
         title: "Link Collection",
