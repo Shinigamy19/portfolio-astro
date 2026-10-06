@@ -36,6 +36,7 @@ User request (2026-10-06): hybrid preview generation (real screenshots when a li
 - [x] T1 Setup: branch, feature doc, install `playwright` + `sharp` + `tsx`, chromium
 - [x] T2 Preview generator — `scripts/generate-previews.ts`, `scripts/preview-card.ts`, npm script `previews`
 - [x] T3 Sample verification — dry-run 36; TechCalendAR screenshot 1200×630; Afk Bardo card 1200×600; manifest skip works
+- [x] T2b RDD correction — R3-FALLBACK-PIN fixed in `bc805dd`; review approved, authority burned (`review-ebcd87a6aaa82958`)
 - [ ] T4 `/webkit` page (tokens, typography, icons, tags/skills, backgrounds, components)
 - [ ] T5 Full `npm run previews`, `astro check` + `astro build`, remaining commits
 
@@ -52,9 +53,21 @@ User request (2026-10-06): hybrid preview generation (real screenshots when a li
 - `npx astro check` and `npm run build`
 - Open `/webkit` in preview; spot-check icon grid + branded cards
 
+## Review outcome (preview generator)
+- Candidate: `ab79f27` + correction `bc805dd` vs base `de7bfec`
+- Lens: review-reliability → CRITICAL R3-FALLBACK-PIN corrected → approved
+- Advisory follow-ups (non-blocking):
+  - R3-HASH-OMITS-TAG-CLASS — include `tag.class` in computeHash
+  - R3-MANIFEST-BASENAME-COLLISION — key manifest by relative path, not basename
+  - R3-PROVENANCE-SOURCE-ON-CARD-FALLBACK — null source when mode is card
+  - R3-ONLY-EMPTY-SELECTS-ALL — reject empty `--only=`
+  - R3-NO-ASSERTIONS-FOR-FRESHNESS-POLICY — unit tests for pure exports
+
 ## Progress
-- 2026-10-06: Feature doc created; branch `feat/previews-and-webkit` from `master` @ `de7bfec`.
-- 2026-10-06: T1–T3 done (delegated writer). Parent spot-check passed. Full regeneration pending.
+- 2026-10-06: Feature doc created; branch from `master` @ `de7bfec`.
+- 2026-10-06: T1–T3 done (delegated writer). Parent spot-check passed.
+- 2026-10-06: T2b native review approved after one bounded correction. Commits: `ab79f27`, `bc805dd`.
+- Next: T4 webkit page.
 
 ## Route declaration
 - T2/T4: delegated writer (multi-file non-trivial). Parent owns setup, verification, commits.
