@@ -64,6 +64,13 @@ import ReactIcon from "../components/icons/React.astro";
 import ExpoIcon from "../components/icons/Expo.astro";
 import FirebaseIcon from "../components/icons/Firebase.astro";
 import NativeWindIcon from "../components/icons/NativeWind.astro";
+import GitIcon from "../components/icons/Git.astro";
+import VercelIcon from "../components/icons/Vercel.astro";
+import VscodeIcon from "../components/icons/Vscode.astro";
+import ComfyUIIcon from "../components/icons/ComfyUI.astro";
+import CapCutIcon from "../components/icons/CapCut.astro";
+import OpenCodeIcon from "../components/icons/OpenCode.astro";
+import PlaywrightIcon from "../components/icons/Playwright.astro";
 
 /**
  * Maps tag/skill names to their Astro icon components.
@@ -138,4 +145,12 @@ export const iconMap: Record<string, any> = {
   "Expo": ExpoIcon,
   "Firebase": FirebaseIcon,
   "NativeWind": NativeWindIcon,
+  "Git": GitIcon,
+  "GitHub": GitIcon,
+  "Vercel": VercelIcon,
+  "VS Code": VscodeIcon,
+  "ComfyUI": ComfyUIIcon,
+  "CapCut": CapCutIcon,
+  "OpenCode": OpenCodeIcon,
+  "Playwright": PlaywrightIcon,
 };
