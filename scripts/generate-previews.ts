@@ -205,27 +205,21 @@ async function main(): Promise<void> {
     let manifestDirty = false;
 
     // Dry-run: plan only, no browser, no writes.
+    // Policy: keep any existing preview image; generate only when missing.
     if (dryRun) {
         for (const project of selected) {
             const out = resolveOutput(project);
+            if (!force && existsSync(out.absPath)) {
+                console.log(`keep (exists)  ${project.title}  ${out.relPath}`);
+                continue;
+            }
             if (out.missingImage) {
                 console.warn(
                     `warn: "${project.title}" has no image field; would write ${out.relPath} — add an image field to projects.ts`,
                 );
             }
             const mode = decideMode(project);
-            const hash = computeHash(project, mode);
-            const entry = manifest[out.fileName];
-            const upToDate =
-                !force &&
-                entry?.hash === hash &&
-                entry.mode === mode &&
-                existsSync(out.absPath);
-            if (upToDate) {
-                console.log(`skip (up-to-date)  ${project.title}  ${out.relPath}`);
-            } else {
-                console.log(`plan: ${mode}  ${project.title}  ${out.relPath}`);
-            }
+            console.log(`plan: ${mode}  ${project.title}  ${out.relPath}`);
         }
         return;
     }
@@ -242,19 +236,13 @@ async function main(): Promise<void> {
                 );
             }
 
-            const plannedMode = decideMode(project);
-            const plannedHash = computeHash(project, plannedMode);
-            const entry = manifest[out.fileName];
-            if (
-                !force &&
-                entry?.hash === plannedHash &&
-                entry.mode === plannedMode &&
-                existsSync(out.absPath)
-            ) {
-                console.log(`skip (up-to-date)  ${project.title}  ${out.relPath}`);
+            // Policy: keep any existing preview image; generate only when missing.
+            if (!force && existsSync(out.absPath)) {
+                console.log(`keep (exists)  ${project.title}  ${out.relPath}`);
                 continue;
             }
 
+            const plannedMode = decideMode(project);
             let mode: Mode = plannedMode;
             let buffer: Buffer;
             let warning: string | null = null;
