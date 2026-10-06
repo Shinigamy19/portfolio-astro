@@ -17,7 +17,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true },
 );
 
-/** Resolve a theme variant for a project image path, if that file exists. */
+/** Theme variant path for auto-generated previews (foo.light.webp / foo.dark.webp). */
 function previewVariant(
   image: string,
   theme: "light" | "dark",
@@ -100,7 +100,9 @@ const categoryKeys: Record<string, string> = {
             "/placeholder-project.jpg";
           const lightSrc = previewVariant(image, "light");
           const darkSrc = previewVariant(image, "dark");
-          const hasThemeVariants = Boolean(lightSrc || darkSrc);
+          // Dual-theme only for auto-generated previews (both variants exist).
+          // Hand-made mockups keep a single Image — picture+variants broke them.
+          const hasThemeVariants = Boolean(lightSrc && darkSrc);
           return (
           <article
             class={`project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${featured ? "border-purple-400/60 dark:border-purple-500/40 ring-1 ring-purple-400/30 dark:ring-purple-500/20" : "border-gray-200 dark:border-gray-800"} ${index >= INITIAL_SHOW ? "hidden" : ""}`}
@@ -115,36 +117,28 @@ const categoryKeys: Record<string, string> = {
                 </span>
               )}
               <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300 z-10" />
-              {hasThemeVariants ? (
-                <picture>
-                  {darkSrc && (
-                    <source
-                      srcset={darkSrc.src}
-                      media="(prefers-color-scheme: dark)"
-                      width={400}
-                      height={200}
-                    />
-                  )}
-                  {lightSrc && (
-                    <source
-                      srcset={lightSrc.src}
-                      media="(prefers-color-scheme: light)"
-                      width={400}
-                      height={200}
-                    />
-                  )}
-                  <Image
-                    src={fallback}
+              {hasThemeVariants && lightSrc && darkSrc ? (
+                <>
+                  <img
+                    src={lightSrc.src}
                     alt={title}
-                    class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
+                    class="preview-light object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
                     width={400}
                     height={200}
-                    widths={[400, 800]}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                     loading="lazy"
                     decoding="async"
                   />
-                </picture>
+                  <img
+                    src={darkSrc.src}
+                    alt=""
+                    aria-hidden="true"
+                    class="preview-dark hidden object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
+                    width={400}
+                    height={200}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </>
               ) : (
                 <Image
                   src={fallback}
@@ -480,6 +474,22 @@ const categoryKeys: Record<string, string> = {
     to {
       opacity: 0;
       transform: scale(0.9) translateY(20px);
+    }
+  }
+
+  /* Auto-generated dual previews: follow the visitor's system color scheme */
+  .preview-light {
+    display: block;
+  }
+  .preview-dark {
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    .preview-light {
+      display: none;
+    }
+    .preview-dark {
+      display: block;
     }
   }
 </style>

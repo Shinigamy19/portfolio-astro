@@ -256,12 +256,9 @@ async function main(): Promise<void> {
     if (dryRun) {
         for (const project of selected) {
             const out = resolveOutput(project);
-            const lightOk = existsSync(out.light.absPath);
-            const darkOk = existsSync(out.dark.absPath);
-            if (!force && lightOk && darkOk) {
-                console.log(
-                    `keep (exists)  ${project.title}  ${out.light.fileName} + ${out.dark.fileName}`,
-                );
+            // Hand-made / existing base preview: keep as-is, no dual theme.
+            if (!force && existsSync(out.base.absPath)) {
+                console.log(`keep (exists)  ${project.title}  ${out.base.relPath}`);
                 continue;
             }
             if (out.missingImage) {
@@ -270,11 +267,8 @@ async function main(): Promise<void> {
                 );
             }
             const mode = decideMode(project);
-            const missing: string[] = [];
-            if (force || !lightOk) missing.push("light");
-            if (force || !darkOk) missing.push("dark");
             console.log(
-                `plan: ${mode}  ${project.title}  ${missing.join("+")}  (+ fallback ${out.base.fileName})`,
+                `plan: ${mode}  ${project.title}  light+dark  (+ fallback ${out.base.fileName})`,
             );
         }
         return;
@@ -292,15 +286,13 @@ async function main(): Promise<void> {
                 );
             }
 
-            const lightOk = existsSync(out.light.absPath);
-            const darkOk = existsSync(out.dark.absPath);
-            if (!force && lightOk && darkOk) {
-                console.log(
-                    `keep (exists)  ${project.title}  ${out.light.fileName} + ${out.dark.fileName}`,
-                );
+            // Hand-made / existing base preview: keep as-is, no dual theme.
+            if (!force && existsSync(out.base.absPath)) {
+                console.log(`keep (exists)  ${project.title}  ${out.base.relPath}`);
                 continue;
             }
 
+            // Missing base → generate light + dark variants + dark fallback copy.
             const plannedMode = decideMode(project);
             let mode: Mode = plannedMode;
             const buffers: Partial<Record<CardTheme, Buffer>> = {};
@@ -359,8 +351,7 @@ async function main(): Promise<void> {
                 manifestDirty = true;
             }
 
-            // Legacy fallback: keep existing base file untouched; for brand-new
-            // projects write a dark copy so older consumers still resolve an image.
+            // Legacy fallback path for consumers that still read the base name.
             if (!existsSync(out.base.absPath)) {
                 const darkBuf = buffers.dark;
                 if (darkBuf) {
