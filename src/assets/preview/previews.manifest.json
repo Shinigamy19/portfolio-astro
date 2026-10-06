@@ -1,14 +1,218 @@
 {
   "techcalendar.webp": {
-    "hash": "1f1cc47a65cb464e180f20926d346cd364349189ae4e8f38424caa2838d221e9",
+    "hash": "0f5d4508a897bc511d3bf136ee7dbf773552c079bf793e4390cbc2a34dd5b88e",
     "mode": "screenshot",
     "source": "https://ar.techcalend.com/",
     "template": 1
   },
   "afk-bardo.webp": {
-    "hash": "c1d789f4df2cd63f1be4097e0949cb9861bce4f7e8128d69d6faa20a88ef068c",
+    "hash": "b283d9f75e8a6a059b293a6f4f86aa4f6c9e7befda66e13afdbe83ee731cacc1",
     "mode": "card",
     "source": null,
+    "template": 1
+  },
+  "techcalendpe.webp": {
+    "hash": "1d5f803ce8abb34f0c5cd98f4abc3d7f16564d7ed6624d3a301f17ec1ed85cd6",
+    "mode": "card",
+    "source": "https://pe.techcalend.com/",
+    "template": 1
+  },
+  "techcalendcl.webp": {
+    "hash": "dfa93c14e06d8d3e21cd5ac5be09b13760f1dd225bca3aa82f647a7e6a39047f",
+    "mode": "card",
+    "source": "https://cl.techcalend.com/",
+    "template": 1
+  },
+  "cyber-bunker-mockup.webp": {
+    "hash": "86fd2c765d5f2a2d567cb63fcf50531cb7d9929ade9bf128825f0e1b2c84ef38",
+    "mode": "screenshot",
+    "source": "https://cyber-bunker.vercel.app/",
+    "template": 1
+  },
+  "nexo-digital.webp": {
+    "hash": "146dcce1737c3a348b40a445728c6b53e3f47a1e6029681b5667a61aa1141536",
+    "mode": "screenshot",
+    "source": "https://nexo-digital-pi.vercel.app/",
+    "template": 1
+  },
+  "link-collection.webp": {
+    "hash": "9ce9341bd1eefb3c0023bb81777c1534f9bef5554d9cecf6f9527402f6a0d49c",
+    "mode": "screenshot",
+    "source": "https://linkcollection.work/",
+    "template": 1
+  },
+  "svg-gallery.webp": {
+    "hash": "e7b2d4842d4239e38019c2a07d2096c3b8cf0d745a5910ebb11f4917b7676fdd",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "trello-clone.webp": {
+    "hash": "1f612ef5db3d598866e44dbd909f4d2dc9830ea11f0b8518d652482222dc2e2c",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "pomodoro.webp": {
+    "hash": "7dbc65bc473ca16e77c123330d2885b6e89e9d597e8f17c868aea0797d6f542f",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "cineestreno.webp": {
+    "hash": "9b897e3e9b0dd8f186b9261f20d9e917b12c1705f5c561a0acddcd0ee15a5fa1",
+    "mode": "screenshot",
+    "source": "https://angular-movies-g9qq.vercel.app/",
+    "template": 1
+  },
+  "qr-generator.webp": {
+    "hash": "2972158493e6f8add85d3d06a8962b2efc11ca1f31f162b52ff9b34560864b70",
+    "mode": "screenshot",
+    "source": "https://qr-generator-rust-seven.vercel.app/",
+    "template": 1
+  },
+  "el-amanecer-de-la-tormenta-mock.webp": {
+    "hash": "b798948faf63e9500b17e6c5b41b4c777ca8d99988716c77b43c385762a2c6eb",
+    "mode": "screenshot",
+    "source": "https://bwlnk.com/9786316664136",
+    "template": 1
+  },
+  "inmortal-mock.webp": {
+    "hash": "b27f4ad83201ad596614dd96a39c0bceea3720560dc6905f84504f1daaf4e7ee",
+    "mode": "screenshot",
+    "source": "https://www.amazon.es/Inmortal-Libro-poemas-Jesica-Ledesma-ebook/dp/B07M7LT5WL/ref=sr_1_4?s=books&sr=1-4",
+    "template": 1
+  },
+  "juego-de-mesa.webp": {
+    "hash": "f0f6d787bc2dfe69992f103aa60ebe818b76e674c4c9994054bbe44a7f1dbb3f",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "logos-mock.webp": {
+    "hash": "0e8e97e04aa2e28ff6db9f83ed1bd24fe4c7dc526d7c4c57af72ae210ca1053e",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "la-cueva-de-las-manos.webp": {
+    "hash": "237d4f13e97aff83f242d1a812c4725ff301d2e674e59a9f60ba746b4be3eb8b",
+    "mode": "card",
+    "source": "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
+    "template": 1
+  },
+  "end-of-bioworld.webp": {
+    "hash": "2562778240f83bc694a89f7ed314bb864acaec17126e04cfe26ecd29b4797575",
+    "mode": "card",
+    "source": "https://shinigamy19.itch.io/end-of-bioworld",
+    "template": 1
+  },
+  "curso-processing.webp": {
+    "hash": "2ec79fac38280b93f7ee6581ac51da94cc1496919b27c8dcab7f28610f31c273",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "tutoriales-batch.webp": {
+    "hash": "a246499b379c1dcc97510f667c6107a53d4c63423212d3cd5e8ae18d2d328fd1",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "uccer.webp": {
+    "hash": "af3810e5d78c3788f891b76ef0ff8d605e56f1d71807d68e91be5204e673ec22",
+    "mode": "card",
+    "source": "https://shinigamy19.itch.io/una-conversacion-con-el-roles",
+    "template": 1
+  },
+  "purr-arduino.webp": {
+    "hash": "50ba68b8aa7d1c75a8c02a48abf56f2c8458aeb22af0c743559ceccd499f95fa",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "pedales.webp": {
+    "hash": "ec190e9acb5c00fd3c4aaa2777b79318e47005a38bcebe307550a42a6f910829",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "codigo-dein.webp": {
+    "hash": "54dc320dcbd538b45f27e4b56add3dd849a603668d12a9194ecec76330bd26b7",
+    "mode": "screenshot",
+    "source": "https://shinigamy19.github.io/Proyecto-final-html-css/",
+    "template": 1
+  },
+  "blog-shinigamy19.webp": {
+    "hash": "10772e07f304cfa47d3140d4851848003df28bcce7b0e68ce0d9fb7e3c4e9970",
+    "mode": "screenshot",
+    "source": "https://shinigamy19.github.io/Blog-Shinigamy19/",
+    "template": 1
+  },
+  "sistema-policial.webp": {
+    "hash": "7ca9ec4c93ad0678e79eafa6d6a3343a9c3ae47ccf79c0651f84ab606ded9e25",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "calculadora.webp": {
+    "hash": "3a976215ce811dc19cdb3233caceb358fe271504ad9d65ea2a85d5c5b6f57d63",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "tateti.webp": {
+    "hash": "de75ff287ac85e0fc6bb87a30872493c3a16cdeac9570f7890c76c21245ac539",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "numero-entero.webp": {
+    "hash": "7be7ac345fb29ad3f417348fe8fb1e37bd15c4f78af8b57e74811d15c3dd71a2",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "adivina-el-numero.webp": {
+    "hash": "070e4f25f800e7324b0807da88090c3280e2d1d930658764ebab80e4f1e36d15",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "batalla-vikinga.webp": {
+    "hash": "b62e4ef523d725c395be89a358da1143cea03471ab5438ecadfe0c9bfa3adbb2",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "paint-brush.webp": {
+    "hash": "7dca83962357e0efd0f012987fb9799b5456363cf724bfc3cd0ab379347fdd37",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "pikachu.webp": {
+    "hash": "8ee0019083f8ba5a761ac8b62f8842c377d82a687914179d17f0b9c1eb3688b1",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "papeltapiz.webp": {
+    "hash": "9d300f88ad5d995efb8ed80e8caa1d5871bace538ec846e51bab0d5ff594aabc",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "osciladores.webp": {
+    "hash": "55ed29870ac6641bcff5d08327a1992d56d2923378239c2ba7970c20238c11ff",
+    "mode": "card",
+    "source": null,
+    "template": 1
+  },
+  "rompecabezas.webp": {
+    "hash": "0cb85bf8e3393baea49ea2bc0cbf13a3dda5b3645e9e5f83b08f851ee30e8ff5",
+    "mode": "screenshot",
+    "source": "https://shinigamy19.github.io/Rompecabezas-html/",
     "template": 1
   }
 }
