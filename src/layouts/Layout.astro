@@ -5,9 +5,9 @@ import Footer from "../components/layout/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 
 // Solo los pesos que usamos (400, 500, 700) para latin
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+import "@fontsource/roboto/latin-400.css";
+import "@fontsource/roboto/latin-500.css";
+import "@fontsource/roboto/latin-700.css";
 
 interface Props {
   title: string;
@@ -133,6 +133,30 @@ const locale = lang === "es" ? "es_AR" : lang === "pt" ? "pt_BR" : "en_US";
       :root {
         color-scheme: light dark;
       }
+
+      /* Dual project previews: follow the OS color scheme by default. */
+      img.preview-light {
+        display: block;
+      }
+      img.preview-dark {
+        display: none;
+      }
+      @media (prefers-color-scheme: dark) {
+        img.preview-light {
+          display: none !important;
+        }
+        img.preview-dark {
+          display: block !important;
+        }
+      }
+      /* Site theme set to Dark also swaps previews */
+      html.dark img.preview-light {
+        display: none !important;
+      }
+      html.dark img.preview-dark {
+        display: block !important;
+      }
+
       html {
         font-family: "Roboto", system-ui, sans-serif;
         scroll-behavior: smooth;

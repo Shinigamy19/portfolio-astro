@@ -477,30 +477,3 @@ const categoryKeys: Record<string, string> = {
     }
   }
 </style>
-
-<style is:global>
-  /* Dual previews for auto-generated cards.
-     The site theme lives on html.dark (ThemeToggle); also honor OS preference
-     when the toggle is on "System" (which already sets html.dark) or when
-     no explicit light class is forced. */
-  img.preview-light {
-    display: block;
-  }
-  img.preview-dark {
-    display: none;
-  }
-  html.dark img.preview-light {
-    display: none !important;
-  }
-  html.dark img.preview-dark {
-    display: block !important;
-  }
-  @media (prefers-color-scheme: dark) {
-    html:not(.light) img.preview-light {
-      display: none !important;
-    }
-    html:not(.light) img.preview-dark {
-      display: block !important;
-    }
-  }
-</style>
