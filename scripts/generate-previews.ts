@@ -76,8 +76,12 @@ export function slugify(title: string): string {
         .replace(/^-+|-+$/g, "");
 }
 
-/** sha256 over the stable project payload defined by the preview contract. */
-export function computeHash(project: Project): string {
+/**
+ * sha256 over the stable project payload + capture mode.
+ * Mode is included so a screenshot→card fallback is not treated as
+ * up-to-date when the project still plans to use screenshot mode.
+ */
+export function computeHash(project: Project, mode: Mode): string {
     const payload = JSON.stringify({
         title: project.title,
         description: project.description,
@@ -86,6 +90,7 @@ export function computeHash(project: Project): string {
         comingSoon: project.comingSoon,
         tags: project.tags.map((t) => t.name),
         category: project.category,
+        mode,
         TEMPLATE_VERSION,
     });
     return createHash("sha256").update(payload).digest("hex");
@@ -209,10 +214,13 @@ async function main(): Promise<void> {
                 );
             }
             const mode = decideMode(project);
-            const hash = computeHash(project);
+            const hash = computeHash(project, mode);
             const entry = manifest[out.fileName];
             const upToDate =
-                !force && entry?.hash === hash && existsSync(out.absPath);
+                !force &&
+                entry?.hash === hash &&
+                entry.mode === mode &&
+                existsSync(out.absPath);
             if (upToDate) {
                 console.log(`skip (up-to-date)  ${project.title}  ${out.relPath}`);
             } else {
@@ -234,14 +242,19 @@ async function main(): Promise<void> {
                 );
             }
 
-            const hash = computeHash(project);
+            const plannedMode = decideMode(project);
+            const plannedHash = computeHash(project, plannedMode);
             const entry = manifest[out.fileName];
-            if (!force && entry?.hash === hash && existsSync(out.absPath)) {
+            if (
+                !force &&
+                entry?.hash === plannedHash &&
+                entry.mode === plannedMode &&
+                existsSync(out.absPath)
+            ) {
                 console.log(`skip (up-to-date)  ${project.title}  ${out.relPath}`);
                 continue;
             }
 
-            const plannedMode = decideMode(project);
             let mode: Mode = plannedMode;
             let buffer: Buffer;
             let warning: string | null = null;
@@ -270,8 +283,10 @@ async function main(): Promise<void> {
             mkdirSync(path.dirname(out.absPath), { recursive: true });
             writeFileSync(out.absPath, buffer);
 
+            // Store the hash for the mode that actually produced the file, so a
+            // fallback card does not look like a successful screenshot later.
             manifest[out.fileName] = {
-                hash,
+                hash: computeHash(project, mode),
                 mode,
                 source:
                     typeof project.link === "string" && project.link.trim().length > 0
