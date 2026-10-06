@@ -38,7 +38,7 @@ User request (2026-10-06): hybrid preview generation (real screenshots when a li
 - [x] T3 Sample verification — dry-run 36; TechCalendAR screenshot 1200×630; Afk Bardo card 1200×600; manifest skip works
 - [x] T2b RDD correction — R3-FALLBACK-PIN fixed in `bc805dd`; review approved, authority burned (`review-ebcd87a6aaa82958`)
 - [x] T4 `/webkit` page (tokens, typography, icons, tags/skills, backgrounds, components)
-- [ ] T5 Full `npm run previews`, push to origin when user approves
+- [x] T5 Full `npm run previews` done (12 screenshots, cards for rest, 3 HTTP fallbacks); branch pushed to `origin/feat/previews-and-webkit`
 
 ## Acceptance criteria
 - `npm run previews` generates missing previews without touching unchanged ones
@@ -68,7 +68,7 @@ User request (2026-10-06): hybrid preview generation (real screenshots when a li
 - 2026-10-06: T1–T3 done (delegated writer). Parent spot-check passed.
 - 2026-10-06: T2b native review approved after one bounded correction. Commits: `ab79f27`, `bc805dd`.
 - 2026-10-06: T4 `/webkit` implemented (`97ffae9`). Build green, 90/90 icons. Review approved, authority burned (`review-00b951fd05741ec4`). Advisory: categoryColors still hand-copied; footer date non-deterministic; task-doc was stale (fixed here).
-- Remaining: T5 full `npm run previews` + push when user approves.
+- Remaining: none for this feature. Optional follow-ups from advisory findings (tag.class in hash, manifest path keys, unit tests, categoryColors data-driven).
 
 ## Route declaration
 - T2/T4: delegated writer (multi-file non-trivial). Parent owns setup, verification, commits.
