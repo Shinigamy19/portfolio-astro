@@ -271,7 +271,7 @@ const categoryKeys: Record<string, string> = {
                     {t("projects.videos")}
                   </LinkButtonIcon>
                 )}
-                {comingSoon && (
+                {comingSoon && !playstoreComingSoon && (
                   <button
                     disabled
                     class="inline-flex bg-gray-100 text-gray-400 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-gray-500 dark:bg-gray-800 border dark:border-gray-700 rounded-xl cursor-not-allowed"
