@@ -80,6 +80,49 @@ export const projectsData: Project[] = [
         description_pt: "App para decidir o que comer hoje. Demo no Vercel e Play Store em breve.",
     },
     {
+        title: "NerdSubs",
+        description:
+            "Transcripción simultánea y traducción en tiempo real para conferencias. Captura audio en vivo, lo transcribe con Gemini AI y muestra subtítulos EN↔ES en web, con overlay para OBS. Construido en la Nerdearla Vibeathon 2026.",
+        image:
+            "/preview/nerdsubs.webp",
+        tags: [projectTags.NEXT, projectTags.REACT, projectTags.TYPESCRIPT],
+        category: ["Web", "App"],
+        github: "https://github.com/Shinigamy19/nerdsubs",
+        link: "https://nerdsubs.vercel.app/",
+        title_en: "NerdSubs",
+        description_en: "Real-time simultaneous transcription and translation for conferences. Captures live audio, transcribes with Gemini AI, and shows EN↔ES subtitles on the web with an OBS overlay. Built for Nerdearla Vibeathon 2026.",
+        title_pt: "NerdSubs",
+        description_pt: "Transcrição simultânea e tradução em tempo real para conferências. Captura áudio ao vivo, transcreve com Gemini AI e mostra legendas EN↔ES na web, com overlay para OBS. Construído na Nerdearla Vibeathon 2026.",
+    },
+    {
+        title: "Media Rooms",
+        description:
+            "Plataforma de streaming compartido en tiempo real. Mirá, chateá y puntúa videos con tus amigos en la misma sala, con autenticación y datos en PostgreSQL.",
+        image:
+            "/preview/media-rooms.webp",
+        tags: [projectTags.NEXT, projectTags.REACT, projectTags.TYPESCRIPT, projectTags.PRISMA],
+        category: ["Web", "App"],
+        link: "https://video-pointer-one.vercel.app/",
+        title_en: "Media Rooms",
+        description_en: "Real-time shared streaming platform. Watch, chat, and rate videos with friends in the same room, with auth and PostgreSQL-backed data.",
+        title_pt: "Media Rooms",
+        description_pt: "Plataforma de streaming compartido em tempo real. Assista, converse e avalie vídeos com amigos na mesma sala, com autenticação e dados em PostgreSQL.",
+    },
+    {
+        title: "TechCalend Landing",
+        description:
+            "Landing page estática de la familia TechCalend en techcalend.com. Punto de entrada SEO que enruta a la app global y a las apps por país, con i18n de 12 idiomas y Play Store.",
+        image:
+            "/preview/techcalend-landing.webp",
+        tags: [projectTags.HTML, projectTags.CSS3],
+        category: ["Web"],
+        link: "https://techcalend.com/",
+        title_en: "TechCalend Landing",
+        description_en: "Static landing page for the TechCalend family at techcalend.com. SEO entry point routing to the global app and country apps, with 12-language i18n and Play Store links.",
+        title_pt: "TechCalend Landing",
+        description_pt: "Landing page estática da família TechCalend em techcalend.com. Ponto de entrada SEO que roteia para o app global e apps por país, com i18n de 12 idiomas e Play Store.",
+    },
+    {
         title: "TechCalendPE",
         description:
             "Calendario de eventos tech de Perú. Conferencias, meetups y hackathons de tecnología con notificaciones push y PWA.",

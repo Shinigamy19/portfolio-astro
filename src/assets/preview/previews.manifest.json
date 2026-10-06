@@ -758,5 +758,68 @@
     "source": "https://shinigamy19.github.io/Rompecabezas-html/",
     "template": 2,
     "theme": "dark"
+  },
+  "nerdsubs.light.webp": {
+    "hash": "8f403b92320ca9a55df059a0dc4ee711ec5f85cd7f7ce2f9c21170d5a1973465",
+    "mode": "screenshot",
+    "source": "https://nerdsubs.vercel.app/",
+    "template": 2,
+    "theme": "light"
+  },
+  "nerdsubs.dark.webp": {
+    "hash": "5577c76eee56a2d946cde6136fffa185267f14eb262fa559df5eaa1b6f2f3c36",
+    "mode": "screenshot",
+    "source": "https://nerdsubs.vercel.app/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "nerdsubs.webp": {
+    "hash": "5577c76eee56a2d946cde6136fffa185267f14eb262fa559df5eaa1b6f2f3c36",
+    "mode": "screenshot",
+    "source": "https://nerdsubs.vercel.app/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "media-rooms.light.webp": {
+    "hash": "2117c86a911eb8f6d8d9190578ab84915cf66fb53538c202ab7041b6d3158258",
+    "mode": "screenshot",
+    "source": "https://video-pointer-one.vercel.app/",
+    "template": 2,
+    "theme": "light"
+  },
+  "media-rooms.dark.webp": {
+    "hash": "857621f8a0d0dd61556999164ef8995a4384dc15420e4f295be2d3b4020ce7cb",
+    "mode": "screenshot",
+    "source": "https://video-pointer-one.vercel.app/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "media-rooms.webp": {
+    "hash": "857621f8a0d0dd61556999164ef8995a4384dc15420e4f295be2d3b4020ce7cb",
+    "mode": "screenshot",
+    "source": "https://video-pointer-one.vercel.app/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "techcalend-landing.light.webp": {
+    "hash": "8f102bf21034de1ae7ce48ef2e1db47b8c640986552775d32aabef7020acc293",
+    "mode": "screenshot",
+    "source": "https://techcalend.com/",
+    "template": 2,
+    "theme": "light"
+  },
+  "techcalend-landing.dark.webp": {
+    "hash": "cb823395382bdd89277a3439f51db712e9a4470a49c404e61de1ea3cc2ef8cd4",
+    "mode": "screenshot",
+    "source": "https://techcalend.com/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "techcalend-landing.webp": {
+    "hash": "cb823395382bdd89277a3439f51db712e9a4470a49c404e61de1ea3cc2ef8cd4",
+    "mode": "screenshot",
+    "source": "https://techcalend.com/",
+    "template": 2,
+    "theme": "dark"
   }
 }
