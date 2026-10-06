@@ -1,10 +1,13 @@
 /**
  * Branded preview-card template for projects without a screenshot-able link
  * (or marked comingSoon). Rendered inline via Playwright setContent.
+ * Supports light and dark themes so the portfolio can respect prefers-color-scheme.
  */
 
 export const CARD_WIDTH = 1200;
 export const CARD_HEIGHT = 600;
+
+export type CardTheme = "light" | "dark";
 
 export interface CardTag {
     name: string;
@@ -16,6 +19,7 @@ export interface CardInput {
     description: string;
     tags: CardTag[];
     comingSoon?: boolean;
+    theme?: CardTheme;
 }
 
 const FALLBACK_TAG_BG = "#582f82";
@@ -55,6 +59,7 @@ export function parseTagColors(twClass?: string): { bg: string; text: string } {
 }
 
 export function buildCardHtml(input: CardInput): string {
+    const theme: CardTheme = input.theme === "light" ? "light" : "dark";
     const title = escapeHtml(input.title);
     const description = escapeHtml(input.description);
 
@@ -65,7 +70,36 @@ export function buildCardHtml(input: CardInput): string {
         })
         .join("");
 
-    const badge = input.comingSoon ? `<div class="badge">Coming soon</div>` : "";
+    const badge = input.comingSoon
+        ? `<div class="badge">Coming soon</div>`
+        : "";
+
+    const palette =
+        theme === "light"
+            ? `
+    background: #f8fafc;
+    color: #0f172a;`
+            : `
+    background: #0f172a;
+    color: #ffffff;`;
+
+    const glow =
+        theme === "light"
+            ? "radial-gradient(ellipse 70% 55% at 50% -10%, rgba(120, 119, 198, 0.28), transparent 65%)"
+            : "radial-gradient(ellipse 70% 55% at 50% -10%, rgba(120, 119, 198, 0.35), transparent 65%)";
+
+    const titleColor = theme === "light" ? "#0f172a" : "#ffffff";
+    const descColor = theme === "light" ? "#64748b" : "#94a3b8";
+    const footerColor = theme === "light" ? "#94a3b8" : "#64748b";
+    const badgeBg =
+        theme === "light"
+            ? "rgba(15, 23, 42, 0.06)"
+            : "rgba(148, 163, 184, 0.12)";
+    const badgeBorder =
+        theme === "light"
+            ? "rgba(15, 23, 42, 0.12)"
+            : "rgba(148, 163, 184, 0.28)";
+    const badgeColor = theme === "light" ? "#475569" : "#94a3b8";
 
     return `<!DOCTYPE html>
 <html>
@@ -75,14 +109,13 @@ export function buildCardHtml(input: CardInput): string {
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: ${CARD_WIDTH}px; height: ${CARD_HEIGHT}px; overflow: hidden; }
   body {
-    position: relative;
-    background: #0f172a;
+    position: relative;${palette}
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
   .glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 70% 55% at 50% -10%, rgba(120, 119, 198, 0.35), transparent 65%);
+    background: ${glow};
     pointer-events: none;
   }
   .content {
@@ -94,7 +127,7 @@ export function buildCardHtml(input: CardInput): string {
     flex-direction: column;
   }
   .title {
-    color: #ffffff;
+    color: ${titleColor};
     font-size: 56px;
     font-weight: 700;
     line-height: 1.15;
@@ -103,7 +136,7 @@ export function buildCardHtml(input: CardInput): string {
   }
   .description {
     margin-top: 24px;
-    color: #94a3b8;
+    color: ${descColor};
     font-size: 22px;
     line-height: 1.55;
     max-width: 920px;
@@ -134,9 +167,9 @@ export function buildCardHtml(input: CardInput): string {
     z-index: 2;
     padding: 8px 14px;
     border-radius: 999px;
-    background: rgba(148, 163, 184, 0.12);
-    border: 1px solid rgba(148, 163, 184, 0.28);
-    color: #94a3b8;
+    background: ${badgeBg};
+    border: 1px solid ${badgeBorder};
+    color: ${badgeColor};
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -146,7 +179,7 @@ export function buildCardHtml(input: CardInput): string {
     position: absolute;
     left: 72px;
     bottom: 28px;
-    color: #64748b;
+    color: ${footerColor};
     font-size: 14px;
     font-weight: 500;
   }

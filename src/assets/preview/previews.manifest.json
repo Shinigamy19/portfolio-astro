@@ -226,5 +226,537 @@
     "mode": "screenshot",
     "source": "https://que-comemos-hoy-nine.vercel.app/",
     "template": 1
+  },
+  "afk-bardo.light.webp": {
+    "hash": "45513d4c431fc022c810f7aab6a182669c36c43f883cffbe53a9f5fa29a42a37",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "afk-bardo.dark.webp": {
+    "hash": "7b67777a97ef577bf154e517b58e223a9d3e26fbf9e21afb2c881feaa625e974",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "techcalendar.light.webp": {
+    "hash": "d7009e7d5dcc8a1153652e7e8a38706e10b73bb9402cbb672b788f76c3c90d45",
+    "mode": "screenshot",
+    "source": "https://ar.techcalend.com/",
+    "template": 2,
+    "theme": "light"
+  },
+  "techcalendar.dark.webp": {
+    "hash": "72fbb5627630b3cb62a4b200d6b915e2140d7d4ae7fa1f0ad0438067326d7238",
+    "mode": "screenshot",
+    "source": "https://ar.techcalend.com/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "nexo-digital.light.webp": {
+    "hash": "b19d47ec478ad84a34282b9a18045cb9be9442184d7c90b7e8837da95e80c4f3",
+    "mode": "screenshot",
+    "source": "https://nexo-digital-pi.vercel.app/",
+    "template": 2,
+    "theme": "light"
+  },
+  "nexo-digital.dark.webp": {
+    "hash": "c2ac3013ca2505f0606df8f8392a05f4fd6aa9fdd303b74242fc11312056ef17",
+    "mode": "screenshot",
+    "source": "https://nexo-digital-pi.vercel.app/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "cyber-bunker-mockup.light.webp": {
+    "hash": "ed28d2495c5ccf8d3dad9343dbceaff2abce0d9e008813153b5139b3f0bd644c",
+    "mode": "screenshot",
+    "source": "https://cyber-bunker.vercel.app/",
+    "template": 2,
+    "theme": "light"
+  },
+  "cyber-bunker-mockup.dark.webp": {
+    "hash": "e83d14bdf5a4cb4806c48af649f54d134a69f365c88067b71c20ea6f0bce23bc",
+    "mode": "screenshot",
+    "source": "https://cyber-bunker.vercel.app/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "nexo-ui-kit.light.webp": {
+    "hash": "4a033e1b4ee6de02c2aaa6e6c3bd3f0e9d53878dde6a64c2ca9a75c4fdb13519",
+    "mode": "screenshot",
+    "source": "https://nexo-ui-kit-chi.vercel.app/",
+    "template": 2,
+    "theme": "light"
+  },
+  "nexo-ui-kit.dark.webp": {
+    "hash": "12a2be50a48aa0fd93d39269b3f3bc0e2e31d3118b6a5843564740bb591fc0f7",
+    "mode": "screenshot",
+    "source": "https://nexo-ui-kit-chi.vercel.app/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "que-comemos-hoy.light.webp": {
+    "hash": "2fe2580a8c5c1ba72ef3117d8866b88ec2a38aa01af019de1bcbd301bdecd02d",
+    "mode": "screenshot",
+    "source": "https://que-comemos-hoy-nine.vercel.app/",
+    "template": 2,
+    "theme": "light"
+  },
+  "que-comemos-hoy.dark.webp": {
+    "hash": "cde80c5f219e7ceff31ea1bf39830f8c1d56cfc1238cc7a089bd34c06c8de468",
+    "mode": "screenshot",
+    "source": "https://que-comemos-hoy-nine.vercel.app/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "techcalendpe.light.webp": {
+    "hash": "3ca8a4c59e749832ec600a46cde45c48dd3696e5309d9abbb95ab18705c864a5",
+    "mode": "card",
+    "source": "https://pe.techcalend.com/",
+    "template": 2,
+    "theme": "light"
+  },
+  "techcalendpe.dark.webp": {
+    "hash": "8235f103e05dc4b455029e43c8daa4cbb1c0e633cfd6a0b050826183bdb7d1f5",
+    "mode": "card",
+    "source": "https://pe.techcalend.com/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "techcalendcl.light.webp": {
+    "hash": "497fc9f05a481bfcee6cb8186e7b995847e82cda71d9154462d7f7b1c3ee9347",
+    "mode": "card",
+    "source": "https://cl.techcalend.com/",
+    "template": 2,
+    "theme": "light"
+  },
+  "techcalendcl.dark.webp": {
+    "hash": "5dcb9d065ca859f2b5edff656337796a1d68a5360a820c4d9facd7c176985629",
+    "mode": "card",
+    "source": "https://cl.techcalend.com/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "link-collection.light.webp": {
+    "hash": "5d7d01a1d523fbec76ab5833f4bb25fdc10a9eb2025e9288640120df742b7ba1",
+    "mode": "screenshot",
+    "source": "https://linkcollection.work/",
+    "template": 2,
+    "theme": "light"
+  },
+  "link-collection.dark.webp": {
+    "hash": "07628e728092f7bbca2402f2e5e025b73fd1e8b8e4e3f00a691e03da7b204780",
+    "mode": "screenshot",
+    "source": "https://linkcollection.work/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "svg-gallery.light.webp": {
+    "hash": "19d0dedad7e63913dd855602201f8581553c641dd3a8328c6b0e2b3fb80fe6c6",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "svg-gallery.dark.webp": {
+    "hash": "8e40a8ce5a53696d02e217eef3e5fdef5ab3b1165c467d52aba9d384f890557e",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "trello-clone.light.webp": {
+    "hash": "768882ab2bb0ee4054fc788af9214a349901bdd4740f1404a56ace719c0de835",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "trello-clone.dark.webp": {
+    "hash": "23c84138f990fa8ea2b0e8287fb9e183a559b0e32f83e8d6c921c2400c3ef242",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "pomodoro.light.webp": {
+    "hash": "b4854209398a8a9512770d7b3e6e26d396fca4cff92f1ef52e224f72d56a2d85",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "pomodoro.dark.webp": {
+    "hash": "d9b67cb8584a519109a88a9cd87c7ba3e19b0e0044ebf48acfcd14469392631a",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "cineestreno.light.webp": {
+    "hash": "548f38bed4454c5c9176dd05a60f5ef08da1ad369e7f7582fded15d4db1076de",
+    "mode": "screenshot",
+    "source": "https://angular-movies-g9qq.vercel.app/",
+    "template": 2,
+    "theme": "light"
+  },
+  "cineestreno.dark.webp": {
+    "hash": "0ecb4055a066918fb13cb541a1a751671d41a9aaa8e8cd571bdee78653d8cccf",
+    "mode": "screenshot",
+    "source": "https://angular-movies-g9qq.vercel.app/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "qr-generator.light.webp": {
+    "hash": "ba928d7dd69bc5ae4dcc8454fe8858535a90e6be6307bf1332f52c596ef99a03",
+    "mode": "screenshot",
+    "source": "https://qr-generator-rust-seven.vercel.app/",
+    "template": 2,
+    "theme": "light"
+  },
+  "qr-generator.dark.webp": {
+    "hash": "d639572cce74659d152a2fde041e90dfe79f14708104c542d5bdc07e49ffa179",
+    "mode": "screenshot",
+    "source": "https://qr-generator-rust-seven.vercel.app/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "el-amanecer-de-la-tormenta-mock.light.webp": {
+    "hash": "9cc2e47a7577f8155e7c3f22a4a0d7fe4852187e5f69cdc3d1e25c7bd30a6931",
+    "mode": "screenshot",
+    "source": "https://bwlnk.com/9786316664136",
+    "template": 2,
+    "theme": "light"
+  },
+  "el-amanecer-de-la-tormenta-mock.dark.webp": {
+    "hash": "4a4b1dbc1d6289f8f923c736c3007ec03e1c2e225374c5665bab2d50b7e35874",
+    "mode": "screenshot",
+    "source": "https://bwlnk.com/9786316664136",
+    "template": 2,
+    "theme": "dark"
+  },
+  "inmortal-mock.light.webp": {
+    "hash": "7932252c9be10db2ae5487c38f6b8c36741d984a57b01479ddb45d59dcef4826",
+    "mode": "screenshot",
+    "source": "https://www.amazon.es/Inmortal-Libro-poemas-Jesica-Ledesma-ebook/dp/B07M7LT5WL/ref=sr_1_4?s=books&sr=1-4",
+    "template": 2,
+    "theme": "light"
+  },
+  "inmortal-mock.dark.webp": {
+    "hash": "28e9216dc1090c7001b81fafe25a909e6e8fc47e84504deaa569ee5b2b2f47f7",
+    "mode": "screenshot",
+    "source": "https://www.amazon.es/Inmortal-Libro-poemas-Jesica-Ledesma-ebook/dp/B07M7LT5WL/ref=sr_1_4?s=books&sr=1-4",
+    "template": 2,
+    "theme": "dark"
+  },
+  "juego-de-mesa.light.webp": {
+    "hash": "d9c5772e6f8f49e97cbce80e24ba09b9f26b43acf7169bc15b2874c16ab5ad5c",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "juego-de-mesa.dark.webp": {
+    "hash": "b29d428ecd6dc1c2a847444b8a9f3c91a9375604750ffaa675564ccf99d00ce5",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "logos-mock.light.webp": {
+    "hash": "93401963d99ed42c9ebc1a723ffb44bd3d2fffdb642cd26322ef04ea014b53c3",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "logos-mock.dark.webp": {
+    "hash": "e1f93f01766995c866b0f374fdb20913669391560673072df01465e5be079875",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "la-cueva-de-las-manos.light.webp": {
+    "hash": "0b11c80417b6947b385164ac1283c1420537126b776482c4030cd5a320fd5bc8",
+    "mode": "card",
+    "source": "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
+    "template": 2,
+    "theme": "light"
+  },
+  "la-cueva-de-las-manos.dark.webp": {
+    "hash": "cf0b5a93670db5e202d7525d50e78163068c5f9386e5a387fe724b19a683176a",
+    "mode": "card",
+    "source": "https://www.behance.net/gallery/106950343/Inmortal-Libro-de-Poemas",
+    "template": 2,
+    "theme": "dark"
+  },
+  "end-of-bioworld.light.webp": {
+    "hash": "33e8d5033f2bb5351c2499f977fc499b04158933a5f8b1cfaef19cc70ee9a49f",
+    "mode": "card",
+    "source": "https://shinigamy19.itch.io/end-of-bioworld",
+    "template": 2,
+    "theme": "light"
+  },
+  "end-of-bioworld.dark.webp": {
+    "hash": "8228739d58a0790ca5e90a5fd57197a17d10beecc61f13e6e3cc271c9ae02fd5",
+    "mode": "card",
+    "source": "https://shinigamy19.itch.io/end-of-bioworld",
+    "template": 2,
+    "theme": "dark"
+  },
+  "curso-processing.light.webp": {
+    "hash": "a150ae0094a84233ddf66ef688b963937ff041fa5db3c73a4ef33e53f788c587",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "curso-processing.dark.webp": {
+    "hash": "c1b5c9145d1067dbafe903a867ff8831ac441883c862e3d737cea00fff095aaf",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "tutoriales-batch.light.webp": {
+    "hash": "46d141e3a77966c0f7d7d67966f91f08b958c3f0ad074fcdd36180268dd2315e",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "tutoriales-batch.dark.webp": {
+    "hash": "a5c5bf8ad57103af2db8619c9c8c2dc28497649cbd7c0e92f116434c108482b0",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "uccer.light.webp": {
+    "hash": "ea3f690e55aaaeb5f1358e2b467a8ffbdbb97ce9cb1acfbe79a880ef48244d13",
+    "mode": "card",
+    "source": "https://shinigamy19.itch.io/una-conversacion-con-el-roles",
+    "template": 2,
+    "theme": "light"
+  },
+  "uccer.dark.webp": {
+    "hash": "3e4e08c9f7fa0cf0d6e67fd21ff9c7a9ea2696077a2f2bca84d333c9815bb178",
+    "mode": "card",
+    "source": "https://shinigamy19.itch.io/una-conversacion-con-el-roles",
+    "template": 2,
+    "theme": "dark"
+  },
+  "purr-arduino.light.webp": {
+    "hash": "a49af1a98b1d75fb9a895c28e37c91626afcdda5d2943e3263b79620609b5aa9",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "purr-arduino.dark.webp": {
+    "hash": "83ef314d206c59bf70690447f3793fbb5dfa0fe32f1bacab2811f64e9cf54c19",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "pedales.light.webp": {
+    "hash": "6c3066932319dfe096c44ece8d7387ace434ac72fbb152c62f73748fedc398d0",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "pedales.dark.webp": {
+    "hash": "c76649cab958c9c081e56f3ca60aab1791b52c88c7115baa685fe1cb62d0c626",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "codigo-dein.light.webp": {
+    "hash": "b07112eedef3df973311226ca942504cd6687214b2f6d3d9964f958b0cd703ca",
+    "mode": "screenshot",
+    "source": "https://shinigamy19.github.io/Proyecto-final-html-css/",
+    "template": 2,
+    "theme": "light"
+  },
+  "codigo-dein.dark.webp": {
+    "hash": "b00e591dbdb3c42928d1f9adbf4d92a4ce3ad63ec7f12c5e0c1f7209450a413f",
+    "mode": "screenshot",
+    "source": "https://shinigamy19.github.io/Proyecto-final-html-css/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "blog-shinigamy19.light.webp": {
+    "hash": "c97ca03637144c842daad9866e8f27de22f70ad95940e2c6799554c6e0edc913",
+    "mode": "screenshot",
+    "source": "https://shinigamy19.github.io/Blog-Shinigamy19/",
+    "template": 2,
+    "theme": "light"
+  },
+  "blog-shinigamy19.dark.webp": {
+    "hash": "3288d187e45ad1a0771ef6f5015b1855ce7f8106be903d938cb335718daece23",
+    "mode": "screenshot",
+    "source": "https://shinigamy19.github.io/Blog-Shinigamy19/",
+    "template": 2,
+    "theme": "dark"
+  },
+  "sistema-policial.light.webp": {
+    "hash": "74be367b374a84353af2937e4d8a9251b0a601e90494581b26c4531fd84a249b",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "sistema-policial.dark.webp": {
+    "hash": "a2c0c0067faa601b94a5f0e99c3d8c3eff3fa0b4d745a59a257dc16f38aa07bd",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "calculadora.light.webp": {
+    "hash": "b5b06622290e2c188868a609227f6868b178f6617bac1555d2cb1588922724c2",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "calculadora.dark.webp": {
+    "hash": "8f8250241ea1e318e3cc91d30b09790abdde850700cd8f348ba6fd8ca9f93f4c",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "tateti.light.webp": {
+    "hash": "2dd9ef8784c7eabd97a33f4da045bfbb8f28e0e2b32d1afaf7937e6d73e2934b",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "tateti.dark.webp": {
+    "hash": "f495a0b3af3f1dea949406051732f935a187a6edb18c1cbe341704ee6e4c2440",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "numero-entero.light.webp": {
+    "hash": "edf1f120dc677c05d0948ef6672a83f2c6229bd5508f4215f79c809d45b2f6f0",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "numero-entero.dark.webp": {
+    "hash": "93c7cf38512303c50c61a9c5fe3e8cd918b8c50d622bbd08fe5db7064cbcca23",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "adivina-el-numero.light.webp": {
+    "hash": "5af9e325eb082ca93eb3fe797d85262f83158dcba79e0bc60396a2361d7237a5",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "adivina-el-numero.dark.webp": {
+    "hash": "1dc9e7cea72a38004081b4286b7901dfd28b33bc8eb5a9f679954acfbc5628cd",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "batalla-vikinga.light.webp": {
+    "hash": "9baa131a5335bd8278d470b466f469e9cd9c9d052d9ac7ee7ab80aab9edb275b",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "batalla-vikinga.dark.webp": {
+    "hash": "f94fa7931d6921ac5990cf157d82ad626c0c81482f0081a464780b64f81ecbfe",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "paint-brush.light.webp": {
+    "hash": "a5bbf28c8d58614734c476a22ce3cb6b66a985e379f6a33cc10aade469ac3225",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "paint-brush.dark.webp": {
+    "hash": "aa75b0b7848a9736e75d9fd966a751ed646a8086bdb518576f72c9a49747306a",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "pikachu.light.webp": {
+    "hash": "b0fae991b96381b4551e0d458928a737eb6688a7c27cc13194a6c9179d068bba",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "pikachu.dark.webp": {
+    "hash": "774b88ab6dbf7200589a193d75fa441b7f1b9342ffdc68073c3f195fa00cdc42",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "papeltapiz.light.webp": {
+    "hash": "45c8c17ac286add9efbb90b672f0a8a9f6415f5f488f77507c060f77c01659f5",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "papeltapiz.dark.webp": {
+    "hash": "d828896ed867a59d37d6956f044971d658cc738d14eb7d6439f6d04893aa4bc3",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "osciladores.light.webp": {
+    "hash": "0b72595ddb863506c98bed8380ea54747632a3d9361813ab90da9e412b8c77b8",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "light"
+  },
+  "osciladores.dark.webp": {
+    "hash": "e80b82187cde969e1e4f01bc24ccd9baa3946ef525e8187253b2485f36d34a09",
+    "mode": "card",
+    "source": null,
+    "template": 2,
+    "theme": "dark"
+  },
+  "rompecabezas.light.webp": {
+    "hash": "aec375f4e83211c12d693d233e237d7228bd6e531eeea687434a92fb410da8d2",
+    "mode": "screenshot",
+    "source": "https://shinigamy19.github.io/Rompecabezas-html/",
+    "template": 2,
+    "theme": "light"
+  },
+  "rompecabezas.dark.webp": {
+    "hash": "4d4e1065a61f72e1c4ae75ab147f4f04f5b6851f0b7639e52505be88ba635a72",
+    "mode": "screenshot",
+    "source": "https://shinigamy19.github.io/Rompecabezas-html/",
+    "template": 2,
+    "theme": "dark"
   }
 }

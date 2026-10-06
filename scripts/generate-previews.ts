@@ -4,6 +4,12 @@
  * - screenshot: Playwright chromium viewport capture of project.link
  * - card:       branded inline HTML card (see ./preview-card.ts)
  *
+ * Dual-theme output: for each project we write
+ *   <name>.light.webp  — prefers-color-scheme: light
+ *   <name>.dark.webp   — prefers-color-scheme: dark
+ *   <name>.webp        — legacy fallback (kept when it already exists;
+ *                        written as a copy of dark for new projects)
+ *
  * Usage:
  *   npm run previews [-- --dry-run] [-- --force] [-- --only=<substring>]
  */
@@ -17,17 +23,19 @@ import sharp from "sharp";
 
 import { projectsData } from "../src/data/projects";
 import type { Project } from "../src/types/Project";
-import { buildCardHtml } from "./preview-card";
+import { buildCardHtml, type CardTheme } from "./preview-card";
 
-export const TEMPLATE_VERSION = 1;
+export const TEMPLATE_VERSION = 2;
 
 const SCREENSHOT_VIEWPORT = { width: 1200, height: 630 } as const;
 const CARD_VIEWPORT = { width: 1200, height: 600 } as const;
 const NAV_TIMEOUT_MS = 30_000;
-const SPA_WAIT_MS = 2_000; // within ~1500–2500ms hydration window
+const SPA_WAIT_MS = 2_000;
 const WEBP_QUALITY = 80;
 const DESKTOP_UA =
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
+
+const THEMES: CardTheme[] = ["light", "dark"];
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(SCRIPT_DIR, "..");
@@ -41,14 +49,21 @@ interface ManifestEntry {
     mode: Mode;
     source: string | null;
     template: number;
+    theme?: CardTheme;
 }
 
 type Manifest = Record<string, ManifestEntry>;
 
-interface ResolvedOutput {
+interface VariantOutput {
     absPath: string;
     relPath: string;
     fileName: string;
+}
+
+interface ResolvedOutput {
+    base: VariantOutput;
+    light: VariantOutput;
+    dark: VariantOutput;
     missingImage: boolean;
 }
 
@@ -77,11 +92,10 @@ export function slugify(title: string): string {
 }
 
 /**
- * sha256 over the stable project payload + capture mode.
- * Mode is included so a screenshot→card fallback is not treated as
- * up-to-date when the project still plans to use screenshot mode.
+ * sha256 over the stable project payload + capture mode + theme.
+ * Theme is included so light and dark captures never collide in the manifest.
  */
-export function computeHash(project: Project, mode: Mode): string {
+export function computeHash(project: Project, mode: Mode, theme: CardTheme): string {
     const payload = JSON.stringify({
         title: project.title,
         description: project.description,
@@ -91,33 +105,53 @@ export function computeHash(project: Project, mode: Mode): string {
         tags: project.tags.map((t) => t.name),
         category: project.category,
         mode,
+        theme,
         TEMPLATE_VERSION,
     });
     return createHash("sha256").update(payload).digest("hex");
 }
 
+function variantFor(baseAbs: string, theme: CardTheme): VariantOutput {
+    const parsed = path.parse(baseAbs);
+    const absPath = path.join(parsed.dir, `${parsed.name}.${theme}${parsed.ext}`);
+    return {
+        absPath,
+        relPath: path.relative(ROOT, absPath).replaceAll("\\", "/"),
+        fileName: path.basename(absPath),
+    };
+}
+
+function baseVariant(baseAbs: string): VariantOutput {
+    return {
+        absPath: baseAbs,
+        relPath: path.relative(ROOT, baseAbs).replaceAll("\\", "/"),
+        fileName: path.basename(baseAbs),
+    };
+}
+
 /** ALWAYS prefer project.image; derive a slug only when image is missing. */
 export function resolveOutput(project: Project): ResolvedOutput {
     const image = typeof project.image === "string" ? project.image.trim() : "";
+    let baseAbs: string;
+    let missingImage: boolean;
+
     if (image.length > 0) {
         const relInsideAssets = image.startsWith("/")
             ? image.slice(1)
             : image;
-        const absPath = path.join(ROOT, "src", "assets", relInsideAssets);
-        return {
-            absPath,
-            relPath: path.relative(ROOT, absPath).replaceAll("\\", "/"),
-            fileName: path.basename(absPath),
-            missingImage: false,
-        };
+        baseAbs = path.join(ROOT, "src", "assets", relInsideAssets);
+        missingImage = false;
+    } else {
+        const slug = slugify(project.title) || "project";
+        baseAbs = path.join(PREVIEW_DIR, `${slug}.webp`);
+        missingImage = true;
     }
-    const slug = slugify(project.title) || "project";
-    const absPath = path.join(PREVIEW_DIR, `${slug}.webp`);
+
     return {
-        absPath,
-        relPath: path.relative(ROOT, absPath).replaceAll("\\", "/"),
-        fileName: `${slug}.webp`,
-        missingImage: true,
+        base: baseVariant(baseAbs),
+        light: variantFor(baseAbs, "light"),
+        dark: variantFor(baseAbs, "dark"),
+        missingImage,
     };
 }
 
@@ -154,9 +188,14 @@ function webpFromPng(png: Buffer): Promise<Buffer> {
     return sharp(png).webp({ quality: WEBP_QUALITY }).toBuffer();
 }
 
-async function captureScreenshot(pageContext: BrowserContext, link: string): Promise<Buffer> {
+async function captureScreenshot(
+    pageContext: BrowserContext,
+    link: string,
+    colorScheme: "light" | "dark",
+): Promise<Buffer> {
     const page = await pageContext.newPage();
     try {
+        await page.emulateMedia({ colorScheme });
         const response = await page.goto(link, {
             waitUntil: "domcontentloaded",
             timeout: NAV_TIMEOUT_MS,
@@ -167,7 +206,6 @@ async function captureScreenshot(pageContext: BrowserContext, link: string): Pro
                 throw new Error(`HTTP ${status}`);
             }
         }
-        // Extra wait for SPA hydration (~1500–2500ms window)
         await page.waitForTimeout(SPA_WAIT_MS);
         const png = await page.screenshot({ type: "png" });
         return await webpFromPng(png);
@@ -176,15 +214,21 @@ async function captureScreenshot(pageContext: BrowserContext, link: string): Pro
     }
 }
 
-async function captureCard(pageContext: BrowserContext, project: Project): Promise<Buffer> {
+async function captureCard(
+    pageContext: BrowserContext,
+    project: Project,
+    theme: CardTheme,
+): Promise<Buffer> {
     const page = await pageContext.newPage();
     try {
         await page.setViewportSize(CARD_VIEWPORT);
+        await page.emulateMedia({ colorScheme: theme });
         const html = buildCardHtml({
             title: project.title,
             description: project.description,
             tags: project.tags,
             comingSoon: project.comingSoon,
+            theme,
         });
         await page.setContent(html, { waitUntil: "load" });
         const png = await page.screenshot({ type: "png" });
@@ -192,6 +236,11 @@ async function captureCard(pageContext: BrowserContext, project: Project): Promi
     } finally {
         await page.close().catch(() => {});
     }
+}
+
+function writeVariant(out: VariantOutput, buffer: Buffer): void {
+    mkdirSync(path.dirname(out.absPath), { recursive: true });
+    writeFileSync(out.absPath, buffer);
 }
 
 async function main(): Promise<void> {
@@ -204,22 +253,29 @@ async function main(): Promise<void> {
     const manifest = loadManifest();
     let manifestDirty = false;
 
-    // Dry-run: plan only, no browser, no writes.
-    // Policy: keep any existing preview image; generate only when missing.
     if (dryRun) {
         for (const project of selected) {
             const out = resolveOutput(project);
-            if (!force && existsSync(out.absPath)) {
-                console.log(`keep (exists)  ${project.title}  ${out.relPath}`);
+            const lightOk = existsSync(out.light.absPath);
+            const darkOk = existsSync(out.dark.absPath);
+            if (!force && lightOk && darkOk) {
+                console.log(
+                    `keep (exists)  ${project.title}  ${out.light.fileName} + ${out.dark.fileName}`,
+                );
                 continue;
             }
             if (out.missingImage) {
                 console.warn(
-                    `warn: "${project.title}" has no image field; would write ${out.relPath} — add an image field to projects.ts`,
+                    `warn: "${project.title}" has no image field; would write ${out.base.relPath} — add an image field to projects.ts`,
                 );
             }
             const mode = decideMode(project);
-            console.log(`plan: ${mode}  ${project.title}  ${out.relPath}`);
+            const missing: string[] = [];
+            if (force || !lightOk) missing.push("light");
+            if (force || !darkOk) missing.push("dark");
+            console.log(
+                `plan: ${mode}  ${project.title}  ${missing.join("+")}  (+ fallback ${out.base.fileName})`,
+            );
         }
         return;
     }
@@ -232,20 +288,23 @@ async function main(): Promise<void> {
             const out = resolveOutput(project);
             if (out.missingImage) {
                 console.warn(
-                    `warn: "${project.title}" has no image field; writing ${out.relPath} — add an image field to projects.ts`,
+                    `warn: "${project.title}" has no image field; writing ${out.base.relPath} — add an image field to projects.ts`,
                 );
             }
 
-            // Policy: keep any existing preview image; generate only when missing.
-            if (!force && existsSync(out.absPath)) {
-                console.log(`keep (exists)  ${project.title}  ${out.relPath}`);
+            const lightOk = existsSync(out.light.absPath);
+            const darkOk = existsSync(out.dark.absPath);
+            if (!force && lightOk && darkOk) {
+                console.log(
+                    `keep (exists)  ${project.title}  ${out.light.fileName} + ${out.dark.fileName}`,
+                );
                 continue;
             }
 
             const plannedMode = decideMode(project);
             let mode: Mode = plannedMode;
-            let buffer: Buffer;
-            let warning: string | null = null;
+            const buffers: Partial<Record<CardTheme, Buffer>> = {};
+            const warnings: string[] = [];
 
             if (!context) {
                 if (!browser) {
@@ -258,40 +317,76 @@ async function main(): Promise<void> {
                 });
             }
 
-            if (plannedMode === "screenshot") {
-                try {
-                    buffer = await captureScreenshot(context, project.link as string);
-                } catch (err) {
-                    warning = err instanceof Error ? err.message : String(err);
-                    mode = "card";
-                    buffer = await captureCard(context, project);
+            for (const theme of THEMES) {
+                if (!force && existsSync(theme === "light" ? out.light.absPath : out.dark.absPath)) {
+                    continue;
                 }
-            } else {
-                buffer = await captureCard(context, project);
+                if (plannedMode === "screenshot") {
+                    try {
+                        buffers[theme] = await captureScreenshot(
+                            context,
+                            project.link as string,
+                            theme,
+                        );
+                    } catch (err) {
+                        const warning = err instanceof Error ? err.message : String(err);
+                        warnings.push(`${theme}: ${warning}`);
+                        mode = "card";
+                        buffers[theme] = await captureCard(context, project, theme);
+                    }
+                } else {
+                    buffers[theme] = await captureCard(context, project, theme);
+                }
             }
 
-            mkdirSync(path.dirname(out.absPath), { recursive: true });
-            writeFileSync(out.absPath, buffer);
+            const written: string[] = [];
+            for (const theme of THEMES) {
+                const buf = buffers[theme];
+                const outV = theme === "light" ? out.light : out.dark;
+                if (!buf) continue;
+                writeVariant(outV, buf);
+                written.push(outV.fileName);
+                manifest[outV.fileName] = {
+                    hash: computeHash(project, mode, theme),
+                    mode,
+                    source:
+                        typeof project.link === "string" && project.link.trim().length > 0
+                            ? project.link
+                            : null,
+                    template: TEMPLATE_VERSION,
+                    theme,
+                };
+                manifestDirty = true;
+            }
 
-            // Store the hash for the mode that actually produced the file, so a
-            // fallback card does not look like a successful screenshot later.
-            manifest[out.fileName] = {
-                hash: computeHash(project, mode),
-                mode,
-                source:
-                    typeof project.link === "string" && project.link.trim().length > 0
-                        ? project.link
-                        : null,
-                template: TEMPLATE_VERSION,
-            };
-            manifestDirty = true;
+            // Legacy fallback: keep existing base file untouched; for brand-new
+            // projects write a dark copy so older consumers still resolve an image.
+            if (!existsSync(out.base.absPath)) {
+                const darkBuf = buffers.dark;
+                if (darkBuf) {
+                    writeVariant(out.base, darkBuf);
+                    written.push(out.base.fileName);
+                    manifest[out.base.fileName] = {
+                        hash: computeHash(project, mode, "dark"),
+                        mode,
+                        source:
+                            typeof project.link === "string" && project.link.trim().length > 0
+                                ? project.link
+                                : null,
+                        template: TEMPLATE_VERSION,
+                        theme: "dark",
+                    };
+                    manifestDirty = true;
+                }
+            }
 
-            if (warning) {
-                console.log(
-                    `fallback-card: ${warning}  ${project.title}  ${out.relPath}`,
-                );
+            if (written.length > 0) {
+                const warn = warnings.length
+                    ? `  [fallback: ${warnings.join("; ")}]`
+                    : "";
+                console.log(`${mode}  ${project.title}  ${written.join(", ")}${warn}`);
             } else {
-                console.log(`${mode}  ${project.title}  ${out.relPath}`);
+                console.log(`skip (exists)  ${project.title}`);
             }
         }
 

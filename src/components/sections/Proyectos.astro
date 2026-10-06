@@ -17,6 +17,15 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true },
 );
 
+/** Resolve a theme variant for a project image path, if that file exists. */
+function previewVariant(
+  image: string,
+  theme: "light" | "dark",
+): ImageMetadata | undefined {
+  const variant = image.replace(/\.webp$/, `.${theme}.webp`);
+  return images[`/src/assets${variant}`]?.default;
+}
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -84,7 +93,15 @@ const categoryKeys: Record<string, string> = {
             comingSoon,
           },
           index,
-        ) => (
+        ) => {
+          const fallback =
+            images[`/src/assets${image}`]?.default ||
+            image ||
+            "/placeholder-project.jpg";
+          const lightSrc = previewVariant(image, "light");
+          const darkSrc = previewVariant(image, "dark");
+          const hasThemeVariants = Boolean(lightSrc || darkSrc);
+          return (
           <article
             class={`project-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${featured ? "border-purple-400/60 dark:border-purple-500/40 ring-1 ring-purple-400/30 dark:ring-purple-500/20" : "border-gray-200 dark:border-gray-800"} ${index >= INITIAL_SHOW ? "hidden" : ""}`}
             data-category={
@@ -98,21 +115,49 @@ const categoryKeys: Record<string, string> = {
                 </span>
               )}
               <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300 z-10" />
-              <Image
-                src={
-                  images[`/src/assets${image}`]?.default ||
-                  image ||
-                  "/placeholder-project.jpg"
-                }
-                alt={title}
-                class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
-                width={400}
-                height={200}
-                widths={[400, 800]}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
-                loading="lazy"
-                decoding="async"
-              />
+              {hasThemeVariants ? (
+                <picture>
+                  {darkSrc && (
+                    <source
+                      srcset={darkSrc.src}
+                      media="(prefers-color-scheme: dark)"
+                      width={400}
+                      height={200}
+                    />
+                  )}
+                  {lightSrc && (
+                    <source
+                      srcset={lightSrc.src}
+                      media="(prefers-color-scheme: light)"
+                      width={400}
+                      height={200}
+                    />
+                  )}
+                  <Image
+                    src={fallback}
+                    alt={title}
+                    class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
+                    width={400}
+                    height={200}
+                    widths={[400, 800]}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              ) : (
+                <Image
+                  src={fallback}
+                  alt={title}
+                  class="object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
+                  width={400}
+                  height={200}
+                  widths={[400, 800]}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
             </div>
 
             <div class="flex flex-col flex-1 p-6">
@@ -257,7 +302,8 @@ const categoryKeys: Record<string, string> = {
               </footer>
             </div>
           </article>
-        ),
+          );
+        },
       )
     }
   </div>
