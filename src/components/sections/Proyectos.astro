@@ -401,6 +401,7 @@ const categoryKeys: Record<string, string> = {
   <div class="mt-4 flex gap-4">
     <button
       id="projects-load-more"
+      data-initial-show={INITIAL_SHOW}
       class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300"
     >
       {t("buttons.showMore")}
@@ -414,18 +415,26 @@ const categoryKeys: Record<string, string> = {
   </div>
 </div>
 
-<script is:inline define:vars={{ INITIAL_SHOW }}>
+<script>
   document.addEventListener("astro:page-load", () => {
-    const buttons = document.querySelectorAll(".category-btn");
-    const cards = document.querySelectorAll(".project-card");
-    const loadMoreBtn = document.getElementById("projects-load-more");
-    const showLessBtn = document.getElementById("projects-show-less");
+    const buttons = document.querySelectorAll<HTMLElement>(".category-btn");
+    const cards = document.querySelectorAll<HTMLElement>(".project-card");
+    const loadMoreBtn = document.getElementById(
+      "projects-load-more"
+    ) as HTMLElement | null;
+    const showLessBtn = document.getElementById(
+      "projects-show-less"
+    ) as HTMLElement | null;
+
+    const initialShow = Number(
+      loadMoreBtn?.getAttribute("data-initial-show") ?? 6
+    );
 
     let currentCategory = "Todos";
-    let visibleCount = INITIAL_SHOW;
+    let visibleCount = initialShow;
 
     // Function to filter and show cards based on category and pagination
-    function updateVisibility(behavior = "instant") {
+    function updateVisibility(behavior: "instant" | "smooth" = "instant") {
       let shown = 0;
       let totalFiltered = 0;
 
@@ -469,7 +478,7 @@ const categoryKeys: Record<string, string> = {
           loadMoreBtn.style.display = "block";
         }
 
-        if (visibleCount > INITIAL_SHOW) {
+        if (visibleCount > initialShow) {
           showLessBtn.classList.remove("hidden");
         } else {
           showLessBtn.classList.add("hidden");
@@ -488,7 +497,7 @@ const categoryKeys: Record<string, string> = {
 
         // Update current category and reset pagination
         currentCategory = btn.getAttribute("data-category") || "Todos";
-        visibleCount = INITIAL_SHOW;
+        visibleCount = initialShow;
 
         updateVisibility("instant");
       });
@@ -503,7 +512,7 @@ const categoryKeys: Record<string, string> = {
 
     if (showLessBtn) {
       showLessBtn.addEventListener("click", () => {
-        visibleCount = INITIAL_SHOW;
+        visibleCount = initialShow;
         updateVisibility("smooth");
 
         // Scroll back to projects section smoothly
@@ -517,13 +526,13 @@ const categoryKeys: Record<string, string> = {
           const startY = window.pageYOffset;
           const distance = targetY - startY;
           const duration = 800;
-          let start = null;
+          let start: number | null = null;
 
-          function easeInOutCubic(t) {
+          function easeInOutCubic(t: number) {
             return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
           }
 
-          function step(timestamp) {
+          function step(timestamp: number) {
             if (!start) start = timestamp;
             const progress = Math.min((timestamp - start) / duration, 1);
             window.scrollTo(0, startY + distance * easeInOutCubic(progress));
