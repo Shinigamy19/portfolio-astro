@@ -259,8 +259,10 @@ async function main(): Promise<void> {
             let buffer: Buffer;
             let warning: string | null = null;
 
-            if (!browser) {
-                browser = await chromium.launch({ headless: true });
+            if (!context) {
+                if (!browser) {
+                    browser = await chromium.launch({ headless: true });
+                }
                 context = await browser.newContext({
                     viewport: SCREENSHOT_VIEWPORT,
                     userAgent: DESKTOP_UA,
