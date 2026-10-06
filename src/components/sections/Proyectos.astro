@@ -132,7 +132,7 @@ const categoryKeys: Record<string, string> = {
                     src={darkSrc.src}
                     alt=""
                     aria-hidden="true"
-                    class="preview-dark hidden object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
+                    class="preview-dark object-cover object-center w-full h-full transform transition-transform duration-500 group-hover:scale-110"
                     width={400}
                     height={200}
                     loading="lazy"
@@ -476,20 +476,31 @@ const categoryKeys: Record<string, string> = {
       transform: scale(0.9) translateY(20px);
     }
   }
+</style>
 
-  /* Auto-generated dual previews: follow the visitor's system color scheme */
-  .preview-light {
+<style is:global>
+  /* Dual previews for auto-generated cards.
+     The site theme lives on html.dark (ThemeToggle); also honor OS preference
+     when the toggle is on "System" (which already sets html.dark) or when
+     no explicit light class is forced. */
+  img.preview-light {
     display: block;
   }
-  .preview-dark {
+  img.preview-dark {
     display: none;
   }
+  html.dark img.preview-light {
+    display: none !important;
+  }
+  html.dark img.preview-dark {
+    display: block !important;
+  }
   @media (prefers-color-scheme: dark) {
-    .preview-light {
-      display: none;
+    html:not(.light) img.preview-light {
+      display: none !important;
     }
-    .preview-dark {
-      display: block;
+    html:not(.light) img.preview-dark {
+      display: block !important;
     }
   }
 </style>
