@@ -93,7 +93,6 @@ const lightOnly = (classes: string) =>
 
 const firstTag = tagList[0];
 const FirstTagIcon = firstTag ? iconMap[firstTag.name] : undefined;
-const today = new Date().toISOString().slice(0, 10);
 
 // Interpolate {icons} {tags} {groups} tokens in plain-string translations
 const fill = (str: string, vars: Record<string, string | number>) =>
@@ -137,7 +136,7 @@ const educationType = (item: (typeof educationData)[number]) =>
       : item.type;
 ---
 
-<main class="px-4 pt-28 pb-16 md:pt-32" role="main">
+<main class="px-4 pt-28 pb-8 md:pt-32" role="main">
   <div class="mx-auto w-full max-w-6xl container px-4">
     <!-- ============================================================ -->
     <!-- 1. Header / intro                                            -->
@@ -894,17 +893,14 @@ const educationType = (item: (typeof educationData)[number]) =>
     <!-- 8. Page footer                                               -->
     <!-- ============================================================ -->
     <footer
-      class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center"
+      class="mt-8 pt-5 border-t border-gray-200 dark:border-gray-800 text-center"
     >
       <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
         {t("webkit.footer.generated")}
       </p>
-      <p class="mt-1 text-xs text-gray-400 dark:text-gray-500">
-        {t("webkit.footer.staticRef")} {today}
-      </p>
       <a
         href={`/${lang}/`}
-        class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
       >
         {t("webkit.footer.backHome")}
       </a>
